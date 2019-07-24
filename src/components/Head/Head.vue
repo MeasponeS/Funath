@@ -38,14 +38,18 @@
 <style scoped lang="scss">
     @import "../../assets/css/var.scss";
     .head-warp{
+        width: 100%;
+        background: #0DAA67;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         .head{
             display: flex;
-            width: 100%;
+            width: 1200px;
             height: 50px;
-            padding: 0 364px;
             justify-content: space-between;
             align-content: center;
-            background: #0DAA67;
+
             .left{
                 display: flex;
                 justify-content: flex-start;

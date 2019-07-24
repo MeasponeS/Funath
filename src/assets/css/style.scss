@@ -17,7 +17,7 @@ body{
 .el-input__inner{
   border-radius: 2px!important;
 }
-.primary-btn{
+.el-button--primary{
   color: $--color-primary;
   border-color: $--color-primary;
 }
@@ -116,5 +116,8 @@ select:-webkit-autofill {
   float: right;
 }
 .main-body{
-  min-height: calc(100vh - 160px);
+  min-height: calc(100vh - 550px);
+}
+span{
+  padding-right: 0 !important;
 }
