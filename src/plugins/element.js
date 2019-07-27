@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import "../assets/css/var.scss";
 import {
-    // Pagination,
-    Dialog,
+     Pagination,
+    //Dialog,
     // Autocomplete,
     // Dropdown,
     // DropdownMenu,
@@ -20,24 +20,24 @@ import {
     // CheckboxButton,
     // CheckboxGroup,
     // Switch,
-    Select,
-    Option,
-    OptionGroup,
+    //Select,
+    //Option,
+    //OptionGroup,
     Button,
     // ButtonGroup,
     // Table,
     // TableColumn,
-    DatePicker,
+    //DatePicker,
     // TimeSelect,
     // TimePicker,
     Popover,
     // Tooltip,
     Breadcrumb,
     BreadcrumbItem,
-    Form,
-    FormItem,
-    // Tabs,
-    // TabPane,
+    //Form,
+    //FormItem,
+     Tabs,
+     TabPane,
     // Tag,
     // Tree,
     // Alert,
@@ -46,17 +46,17 @@ import {
     // Row,
     // Col,
     // Upload,
-    Progress,
+    //Progress,
     // Badge,
     // Card,
     // Rate,
     // Steps,
     // Step,
-    Carousel,
-    CarouselItem,
+    //Carousel,
+    //CarouselItem,
     // Collapse,
     // CollapseItem,
-    Cascader,
+    //Cascader,
     // ColorPicker,
     // Transfer,
     // Container,
@@ -72,8 +72,8 @@ import {
 
 
 
-// Vue.use(Pagination);
-Vue.use(Dialog);
+ Vue.use(Pagination);
+//Vue.use(Dialog);
 // Vue.use(Autocomplete);
 // Vue.use(Dropdown);
 // Vue.use(DropdownMenu);
@@ -91,24 +91,24 @@ Vue.use(Input);
 // Vue.use(CheckboxButton);
 // Vue.use(CheckboxGroup);
 // Vue.use(Switch);
-Vue.use(Select);
-Vue.use(Option);
-Vue.use(OptionGroup);
+//Vue.use(Select);
+//Vue.use(Option);
+//Vue.use(OptionGroup);
 Vue.use(Button);
 // Vue.use(ButtonGroup);
 // Vue.use(Table);
 // Vue.use(TableColumn);
-Vue.use(DatePicker);
+//Vue.use(DatePicker);
 // Vue.use(TimeSelect);
 // Vue.use(TimePicker);
 Vue.use(Popover);
 // Vue.use(Tooltip);
 Vue.use(Breadcrumb);
 Vue.use(BreadcrumbItem);
-Vue.use(Form);
-Vue.use(FormItem);
-// Vue.use(Tabs);
-// Vue.use(TabPane);
+//Vue.use(Form);
+//Vue.use(FormItem);
+ Vue.use(Tabs);
+ Vue.use(TabPane);
 // Vue.use(Tag);
 // Vue.use(Tree);
 // Vue.use(Alert);
@@ -117,17 +117,17 @@ Vue.use(FormItem);
 // Vue.use(Row);
 // Vue.use(Col);
 // Vue.use(Upload);
-Vue.use(Progress);
+//Vue.use(Progress);
 // Vue.use(Badge);
 // Vue.use(Card);
 // Vue.use(Rate);
 // Vue.use(Steps);
 // Vue.use(Step);
-Vue.use(Carousel);
-Vue.use(CarouselItem);
+//Vue.use(Carousel);
+//Vue.use(CarouselItem);
 // Vue.use(Collapse);
 // Vue.use(CollapseItem);
-Vue.use(Cascader);
+//Vue.use(Cascader);
 // Vue.use(ColorPicker);
 // Vue.use(Transfer);
 // Vue.use(Container);

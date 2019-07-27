@@ -23,7 +23,7 @@
         name: 'Head',
 
         data: function () {
-
+            return {}
         },
         methods: {
 
@@ -72,6 +72,7 @@
                     span{
                         font-size: 26px;
                         font-family: 'DINC';
+                        color: #fff;
                         margin-left: 8px;
                         padding-right: 28px!important;
                     }
@@ -82,11 +83,13 @@
                         font-size: 16px;
                         padding-right: 4px!important;
                         border-right: 2px solid #fff;
+                        color: #fff;
                     }
                     .en{
                         font-family: "DINR";
                         font-size: 16px;
                         padding-left: 4px!important;
+                        color: #fff;
                     }
                 }
             }

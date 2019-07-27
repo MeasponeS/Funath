@@ -154,10 +154,10 @@
                         color: #2B2B2B;
                         margin-bottom: 8px;
                         background-color: #D6D6D6!important;
-                    }
-                    input.el-input__inner{
-                        height: 30px!important;
-                        background-color: #D6D6D6!important;
+                        .el-input__inner{
+                            border: none!important;
+                            background-color: #D6D6D6!important;
+                        }
                     }
                     .el-button{
                         width: 120px;
