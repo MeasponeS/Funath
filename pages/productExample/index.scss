@@ -1,0 +1,345 @@
+#app{
+    #div1{display:block;width:110px;height:50px;line-height:50px;white-space:nowrap;overflow:hidden;background-color:#a2a2a2;margin:15px;padding:5px 15px;}
+}
+.banner{
+    width: 100%;
+    height: 300px;
+    border-bottom: 5px solid #0DAA67;
+    margin-bottom: 15px;
+}
+.item .el-breadcrumb{
+    font-size: 12px;
+    font-family: "SourceHan-regular";
+    color: #000;
+    .is-link{
+        font-weight: normal;
+        &:hover{
+            color: #000;
+        }
+    }
+}
+.b_box{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .item{
+        width: 1200px;
+        .el_tabs{
+            .el-tabs__header{
+                border: 0;
+            }
+            margin-top: 40px;
+            .el-tabs__item{
+                font-family: "SourceHan-regular";
+                font-size: 16px;
+                width: 196px;
+                height: 50px;
+                background: #D6D6D6;
+                text-align: center;
+                line-height: 50px;
+                color: #000;
+            }
+            .is-active{
+                background: #0DAA67;
+                border-bottom: 0;
+                border-top: 0;
+                color: #fff;
+            }
+            .all{
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                flex-wrap: wrap;
+                list-style: none;
+                padding: 0;
+                li{
+                    width: 30%;
+                    margin-top: 50px;
+                    img{
+                        width: 380px;
+                        height: 220px;
+                    }
+                    h4{
+                        font-weight: normal;
+                        margin: 31px 0 15px 0;
+                        font-family: SourceHan-regular;
+                        font-size: 16px;
+                    }
+                    p{
+                        font-family: SourceHan-regular;
+                        font-size: 12px;
+                        margin: 0;
+                    }
+                    .el-button{
+                        width: 108px;
+                        height: 45px;
+                        font-family: "SourceHan-regular";
+                        font-size: 16px;
+                        color: #fff;
+                        background: #0DAA67;
+                        border: 1px solid #0DAA67;
+                        padding: 0;
+                        margin-top: 27px;
+                    }
+                }
+            }
+            .cars{
+                display: flex;
+                justify-content: center;
+                align-items: flex-start;
+                flex-direction: column;
+                .top{
+                    margin-top: 40px;
+                    .header{
+                        width: 100%;
+                        height: 40px;
+                        display: flex;
+                        justify-content: flex-start;
+                        align-items: center;
+                        border-bottom: 3px solid #D6D6D6;
+                        margin-bottom: 35px;
+                        h3{
+                            font-family: "SourceHan";
+                            font-size: 26px;
+                            margin: 0;
+                            font-weight: normal;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            &:before{
+                                content: "";
+                                display: inline-block;
+                                width: 3px;
+                                height: 26px;
+                                background: #0DAA67;
+                                margin-right: 10px;
+                            }
+                        }
+                    }
+                    .body{
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        img{
+                            width: 600px;
+                            height: 400px;
+                            margin-right: 35px;
+                        }
+                        .right{
+                            flex: 1;
+                            height: 100%;
+                            margin-left: 35px;
+                            display: flex;
+                            flex-direction: column;
+                            h4{
+                                font-family: "SourceHan";
+                                font-size: 22px;
+                                margin-bottom: 19px;
+                            }
+                            span{
+                                font-family:'SourceHan-regular';
+                                font-size: 14px;
+                            }
+                            ul{
+                                display: flex;
+                                justify-content: flex-start;
+                                align-items: center;
+                                list-style: none;
+                                flex-wrap: wrap;
+                                padding: 0;
+                                li{
+                                    width: 100px;
+                                    height: 30px;
+                                    font-family: SourceHan-regular;
+                                    font-size: 16px;
+                                    border: 1px solid #d6d6d6;
+                                    background: #edf0f0;
+                                    margin-right: 8px;
+                                    display: flex;
+                                    justify-content: center;
+                                    align-items: center;
+                                    margin-bottom: 8px;
+                                    cursor: pointer;
+                                }
+                            }
+                        }
+                    }
+                }
+                .bottom{
+                    margin-top: 40px;
+                    .header{
+                        width: 100%;
+                        height: 40px;
+                        display: flex;
+                        justify-content: flex-start;
+                        align-items: center;
+                        border-bottom: 3px solid #D6D6D6;
+                        margin-bottom: 35px;
+                        h3{
+                            font-family: "SourceHan";
+                            font-size: 26px;
+                            margin: 0;
+                            font-weight: normal;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            &:before{
+                                content: "";
+                                display: inline-block;
+                                width: 3px;
+                                height: 26px;
+                                background: #0DAA67;
+                                margin-right: 10px;
+                            }
+                        }
+                    }
+                }
+
+            }
+
+
+
+
+
+        }
+        .details{
+            margin-top: 65px;
+            .header{
+                width: 100%;
+                height: 40px;
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                border-bottom: 3px solid #D6D6D6;
+                margin-bottom: 10px;
+                position: relative;
+                h3{
+                    font-family: "SourceHan";
+                    font-size: 26px;
+                    margin: 0;
+                    font-weight: normal;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    &:before{
+                        content: "";
+                        display: inline-block;
+                        width: 3px;
+                        height: 26px;
+                        background: #0DAA67;
+                        margin-right: 10px;
+                    }
+                }
+            }
+            .body{
+                display: flex;
+                justify-content: flex-start;
+                align-items: flex-start;
+                margin-top: 47px;
+                .left{
+                    width: 600px;
+                    height: 400px;
+                    .el-carousel__arrow{
+                        width: 45px;
+                        height: 45px;
+                        background: #0DAA67;
+                        border-radius: 0;
+                        opacity: 1;
+                    }
+                }
+                .right{
+                    margin-left: 69px;
+                    display: flex;
+                    justify-content: flex-start;
+                    flex-direction: column;
+                    h3{
+                        font-family: SourceHan;
+                        font-size: 22px;
+                        font-weight: normal;
+                        margin: 0;
+                        margin-bottom: 19px;
+                    }
+                    span{
+                        font-family: SourceHan-regular;
+                        font-size: 14px;
+                        margin-bottom: 60px;
+                    }
+                    ul{
+                        list-style: none;
+                        padding: 0;
+                        display: flex;
+                        justify-content: flex-start;
+                        align-items: center;
+                        flex-wrap: wrap;
+                        li{
+                            width: 100px;
+                            height: 30px;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            margin-right: 8px;
+                            background: #edf0f0;
+                            border: 1px solid #d6d6d6;
+                            font-family: SourceHan-regular;
+                            font-size: 16px;
+                            margin-bottom: 8px;
+                        }
+                    }
+                }
+            }
+        }
+        .p{
+            width: 100% ;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 106px 0;
+            .number{
+                width: 50px;
+                height: 50px;
+                text-align: center;
+                line-height: 50px;
+                font-size: 16px;
+                font-family: SourceHan-regular;
+            }
+            .el-icon-more{
+                width: 50px;
+                height: 50px;
+                text-align: center;
+                line-height: 50px;
+                font-size: 16px;
+                font-family: SourceHan-regular;
+            }
+            .el-icon-d-arrow-right{
+                width: 50px;
+                height: 50px;
+                text-align: center;
+                line-height: 50px;
+                font-size: 16px;
+                font-family: SourceHan-regular;
+            }
+            .btn-next{
+                width: 50px;
+                height: 50px;
+                text-align: center;
+                line-height: 50px;
+                font-size: 16px;
+                font-family: SourceHan-regular;
+            }
+            .btn-prev{
+                width: 50px;
+                height: 50px;
+                text-align: center;
+                line-height: 50px;
+                font-size: 16px;
+                font-family: SourceHan-regular;
+            }
+            .active{
+                background-color: #D6D6D6!important;
+            }
+        }
+    }
+}
