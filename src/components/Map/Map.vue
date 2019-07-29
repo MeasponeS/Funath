@@ -10,9 +10,12 @@
                     vid="amap-vue"
             >
                 <el-amap-marker
-                        vid="amap-vue"
-                        :position="componentMarker.position"
-                        :content-render="componentMarker.contentRender"
+                        v-for="(marker, index) in markers"
+                        :vid="index"
+                        :position="marker.position"
+                        :events="marker.events"
+                        :visible="marker.visible"
+                        :draggable="marker.draggable"
                 ></el-amap-marker>
 
             </el-amap>
@@ -22,10 +25,6 @@
 
 <script>
     import './Mixin';
-	const exampleComponents = {
-		props: ['text'],
-		template: `<div>text from  parent: {{text}}</div>`
-	}
 	export default {
         name: "Map",
         data(){
@@ -34,8 +33,6 @@
 				zoom: 15,
 				events: {
 					init: (o) => {
-						console.log(o.getCenter());
-						console.log(this.$refs.map.$$getInstance());
 						o.getCity(result => {
 							console.log(result)
 						})
@@ -57,10 +54,22 @@
 						}
 					}
 				}],
-				componentMarker: {
-					position: [121.606796,31.323111],
-					contentRender: (h, instance) => h(exampleComponents,{style: {backgroundColor: '#fff'}, props: {text: '111'}}, ['xxxxxxx'])
-				},
+				markers: [
+					{
+						position: [121.606796,31.323111],
+						events: {
+							click: () => {
+
+							},
+							dragend: (e) => {
+								this.markers[0].position = [e.lnglat.lng, e.lnglat.lat];
+							}
+						},
+						visible: true,
+						draggable: false,
+						template: '<span>1</span>',
+					}
+				],
             }
         }
 	}
@@ -70,5 +79,9 @@
     .amap-wrapper {
         width: 686px;
         height: 258px;
+    }
+    .map_text{
+        width: 500px;
+        background: red;
     }
 </style>

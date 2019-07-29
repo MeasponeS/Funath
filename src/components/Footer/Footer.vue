@@ -8,10 +8,10 @@
                     </div>
                     <div class="left_bottom">
                         <ul>
-                            <li>产品介绍</li>
-                            <li>项目案例</li>
-                            <li>公司介绍</li>
-                            <li>新闻资讯</li>
+                            <li @click="goProducts">产品介绍</li>
+                            <li @click="goExample">项目案例</li>
+                            <li @click="goIntroduction('')">公司介绍</li>
+                            <li @click="goNews">新闻资讯</li>
                         </ul>
                         <img src="../Head/img/tel.png" alt="">
                     </div>
@@ -24,7 +24,7 @@
                     <h4>总部地址：中国（上海）自由贸易试验区外高桥保税区富特北路288号2号楼4层</h4>
                     <h4>华北服务中心：河北石家庄桥西区胜利南街416号塔坛国际9号楼2915室</h4>
                     <h4>Tel: 021-58811558      Fax: 021-58590386     Email: sales@funath.com </h4>
-                    <el-button type="primary" @click="showMap">查看地图</el-button>
+                    <el-button type="primary" @click="showMap" v-if="pathname != '/contact.html'">查看地图</el-button>
                 </div>
                 <div class="right">
                     <div class="right_header">
@@ -64,9 +64,13 @@
 				dialogVisible:false,
                 name:'',
                 mobile:'',
-                company:''
+                company:'',
+                pathname:''
             }
         },
+        mounted(){
+			this.pathname = window.location.pathname
+		},
         methods:{
 			showMap(){
 				this.dialogVisible = true
@@ -98,6 +102,18 @@
 					});
 				}).catch(_=>{})
             },
+			goExample(){
+				window.location.href = './productExample.html'
+			},
+			goNews(){
+				window.location.href = './news.html'
+			},
+			goIntroduction(type){
+				window.location.href = './introduction.html?type=' + type
+			},
+			goProducts(){
+				window.location.href = './products.html'
+			},
         },
         components:{
         	Map
@@ -152,6 +168,10 @@
                                 font-size: 12px;
                                 margin-top: 20px;
                                 margin-right: 28px;
+                                cursor: pointer;
+                                &:hover{
+                                    color: #0DAA67;
+                                }
                             }
                         }
                         img{
