@@ -2,7 +2,7 @@ import Vue from 'vue'
 import "../assets/css/var.scss";
 import {
      Pagination,
-    //Dialog,
+    Dialog,
     // Autocomplete,
     // Dropdown,
     // DropdownMenu,
@@ -52,10 +52,10 @@ import {
     // Rate,
     // Steps,
     // Step,
-    //Carousel,
-    //CarouselItem,
-    // Collapse,
-    // CollapseItem,
+    Carousel,
+    CarouselItem,
+     Collapse,
+     CollapseItem,
     //Cascader,
     // ColorPicker,
     // Transfer,
@@ -73,7 +73,7 @@ import {
 
 
  Vue.use(Pagination);
-//Vue.use(Dialog);
+Vue.use(Dialog);
 // Vue.use(Autocomplete);
 // Vue.use(Dropdown);
 // Vue.use(DropdownMenu);
@@ -123,10 +123,10 @@ Vue.use(BreadcrumbItem);
 // Vue.use(Rate);
 // Vue.use(Steps);
 // Vue.use(Step);
-//Vue.use(Carousel);
-//Vue.use(CarouselItem);
-// Vue.use(Collapse);
-// Vue.use(CollapseItem);
+Vue.use(Carousel);
+Vue.use(CarouselItem);
+ Vue.use(Collapse);
+ Vue.use(CollapseItem);
 //Vue.use(Cascader);
 // Vue.use(ColorPicker);
 // Vue.use(Transfer);

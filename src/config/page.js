@@ -18,5 +18,11 @@ module.exports = {
     },
     products:{
         title:'产品展示'
+    },
+    productList:{
+        title:'产品列表'
+    },
+    productDetail:{
+        title:'产品详情'
     }
 };

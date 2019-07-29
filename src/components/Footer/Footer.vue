@@ -24,36 +24,89 @@
                     <h4>总部地址：中国（上海）自由贸易试验区外高桥保税区富特北路288号2号楼4层</h4>
                     <h4>华北服务中心：河北石家庄桥西区胜利南街416号塔坛国际9号楼2915室</h4>
                     <h4>Tel: 021-58811558      Fax: 021-58590386     Email: sales@funath.com </h4>
-                    <el-button type="primary">查看地图</el-button>
+                    <el-button type="primary" @click="showMap">查看地图</el-button>
                 </div>
                 <div class="right">
                     <div class="right_header">
                         项目咨询
                     </div>
-                    <el-input size="small" placeholder="姓名" />
-                    <el-input size="small" placeholder="电话" />
-                    <el-input size="small" placeholder="公司" />
-                    <el-button type="primary">发送消息</el-button>
+                    <el-input size="small" placeholder="姓名" class="f_inputs" v-model="name" />
+                    <el-input size="small" placeholder="电话"  class="f_inputs" v-model="mobile"/>
+                    <el-input size="small" placeholder="公司" class="f_inputs" v-model="company"/>
+                    <el-button type="primary" @click="consultsUs">发送消息</el-button>
                 </div>
             </div>
             <div class="bottom">
                @ 2019 版权所有孚纳森实业（上海）有限公司沪ICP备18015332号
             </div>
+
+            <el-dialog
+                    title="地图"
+                    :visible.sync="dialogVisible"
+                    width="725px"
+            >
+                <Map />
+            </el-dialog>
         </div>
     </div>
 </template>
 
 <script>
+    import Map from "../Map/Map";
+    import {consults} from '../../api/common'
     export default {
         name: 'Footer',
         props: {
 
+        },
+        data(){
+        	return{
+				dialogVisible:false,
+                name:'',
+                mobile:'',
+                company:''
+            }
+        },
+        methods:{
+			showMap(){
+				this.dialogVisible = true
+            },
+			consultsUs(){
+				if(!this.name){
+					this.$message.error('请填写您的姓名');
+					return;
+                }
+				if(!this.mobile){
+					this.$message.error('请填写您的手机号码');
+					return;
+				}
+				if(!this.company){
+					this.$message.error('请填写您的公司');
+					return;
+				}
+				consults({
+                    name:this.name,
+                    phone:this.mobile,
+                    company:this.company
+                }).then(r=>{
+                	this.name = '';
+                	this.mobile = '';
+                	this.company = '';
+					this.$message({
+						message: r.message,
+						type: 'success'
+					});
+				}).catch(_=>{})
+            },
+        },
+        components:{
+        	Map
         }
     }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="scss">
+<style  lang="scss">
     ul{
         list-style: none;
     }
@@ -73,7 +126,7 @@
             .top{
                 display: flex;
                 justify-content: flex-start;
-                align-items: center;
+                align-items: flex-start;
                 .left_header{
                     width: 100%;
                     font-family: "SourceHan-regular";
@@ -145,7 +198,7 @@
                         font-size: 16px;
                         margin-bottom: 15px;
                     }
-                    .el-input{
+                    .el-input--small{
                         display: block!important;
                         width: 100%;
                         height: 30px;
@@ -153,11 +206,11 @@
                         font-family: "SourceHan-regular";
                         color: #2B2B2B;
                         margin-bottom: 8px;
-                        background-color: #D6D6D6!important;
-                        .el-input__inner{
-                            border: none!important;
-                            background-color: #D6D6D6!important;
-                        }
+                    }
+                    .el-input--small .el-input__inner{
+                        border: none;
+                        background: #EEEFF0;
+                        color: #2b2b2b;
                     }
                     .el-button{
                         width: 120px;

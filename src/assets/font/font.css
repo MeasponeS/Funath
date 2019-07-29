@@ -1,54 +1,54 @@
 @font-face {
     font-family: 'SourceHan-extraLight';
-    src: url('./SourceHanSansCN-ExtraLight.otf');
+    src: url('SourceHanSansCN-ExtraLight.otf');
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
     font-family: 'SourceHan-medium';
-    src: url('./SourceHanSansCN-Medium.otf');
+    src: url('SourceHanSansCN-Medium.otf');
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
     font-family: 'SourceHan-light';
-    src: url('./SourceHanSansCN-Light.otf');
+    src: url('SourceHanSansCN-Light.otf');
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
     font-family: 'SourceHan-heavy';
-    src: url('./SourceHanSansCN-Heavy.otf');
+    src: url('SourceHanSansCN-Heavy.otf');
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
     font-family: 'SourceHan-normal';
-    src: url('./SourceHanSansCN-Normal.otf');
+    src: url('SourceHanSansCN-Normal.otf');
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
     font-family: 'SourceHan-regular';
-    src: url('./SourceHanSansCN-Regular.otf');
+    src: url('SourceHanSansCN-Regular.otf');
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
     font-family: 'SourceHan';
-    src: url('./思源黑体 CN Bold.otf');
+    src: url('思源黑体 CN Bold.otf');
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
     font-family: 'DINC';
-    src: url('./DIN Condensed Bold.ttf');
+    src: url('DIN Condensed Bold.ttf');
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
     font-family: 'DINR';
-    src: url('./DIN-Regular.otf');
+    src: url('DIN-Regular.otf');
     font-weight: normal;
     font-style: normal;
 }

@@ -2,11 +2,11 @@
     <div class="head-warp">
         <div class="head" >
             <div class="left">
-                <img src="./img/logo.png" alt="">
+                <img src="img/logo.png" alt="">
             </div>
             <div class="right">
                 <div class="tel">
-                    <img src="./img/tel.png" alt="">
+                    <img src="img/tel.png" alt="">
                     <span>400-0012-977</span>
                 </div>
                 <div class="language">
@@ -36,7 +36,7 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-    @import "../../assets/css/var.scss";
+    @import "../../assets/css/var";
     .head-warp{
         width: 100%;
         background: #0DAA67;

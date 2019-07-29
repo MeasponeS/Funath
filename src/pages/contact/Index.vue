@@ -1,7 +1,7 @@
 <template>
     <div id="app">
         <Head />
-        <img src="./img/1.jpg" alt="" class="banner">
+        <img src="img/1.jpg" alt="" class="banner">
         <div class="b_box">
             <div class="item">
                 <el-breadcrumb separator-class="el-icon-arrow-right">
@@ -23,7 +23,7 @@
                             <span> 欢迎垂询孚纳森产品，为及时准确回复，请尽量使用中文书写咨询邮件</span>
                         </div>
                         <div class="right">
-
+                            <Map />
                         </div>
                     </div>
                 </div>
@@ -33,11 +33,11 @@
                     </div>
                     <div class="info_body">
                         <div class="inputs">
-                            <el-input size="small" placeholder="姓名" />
-                            <el-input size="small" placeholder="电话" />
-                            <el-input size="small" placeholder="职位" />
-                            <el-input size="small" placeholder="描述" type="textarea"></el-input>
-                            <el-button type="primary">立即申请</el-button>
+                            <el-input size="small" placeholder="姓名" v-model="name"/>
+                            <el-input size="small" placeholder="电话" v-model="mobile"/>
+                            <el-input size="small" placeholder="职位" v-model="position" />
+                            <el-input size="small" placeholder="描述" type="textarea" v-model="personal_desc"></el-input>
+                            <el-button type="primary" @click="apply">立即申请</el-button>
                         </div>
                     </div>
                 </div>
@@ -50,11 +50,17 @@
 
 <script>
 	import Backtop from '../../components/BackTop/Backtop'
-    export default {
+    import Map from "../../components/Map/Map";
+	import {applies} from "../../api/common";
+
+	export default {
         name:'contact',
         data() {
             return {
-
+                name:'',
+                mobile:'',
+                position:'',
+				personal_desc:''
             }
         },
         mounted() {
@@ -64,10 +70,42 @@
 
         },
         methods: {
-
+            apply(){
+				if(!this.name){
+					this.$message.error('请填写您的姓名');
+					return;
+				}
+				if(!this.mobile){
+					this.$message.error('请填写您的手机号码');
+					return;
+				}
+				if(!this.position){
+					this.$message.error('请填写您的职务');
+					return;
+				}
+				if(!this.personal_desc){
+					this.$message.error('请填写描述');
+					return;
+				}
+				applies({
+					name:this.name,
+					phone:this.mobile,
+                    position:this.position,
+					personal_desc:this.personal_desc
+				}).then(r=>{
+					this.name = '';
+					this.mobile = '';
+					this.position = '';
+					this.personal_desc = '';
+					this.$message({
+						message: r.message,
+						type: 'success'
+					});
+				}).catch(_=>{})
+            }
         },
         components:{
-			Backtop
+			Backtop,Map
         }
     }
 </script>

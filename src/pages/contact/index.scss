@@ -77,13 +77,14 @@
                 }
             }
             .right{
-                flex:1
+                flex:1;
+                height: 258px;
             }
         }
         .info_body{
             width: 100%;
             height: 400px;
-            background-image: url("./img/2.jpg");
+            background-image: url("img/2.jpg");
             background-size: 100% 100%  ;
             display: flex;
             justify-content: flex-start;
@@ -97,13 +98,15 @@
                     margin-bottom: 8px;
                     .el-input__inner{
                         border: none!important;
-                        background: #D6D6D6;
+                        background: #EEEFF0;
+                        color: #2b2b2b;
                     }
                 }
                 .el-textarea{
                     .el-textarea__inner{
                         border: none!important;
-                        background: #D6D6D6;
+                        background: #EEEFF0;
+                        color: #2b2b2b;
                     }
                 }
                 .el-button{
