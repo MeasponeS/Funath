@@ -2,7 +2,7 @@
     <div id="app">
         <Head />
         <div class="navH">
-            <img src="img/banner.png" alt="" class="banner">
+            <img src="./img/banner.png" alt="" class="banner">
             <ul class="nav">
                 <li :class="type == 'one'?'active':''" @click="changeNav('one',426)">
                     <i class="el-icon-caret-bottom"></i>
@@ -27,10 +27,10 @@
                     </div>
                     <ul class="body">
                         <li class="first">
-                            <img src="img/1.png" alt="">
+                            <img src="./img/1.png" alt="">
                         </li>
                         <li>
-                            <img src="img/2.png" alt="">
+                            <img src="./img/2.png" alt="">
                         </li>
                         <li>
                             <h3>以心为本</h3>
@@ -46,20 +46,20 @@
                     </ul>
                 </div>
             </div>
-            <img src="img/middleBanner.png" alt="" class="middleBanner" @click="goOne">
+            <img src="./img/middleBanner.png" alt="" class="middleBanner" @click="goOne">
             <ul class="icons">
                 <li>
-                    <img src="img/amiba.png" alt="">
+                    <img src="./img/amiba.png" alt="">
                     <h3>阿米巴经营</h3>
                     <span>阿米巴经营是指将组织分成小集体，通过与市场直接挂钩的独立核算制进行运营，培养具有经营者意识的人才，让全体员工参与经营管理，从而实现“全员参与”的经营模式。</span>
                 </li>
                 <li>
-                    <img src="img/funasen.png" alt="">
+                    <img src="./img/funasen.png" alt="">
                     <h3>孚纳森哲学</h3>
                     <span>孚纳森哲学是把“作为人何谓正确”作为判断事物的基准，强调在任何时候都要做到光明正大、认真努力，它既是人生哲学，也是经营哲学。</span>
                 </li>
                 <li>
-                    <img src="img/amiba.png" alt="">
+                    <img src="./img/amiba.png" alt="">
                     <h3>经营理念</h3>
                     <span>追求全体员工物质与精神两方面幸福的同时，为人类和社会的进步与发展做出贡献。</span>
                 </li>
@@ -70,7 +70,7 @@
                 </div>
                 <div class="body">
                     <div class="imgs">
-                        <img src="img/person.png" alt="" class="corporation">
+                        <img src="./img/person.png" alt="" class="corporation">
                     </div>
                 </div>
             </div>
@@ -83,10 +83,10 @@
                         <span>
                             孚纳森的CSR活动基于以“作为人何谓正确”为判断基准的“孚纳森哲学”。希望通过实践孚纳森哲学，解决CSR课题，并构建与利益相关者相互信赖的关系，实现企业的可持续发展，同时为社会的健全发展做出贡献。
                         </span>
-                        <img src="img/top.png" alt="" class="top">
-                        <img src="img/down.png" alt="" class="down">
+                        <img src="./img/top.png" alt="" class="top">
+                        <img src="./img/down.png" alt="" class="down">
                     </div>
-                    <img src="img/right.png" alt="" class="right">
+                    <img src="./img/right.png" alt="" class="right">
                 </div>
             </div>
         </div>
@@ -105,6 +105,21 @@
         },
         mounted() {
 			// 426 1912 2549
+            if(window.URlPARAMS.type){
+            	switch (window.URlPARAMS.type) {
+                    case 'one':
+                    	this.changeNav('one',426);
+                        return;
+                    case 'two':
+                    	this.changeNav('two',1912);
+                    	return;
+                    case 'three':
+                    	this.changeNav('three',2549);
+                        return;
+                    default:
+                    	this.changeNav('',0)
+				}
+            }
         },
         computed: {
 

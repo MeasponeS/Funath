@@ -1,12 +1,13 @@
 <template>
     <div id="app">
         <Head />
-        <img src="img/banner.jpg" alt="" class="banner">
+        <img src="./img/banner.jpg" alt="" class="banner">
         <div class="b_box">
             <div class="item">
                 <el-breadcrumb separator-class="el-icon-arrow-right">
                     <el-breadcrumb-item><a href="./index.html">HOME</a></el-breadcrumb-item>
                     <el-breadcrumb-item>新闻资讯</el-breadcrumb-item>
+                    <el-breadcrumb-item v-if="!showDetail">{{postDetails.title || ''}}</el-breadcrumb-item>
                 </el-breadcrumb>
                 <div class="news">
                     <ul class="left">
@@ -23,7 +24,7 @@
                             <i class="el-icon-arrow-down"></i>
                         </li>
                         <li class="img">
-                            <img src="img/1.jpg" alt="">
+                            <img src="./img/1.jpg" alt="">
                         </li>
                     </ul>
                     <div class="right" v-if="showDetail">

@@ -2,7 +2,7 @@
     <div id="app">
         <Head />
         <div class="navH">
-            <img src="img/banner.png" alt="" class="banner">
+            <img src="./img/banner.png" alt="" class="banner">
 
 
         </div>

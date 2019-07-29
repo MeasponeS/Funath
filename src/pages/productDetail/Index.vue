@@ -3,7 +3,7 @@
         <Head />
         <div class="item">
             <div class="banner">
-                <img src="img/banner.png" alt="">
+                <img src="./img/banner.png" alt="">
             </div>
             <el-breadcrumb separator-class="el-icon-arrow-right">
                 <el-breadcrumb-item><a href="./index.html">HOME</a></el-breadcrumb-item>
@@ -62,7 +62,7 @@
                         <i class="el-icon-d-arrow-left"></i>
                     </li>
                     <li class="imgs">
-                        <img src="img/1.png" alt="">
+                        <img src="./img/1.png" alt="">
                     </li>
                 </ul>
             </div>

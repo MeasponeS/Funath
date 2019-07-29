@@ -36,7 +36,7 @@
                     <el-button type="primary" @click="consultsUs">发送消息</el-button>
                 </div>
             </div>
-            <div class="bottom">
+            <div class="bottomF">
                @ 2019 版权所有孚纳森实业（上海）有限公司沪ICP备18015332号
             </div>
 
@@ -124,6 +124,7 @@
             height: 100%;
             position: relative;
             .top{
+                z-index: 9999;
                 display: flex;
                 justify-content: flex-start;
                 align-items: flex-start;
@@ -224,7 +225,7 @@
                     }
                 }
             }
-            .bottom{
+            .bottomF{
                 font-size: 12px;
                 font-family: "SourceHan-regular";
                 position: absolute;

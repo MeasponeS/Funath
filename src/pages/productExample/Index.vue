@@ -1,12 +1,13 @@
 <template>
     <div id="app">
         <Head/>
-        <img src="img/banner.jpg" alt="" class="banner">
+        <img src="./img/banner.jpg" alt="" class="banner">
         <div class="b_box">
             <div class="item">
                 <el-breadcrumb separator-class="el-icon-arrow-right">
                     <el-breadcrumb-item><a href="./index.html">HOME</a></el-breadcrumb-item>
                     <el-breadcrumb-item>项目案例</el-breadcrumb-item>
+                    <el-breadcrumb-item v-if="!showDetail">{{E_details.title||''}}</el-breadcrumb-item>
                 </el-breadcrumb>
                 <el-tabs v-model="activeName" type="card" @tab-click="handleClick" class="el_tabs">
                     <el-tab-pane v-for="item in types" :label="item.name" :name="item.id+''"  >

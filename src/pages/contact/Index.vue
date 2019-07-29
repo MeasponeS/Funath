@@ -1,7 +1,7 @@
 <template>
     <div id="app">
         <Head />
-        <img src="img/1.jpg" alt="" class="banner">
+        <img src="./img/1.jpg" alt="" class="banner">
         <div class="b_box">
             <div class="item">
                 <el-breadcrumb separator-class="el-icon-arrow-right">
