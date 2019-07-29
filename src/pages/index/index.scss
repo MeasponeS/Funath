@@ -1,18 +1,36 @@
 #app{
+    height: 100vh;
     position: relative;
-    #div1{display:block;width:110px;height:50px;line-height:50px;white-space:nowrap;overflow:hidden;background-color:#a2a2a2;margin:15px;padding:5px 15px;}
-    span{display:inline-block;}
+    //overflow-y: auto;
+    width: 100%;
+    //&::-webkit-scrollbar{
+    //    width: 0 !important
+    //}
 }
+html {
+    -ms-overflow-style:none;
+    overflow:-moz-scrollbars-none;
+    -webkit-scrollbar{
+        width:0;
+        height:0;
+    }
+}
+html::-webkit-scrollbar{width:0}
 
 
 .bannerList{
     width: 100%;
+    margin-top: 8px;
+    height: 400px;
+    .el-carousel{
+        height: 400px;
+    }
     .el-carousel__item{
+        height: 400px;
         a{
             img {
                 width: 100%;
-                height: 400px;
-                display: block;
+                height: 100%;
             }
         }
     }
@@ -20,7 +38,16 @@
         width: 16px;
         height: 16px;
         border: 2px solid #fff;
-        background: #0DAA67;
+        background: transparent;
+        &:hover{
+            background: #0daa67;
+        }
+    }
+    .is-active{
+        .el-carousel__button{
+            background: #0daa67;
+        }
+
     }
 
 
@@ -108,7 +135,7 @@
             }
         }
         .word{
-            background: #000;
+            background: #2B2B2B;
             img{
                 width: 52px;
                 height: 52px;
@@ -125,9 +152,9 @@
         margin-top: 47px;
         color: #fff;
         &:hover{
-            background: #0DAA67;
+            background: #fff;
             border: 1px solid #0DAA67;
-            color: #fff;
+            color: #0DAA67;
         }
     }
 }
@@ -137,16 +164,39 @@
     height: 450px;
     position: relative;
     margin-bottom: 57px;
-    img{
-        width: 100%;
-        height: 100% ;
+    background-image: url("./img/middleBanner.png");
+    background-size: 100% 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    .header{
+        width: 1200px;
+        display: flex;
+        justify-content: flex-start;
+        padding: 0 16px;
+        flex-direction: column;
+        border-left: 4px solid #fff;
+        margin-top: 50px;
+        h3{
+            margin: 0;
+            font-weight: normal;
+            font-family: DINC;
+            font-size: 40px;
+            color: #fff;
+        }
+        span{
+            font-family: SourceHan;
+            font-size: 20px;
+            color: #fff;
+
+        }
     }
     ul{
         list-style: none;
         padding: 0;
         position: absolute;
         top: 300px;
-        left: 570px;
+        left: 31%;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -161,6 +211,9 @@
             background: rgba(255,255,255,0.9);
             border-right: 2px solid #0DAA67;
             cursor: pointer;
+            &:hover{
+                color: #0daa67;
+            }
         }
     }
 }
@@ -171,10 +224,11 @@
     justify-content: flex-start;
     flex-direction: column;
     position: relative;
+    cursor: pointer;
     .header{
         display: flex;
         justify-content: flex-start;
-        padding: 2px 16px;
+        padding: 0 16px;
         flex-direction: column;
         border-left: 4px solid #0DAA67;
         margin-bottom: 53px;
@@ -186,8 +240,8 @@
         }
         span{
             font-family: SourceHan;
-            font-size: 40px;
-            color: #000;
+            font-size: 20px;
+            color: #2B2B2B;
         }
     }
     .body{
@@ -213,6 +267,9 @@
                 p{
                     flex:10;
                     margin: 0;
+                    &:hover{
+                        color: #0daa67;
+                    }
                 }
             }
         }
@@ -225,6 +282,18 @@
             align-items: center;
             margin-top: 25px;
             color: #fff;
+            &:hover{
+                background: #fff;
+                border: 1px solid #0DAA67;
+                color: #0DAA67;
+            }
+        }
+        .imgIntro{
+            font-size: 12px;
+            font-family: SourceHan-regular;
+            position: absolute;
+            bottom: 52px;
+            right: 320px;
         }
     }
     img{

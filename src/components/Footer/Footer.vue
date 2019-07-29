@@ -1,5 +1,8 @@
 <template>
-    <div class="footer">
+    <div class="footer" :style="{
+                    height:(pathname == '/'|| pathname == '/index.html')?'500px':'350px',
+                    padding:(pathname == '/'|| pathname == '/index.html')?'178px 0 50px 0':'78px 0 50px 0'
+                    }">
         <div class="container">
             <div class="top">
                 <div class="left">
@@ -13,7 +16,7 @@
                             <li @click="goIntroduction('')">公司介绍</li>
                             <li @click="goNews">新闻资讯</li>
                         </ul>
-                        <img src="../Head/img/tel.png" alt="">
+                        <img src="./erweima.jpg" alt="">
                     </div>
                 </div>
                 <div class="middle">
@@ -23,7 +26,7 @@
                     <h4>孚纳森实业（上海）有限公司</h4>
                     <h4>总部地址：中国（上海）自由贸易试验区外高桥保税区富特北路288号2号楼4层</h4>
                     <h4>华北服务中心：河北石家庄桥西区胜利南街416号塔坛国际9号楼2915室</h4>
-                    <h4>Tel: 021-58811558      Fax: 021-58590386     Email: sales@funath.com </h4>
+                    <h4>Tel: 021-58811558 &#12288;&#12288;    Fax: 021-58590386&#12288;&#12288;     Email: sales@funath.com </h4>
                     <el-button type="primary" @click="showMap" v-if="pathname != '/contact.html'">查看地图</el-button>
                 </div>
                 <div class="right">
@@ -37,7 +40,7 @@
                 </div>
             </div>
             <div class="bottomF">
-               @ 2019 版权所有孚纳森实业（上海）有限公司沪ICP备18015332号
+               @ 2019 版权所有孚纳森实业（上海）有限公司 沪ICP备18015332号-3
             </div>
 
             <el-dialog
@@ -138,7 +141,6 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        padding: 178px 0 50px 0;
         color: #D6D6D6;
         .container{
             width: 1200px;

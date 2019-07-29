@@ -1,7 +1,12 @@
 <template>
     <div id="app">
         <Head />
-        <img src="./img/1.jpg" alt="" class="banner">
+        <div class="banner">
+            <div class="header">
+                <h3>CONTACT US</h3>
+                <span>联系我们</span>
+            </div>
+        </div>
         <div class="b_box">
             <div class="item">
                 <el-breadcrumb separator-class="el-icon-arrow-right">

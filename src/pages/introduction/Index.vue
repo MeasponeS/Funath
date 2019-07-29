@@ -2,7 +2,12 @@
     <div id="app">
         <Head />
         <div class="navH">
-            <img src="./img/banner.png" alt="" class="banner">
+            <div class="banner">
+                <div class="header">
+                    <h3>COMPANY PROFILE</h3>
+                    <span>公司介绍</span>
+                </div>
+            </div>
             <ul class="nav">
                 <li :class="type == 'one'?'active':''" @click="changeNav('one',426)">
                     <i class="el-icon-caret-bottom"></i>
@@ -49,17 +54,23 @@
             <img src="./img/middleBanner.png" alt="" class="middleBanner" @click="goOne">
             <ul class="icons">
                 <li>
-                    <img src="./img/amiba.png" alt="">
+                    <div class="imgs">
+                        <img src="./img/amiba.png" alt="">
+                    </div>
                     <h3>阿米巴经营</h3>
                     <span>阿米巴经营是指将组织分成小集体，通过与市场直接挂钩的独立核算制进行运营，培养具有经营者意识的人才，让全体员工参与经营管理，从而实现“全员参与”的经营模式。</span>
                 </li>
                 <li>
-                    <img src="./img/funasen.png" alt="">
+                    <div class="imgs">
+                        <img src="./img/funasen.png" alt="">
+                    </div>
                     <h3>孚纳森哲学</h3>
                     <span>孚纳森哲学是把“作为人何谓正确”作为判断事物的基准，强调在任何时候都要做到光明正大、认真努力，它既是人生哲学，也是经营哲学。</span>
                 </li>
                 <li>
-                    <img src="./img/amiba.png" alt="">
+                    <div class="imgs">
+                        <img src="./img/amiba.png" alt="">
+                    </div>
                     <h3>经营理念</h3>
                     <span>追求全体员工物质与精神两方面幸福的同时，为人类和社会的进步与发展做出贡献。</span>
                 </li>

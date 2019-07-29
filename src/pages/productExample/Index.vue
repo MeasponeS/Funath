@@ -1,7 +1,12 @@
 <template>
     <div id="app">
         <Head/>
-        <img src="./img/banner.jpg" alt="" class="banner">
+        <div class="banner">
+            <div class="header">
+                <h3>PROJECT CASES</h3>
+                <span>项目案例</span>
+            </div>
+        </div>
         <div class="b_box">
             <div class="item">
                 <el-breadcrumb separator-class="el-icon-arrow-right">
@@ -12,7 +17,7 @@
                 <el-tabs v-model="activeName" type="card" @tab-click="handleClick" class="el_tabs">
                     <el-tab-pane label="所有项目" name=""  >
                         <ul class="all" v-if="showDetail">
-                            <li v-for="item in lists">
+                            <li v-for="item in lists" @click="details(item.id)">
                                 <img :src="item.main_image_url" alt="">
                                 <h4>{{item.title}}</h4>
                                 <p>{{item.introduce}}</p>
@@ -57,6 +62,7 @@
                                 <li
                                         v-for="item in recommends"
                                         :key="item.id"
+                                        @click="details(item.id)"
                                 >
                                     <img :src="item.main_image_url" alt="">
                                     <h4>{{item.title}}</h4>
@@ -113,6 +119,7 @@
                                 <li
                                         v-for="item in recommends"
                                         :key="item.id"
+                                        @click="details(item.id)"
                                 >
                                     <img :src="item.main_image_url" alt="">
                                     <h4>{{item.title}}</h4>
@@ -160,7 +167,6 @@
             exampleTypes({}).then(r=>{
                 this.types = r.data;
                 if(r.data.length){
-                    this.activeName = r.data[0].id+'';
                     exampleList({category_id:''}).then(res=>{
                         this.lists = res.data;
 						this.total = res.meta.pagination.total;

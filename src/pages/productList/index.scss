@@ -5,6 +5,7 @@
     flex-direction: column;
     #div1{display:block;width:110px;height:50px;line-height:50px;white-space:nowrap;overflow:hidden;background-color:#a2a2a2;margin:15px;padding:5px 15px;}
 }
+
 .item{
     width: 1200px;
     .banner{
@@ -17,11 +18,14 @@
         }
     }
     .el-breadcrumb__item{
-        span{
+        .el-breadcrumb__inner{
+            color: #7c7c7c!important;
             a{
-                font-family: SourceHan-regular;
-                font-size: 11px;
                 color: #7c7c7c;
+                font-weight: normal;
+                &:hover{
+                    color: #7c7c7c;
+                }
             }
         }
     }
@@ -40,7 +44,7 @@
             display: flex;
             justify-content: flex-start;
             align-items: center;
-            border-bottom: 3px solid #D6D6D6;
+            border-bottom: 3px solid #2b2b2b;
             margin-bottom: 10px;
             position: relative;
             h3{
@@ -74,7 +78,6 @@
                 margin-top: 30px;
                 cursor: pointer;
                 .left{
-                    width: 300px;
                     height: 280px;
                     margin-right: 36px;
                 }
@@ -137,6 +140,12 @@
         .el-collapse-item{
             background: #d6d6d6;
         }
+        .el-icon-arrow-right{
+            &:before{
+                content: "\E62B";
+            }
+
+        }
         .el-collapse-item__header{
             background: #d6d6d6;
             margin-top: 5px;
@@ -145,6 +154,7 @@
         .el-collapse-item__content{
             padding: 0;
         }
+
         .rightList{
             list-style: none;
             padding: 0;

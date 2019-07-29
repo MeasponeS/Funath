@@ -9,7 +9,7 @@
                         arrow="never"
                         	>
                     <el-carousel-item v-for="(item,index) in bannerList" :key="index">
-                        <a href="">
+                        <a :href="item.link">
                             <img :src="item.image_url" alt="">
                         </a>
                     </el-carousel-item>
@@ -54,14 +54,17 @@
                 <el-button @click="goProducts">查看更多</el-button>
             </div>
             <div class="middleBanner">
-                <img src="./img/middleBanner.png" alt="">
+                <div class="header">
+                    <h3>COMPANY PROFILE</h3>
+                    <span>公司介绍</span>
+                </div>
                 <ul>
                     <li @click="goIntroduction('one')">孚纳森哲学</li>
                     <li @click="goIntroduction('two')">合作伙伴</li>
                     <li @click="goIntroduction('three')">社会责任</li>
                 </ul>
             </div>
-            <div class="news">
+            <div class="news" @click="goNews">
                 <div class="header">
                     <h3>NEWS</h3>
                     <span>新闻资讯</span>
@@ -82,7 +85,11 @@
                         </li>
                     </ul>
                     <el-button @click="goNews">查看更多</el-button>
-                    <img src="./img/9.png" alt="">
+                    <div>
+                        <img src="./img/9.png" alt="">
+                        <div class="imgIntro">- 成功签约上海院子车库地坪施工项目</div>
+                    </div>
+
                 </div>
             </div>
             <div class="big">

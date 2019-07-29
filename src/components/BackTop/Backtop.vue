@@ -25,7 +25,9 @@
 		},
         methods:{
 			handleScroll: function () {
-				let scrollTop = document.documentElement.scrollTop;
+				let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+				let offsetTop = document.documentElement.offsetTop;
+				console.log(offsetTop,'=======');
 				let clientHeight = document.documentElement.clientHeight || document.body.clientHeight;
 				if(scrollTop > clientHeight){
 					this.show = true
@@ -46,12 +48,12 @@
         width: 40px;
         height: 40px;
         background: #EEEFF0;
-        color: #000;
+        color: #2B2B2B;
         display: flex;
         justify-content: center;
         align-content: center;
         position: fixed;
-        right: 100px;
+        right: 5%;
         bottom: 100px;
         cursor: pointer;
         i{

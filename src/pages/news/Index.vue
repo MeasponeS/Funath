@@ -1,7 +1,12 @@
 <template>
     <div id="app">
         <Head />
-        <img src="./img/banner.jpg" alt="" class="banner">
+        <div class="banner">
+            <div class="header">
+                <h3>NEWS</h3>
+                <span>新闻资讯</span>
+            </div>
+        </div>
         <div class="b_box">
             <div class="item">
                 <el-breadcrumb separator-class="el-icon-arrow-right">
@@ -29,7 +34,7 @@
                     </ul>
                     <div class="right" v-if="showDetail">
                         <div class="header">
-                            <h3>2019年</h3>
+                            <h3>{{this.activeClass}}年</h3>
                         </div>
                         <div class="body">
                             <ul>
@@ -40,7 +45,7 @@
                                                 NEW
                                             </div>
                                             <div class="title">
-                                                <h4>{{item.title}}</h4>
+                                                <h4 @click="showPostDetail(item.id)">{{item.title}}</h4>
                                                 <span>{{item.created_at}}</span>
                                             </div>
                                         </div>
@@ -78,7 +83,7 @@
                 years:[],
                 postList:[],
                 showDetail:true,
-                postDetails:''
+                postDetails:'',
             }
         },
         created(){
@@ -87,6 +92,11 @@
                 if(r.length>0){
                     this.activeClass = r[0];
                     yearPosts({year:r[0]}).then(res=>{
+                    	if(res.data.length){
+                    		res.data.forEach(i=>{
+                    			i.created_at = i.created_at.trim().split(/\s+/)[0]
+                            })
+                        }
                         this.postList = res.data;
                     }).catch(_=>{})
                 }
@@ -108,7 +118,8 @@
             showPostDetail(id){
                 this.showDetail = false;
                 postDetails({},id).then(r=>{
-                   this.postDetails = r.data
+                    this.postDetails = r.data;
+					this.postDetails.created_at = this.postDetails.created_at.trim().split(/\s+/)[0]
                 }).catch(_=>{})
             }
         },

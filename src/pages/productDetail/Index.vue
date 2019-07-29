@@ -14,6 +14,12 @@
 
             <div class="l_content">
                 <div class="list" v-html="info.content">
+                    1111111111
+                    1111111111
+                    111111111
+                    111111111
+                    11111111111
+                    1111111111
 <!--                    <div class="intro">-->
 <!--                        <div class="header">-->
 <!--                            <h3>{{info.name}}</h3>-->

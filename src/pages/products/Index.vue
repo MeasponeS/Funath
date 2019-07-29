@@ -2,9 +2,12 @@
     <div id="app">
         <Head />
         <div class="navH">
-            <img src="./img/banner.png" alt="" class="banner">
-
-
+            <div class="banner">
+                <div class="header">
+                    <h3>PRODUCTS</h3>
+                    <span>产品信息</span>
+                </div>
+            </div>
         </div>
         <div class="b_box">
             <div class="item">
@@ -72,6 +75,7 @@
                         <li
                             v-for="item in recommends"
                             :key="item.id"
+                            @click="goDetails(item.id)"
                         >
                             <img :src="item.main_image_url" alt="">
                             <h4>{{item.title}}</h4>
