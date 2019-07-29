@@ -13,26 +13,18 @@
             </el-breadcrumb>
 
             <div class="l_content">
-                <div class="list">
-                    <div class="intro">
-                        <div class="header">
-                            <h3>{{info.name}}</h3>
-                        </div>
-                        <div class="body">
-                            <img :src="info.main_image.url" alt="">
-                            <div v-html="info.content">
+                <div class="list" v-html="info.content">
+<!--                    <div class="intro">-->
+<!--                        <div class="header">-->
+<!--                            <h3>{{info.name}}</h3>-->
+<!--                        </div>-->
+<!--                        <div class="body">-->
+<!--                            <img :src="info.main_image.url" alt="">-->
+<!--                            <div v-html="info.content">-->
 
-                            </div>
-                        </div>
-                    </div>
-                    <div class="advance">
-                        <div class="header">
-                            <h3>产品优势</h3>
-                        </div>
-                        <div v-html="info.content">
-
-                        </div>
-                    </div>
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
                 </div>
                 <ul class="box">
                     <li class="header">

@@ -41,8 +41,11 @@
                                     <span>{{E_details.solution}}</span>
                                     <h3>使用产品</h3>
                                     <ul>
-                                        <li v-for="item in E_details.products">
-                                            {{item}}
+                                        <li
+                                            v-for="item in E_details.products"
+                                            @click="productDetail(item.id)"
+                                        >
+                                            {{item.code}}
                                         </li>
                                     </ul>
                                 </div>
@@ -139,6 +142,9 @@
 						this.recommends = r.data
 					}).catch(_=>{})
                 }).catch(_=>{})
+            },
+			productDetail(id){
+                window.location.href = './productDetail.html?id=' + id
             }
         },
         components:{

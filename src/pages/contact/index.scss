@@ -114,11 +114,15 @@
                     height: 30px;
                     font-family: "SourceHan-regular";
                     font-size: 16px;
-                    color: #fff;
-                    background: #0DAA67;
+                    color: #0DAA67;
+                    background: #fff;
                     border: 1px solid #0DAA67;
                     padding: 0;
                     margin-top: 8px;
+                    &:hover{
+                        background: #0DAA67;
+                        color: #fff;
+                    }
                 }
             }
         }
