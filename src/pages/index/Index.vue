@@ -85,24 +85,24 @@
                     <img src="./img/9.png" alt="">
                 </div>
             </div>
-            <ul class="bottom">
-                <li>
-                    <span>上海中心</span>
-                    <img src="./img/FUNATH网站-主页修_案例图300-400-15.png" alt="">
-                </li>
-                <li>
-                    <span>上海院子车库</span>
-                    <img src="./img/FUNATH网站-主页修_案例图300-400-16.png" alt="">
-                </li>
-                <li>
-                    <span>上海东方明珠</span>
-                    <img src="./img/FUNATH网站-主页修_案例图300-400-17.png" alt="">
-                </li>
-                <li>
-                    <span>陆家嘴国金中心</span>
-                    <img src="./img/FUNATH网站-主页修_案例图300-400-18.png" alt="">
-                </li>
-            </ul>
+            <div class="big">
+                <div class="left" @click="slideLeft">
+                    <i class="el-icon-arrow-left"></i>
+                </div>
+                <div class="right" @click="slideRight">
+                    <i class="el-icon-arrow-right"></i>
+                </div>
+                <ul class="bottom">
+
+                    <li v-for="(item,index) in list" :key="index" @click="goDetails(item.id)">
+                        <span>{{item.title}}</span>
+                        <img :src="item.main_image_url" alt="">
+                    </li>
+
+                </ul>
+
+            </div>
+
         </div>
         <Backtop />
         <Footer />
@@ -111,20 +111,41 @@
 
 <script>
     import Backtop from '../../components/BackTop/Backtop'
-    import {banners} from '../../api/common'
+    import {banners,exampleList} from '../../api/common'
     export default {
         data() {
             return {
-                bannerList:[]
-
+                bannerList:[],
+                list:[],
+				activeName:''
             }
         },
         created(){
             banners({}).then(r=>{
                 this.bannerList = r.data
-            }).catch(_=>{})
+            }).catch(_=>{});
+			exampleList({category_id:''}).then(res=>{
+				res.data.forEach((item,index)=>{
+					if(index < 14){
+						this.list.push(item)
+						this.list.push(item)
+						this.list.push(item)
+						this.list.push(item)
+						this.list.push(item)
+						this.list.push(item)
+						this.list.push(item)
+						this.list.push(item)
+						this.list.push(item)
+						this.list.push(item)
+						this.list.push(item)
+						this.list.push(item)
+                    }
+                });
+			}).catch(_=>{})
         },
         mounted() {
+			document.getElementsByClassName("bottom")[0].style.overflowY="hidden";
+			document.getElementsByClassName("bottom")[0].style.overflowX="hidden";
             banners({}).then(r=>{
                 this.bannerList = r.data
             }).catch(_=>{})
@@ -148,6 +169,19 @@
             goProducts(){
                 window.location.href = './products.html'
             },
+			goDetails(id){
+            	// 项目案例详情
+				window.location.href = './productExample.html?id='+id
+			},
+			slideLeft(){
+				let bottom = document.getElementsByClassName('bottom');
+				bottom[0].scrollTo({right:300,behavior:'smooth'});
+            },
+			slideRight(){
+            	let bottom = document.getElementsByClassName('bottom');
+				console.log(bottom[0]);
+				bottom[0].scrollTo({left:300,behavior:'smooth'});
+            }
         },
         components:{
             Backtop

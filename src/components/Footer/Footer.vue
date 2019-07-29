@@ -54,6 +54,7 @@
 <script>
     import Map from "../Map/Map";
     import {consults} from '../../api/common'
+    import {checkPhone} from '../../utils/dataStorage'
     export default {
         name: 'Footer',
         props: {
@@ -84,6 +85,10 @@
 					this.$message.error('请填写您的手机号码');
 					return;
 				}
+				if(!checkPhone(this.mobile)){
+					this.$message.error('请填写正确格式的手机号码');
+					return;
+                }
 				if(!this.company){
 					this.$message.error('请填写您的公司');
 					return;

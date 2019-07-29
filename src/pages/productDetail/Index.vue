@@ -8,7 +8,7 @@
             <el-breadcrumb separator-class="el-icon-arrow-right">
                 <el-breadcrumb-item><a href="./index.html">HOME</a></el-breadcrumb-item>
                 <el-breadcrumb-item><a href="./products.html">产品信息</a></el-breadcrumb-item>
-                <el-breadcrumb-item><a href="">{{info.category}}</a></el-breadcrumb-item>
+                <el-breadcrumb-item><a href="javascript:;">{{info.category}}</a></el-breadcrumb-item>
                 <el-breadcrumb-item>{{info.name}}</el-breadcrumb-item>
             </el-breadcrumb>
 

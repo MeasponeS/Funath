@@ -52,7 +52,7 @@
 	import Backtop from '../../components/BackTop/Backtop'
     import Map from "../../components/Map/Map";
 	import {applies} from "../../api/common";
-
+    import {checkPhone} from '../../utils/dataStorage'
 	export default {
         name:'contact',
         data() {
@@ -77,6 +77,10 @@
 				}
 				if(!this.mobile){
 					this.$message.error('请填写您的手机号码');
+					return;
+				}
+				if(!checkPhone(this.mobile)){
+					this.$message.error('请填写正确格式的手机号码');
 					return;
 				}
 				if(!this.position){
