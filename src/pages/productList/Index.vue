@@ -39,10 +39,11 @@
                                     {{item.name}}
                                 </h3>
                                 <div class="tags">
-                                <span v-for="i in item.tags">
-                                    {{i}}
-                                </span>
+                                    <span v-for="i in item.tags">
+                                        {{i}}
+                                    </span>
                                 </div>
+                                <img :src="item.spec_image_url" alt="">
                             </div>
                         </li>
                     </ul>
