@@ -6,6 +6,7 @@
                     :interval="3000"
                     trigger="click"
                     arrow="never"
+                    :indicator-position="bannerList.length > 1? '':'none'"
             >
                 <el-carousel-item v-for="(item,index) in bannerList" :key="index">
                     <a :href="item.link">

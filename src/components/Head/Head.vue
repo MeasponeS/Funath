@@ -92,7 +92,6 @@
                 img{
                     height: 32px;
                     width: auto;
-                    margin: 8px 0;
                 }
             }
             .rightNav{

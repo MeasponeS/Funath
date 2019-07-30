@@ -9,7 +9,6 @@
 .banner{
     width: 100%;
     background: #EEEFF0;
-    height: 300px;
     border-bottom: 5px solid #0DAA67;
     margin-bottom: 15px;
     display: flex;
@@ -46,6 +45,7 @@
 
     }
     .header{
+        z-index: 9999;
         position: absolute;
         width: 1200px;
         display: flex;

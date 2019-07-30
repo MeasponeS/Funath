@@ -7,6 +7,7 @@
                         :interval="3000"
                         trigger="click"
                         arrow="never"
+                        :indicator-position="bannerList.length > 1? '':'none'"
                 >
                     <el-carousel-item v-for="(item,index) in bannerList" :key="index">
                         <a :href="item.link">
@@ -24,17 +25,6 @@
 
             <div class="l_content">
                 <div class="list" v-html="info.content">
-<!--                    <div class="intro">-->
-<!--                        <div class="header">-->
-<!--                            <h3>{{info.name}}</h3>-->
-<!--                        </div>-->
-<!--                        <div class="body">-->
-<!--                            <img :src="info.main_image.url" alt="">-->
-<!--                            <div v-html="info.content">-->
-
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
                 </div>
                 <ul class="box">
                     <li class="header">
@@ -50,6 +40,7 @@
                             <ul class="rightList">
                                 <li
                                     v-for="i in item.products.data"
+                                    :class="{'active':activeId == i.id}"
                                     :key="i.id"
                                     @click="goDetail(i.id)"
                                 >
@@ -82,14 +73,22 @@
                 all:[],
                 activeNames:[],
                 info:{},
-				bannerList:[]
+				bannerList:[],
+                activeId:''
             }
         },
         mounted() {
             let id = window.URlPARAMS.id;
             this.getDetails(id);
-            products({}).then(r=>{
+			products({}).then(r=>{
                 this.all = r.data;
+                r.data.forEach(item=>{
+                	item.products.data.forEach(i=>{
+                		if(i.id == id){
+							this.activeNames.push(parseInt(item.id));
+                        }
+                    })
+                })
             }).catch(_=>{});
 			banners({position:'9'}).then(r=>{
 				this.bannerList = r.data
@@ -100,6 +99,7 @@
         },
         methods: {
             getDetails(id){
+				this.activeId = id;
                 productDetails({},id).then(r=>{
                     this.info = r;
                 }).catch(_=>{})
