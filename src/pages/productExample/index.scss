@@ -118,7 +118,7 @@
                 }
             }
             .is-active{
-                background: #0DAA67;
+                background: #0daa67;
                 border-bottom: 0;
                 border-top: 0;
                 color: #fff;
@@ -407,6 +407,12 @@
                 .left{
                     width: 600px;
                     height: 400px;
+                    .is-active{
+                        background: #edeeef;
+                        border-bottom: 0;
+                        border-top: 0;
+                        color: #fff;
+                    }
                     .el-carousel__arrow{
                         width: 45px;
                         height: 45px;
