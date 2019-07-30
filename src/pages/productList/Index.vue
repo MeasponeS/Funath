@@ -36,7 +36,7 @@
                             <img :src="item.main_image_url" alt="" class="left">
                             <div class="right">
                                 <h3>
-                                    {{item.code}}{{item.name}}
+                                    {{item.name}}
                                 </h3>
                                 <div class="tags">
                                 <span v-for="i in item.tags">

@@ -16,7 +16,9 @@
                         :events="marker.events"
                         :visible="marker.visible"
                         :draggable="marker.draggable"
-                ></el-amap-marker>
+                        :label="marker.label"
+                >
+                </el-amap-marker>
 
             </el-amap>
         </div>
@@ -33,8 +35,9 @@
 				zoom: 15,
 				events: {
 					init: (o) => {
+						console.log(o,'====');
 						o.getCity(result => {
-							console.log(result)
+							console.log(result,'------')
 						})
 					},
 					'moveend': () => {
@@ -58,13 +61,15 @@
 					{
 						position: [121.606796,31.323111],
 						events: {
+
 							click: () => {
 
 							},
-							dragend: (e) => {
-								this.markers[0].position = [e.lnglat.lng, e.lnglat.lat];
-							}
 						},
+                        label:{
+							content:'上海市自由贸易试验区外高桥保税区富特北路288号2号楼4层',
+							offset:[0,-50],
+                        },
 						visible: true,
 						draggable: false,
 						template: '<span>1</span>',
@@ -80,8 +85,14 @@
         width: 686px;
         height: 258px;
     }
-    .map_text{
-        width: 500px;
-        background: red;
+    .amap-marker-label{
+        width: 400px;
+        height: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: none;
+        font-family: SourceHan-regular;
+        font-size: 14px;
     }
 </style>

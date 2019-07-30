@@ -90,7 +90,7 @@
                             :name="item.id+''"
                     >
                         <ul class="all" v-if="showDetail && lists.length">
-                            <li v-for="item in lists">
+                            <li v-for="item in lists" @click="details(item.id)">
                                 <img :src="item.main_image_url" alt="">
                                 <h4>{{item.title}}</h4>
                                 <p>{{item.introduce}}</p>
@@ -114,9 +114,9 @@
                                 </div>
                                 <div class="right">
                                     <h3>项目介绍</h3>
-                                    <span>{{E_details.introduce}}</span>
+                                    <span v-html="E_details.introduce"></span>
                                     <h3>解决方案</h3>
-                                    <span>{{E_details.solution}}</span>
+                                    <span v-html="E_details.solution"></span>
                                     <h3>使用产品</h3>
                                     <ul>
                                         <li
@@ -219,7 +219,8 @@
                 }).catch(_=>{})
             },
             details(id){
-			    this.showDetail = false;
+				console.log(id);
+				this.showDetail = false;
                 exampleDetails({},id).then(r=>{
                     this.E_details = r;
 					recommends({}).then(r=>{
@@ -229,7 +230,11 @@
             },
 			productDetail(id){
                 window.location.href = './productDetail.html?id=' + id
-            }
+            },
+			turn(data) {
+				console.log(data);
+				return data.replace(/(\r\n|\n|\r)/g, "<br />");
+			}
         },
         components:{
 			Backtop
