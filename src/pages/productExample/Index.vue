@@ -23,8 +23,8 @@
             <div class="item">
                 <el-breadcrumb separator-class="el-icon-arrow-right">
                     <el-breadcrumb-item><a href="./index.html">HOME</a></el-breadcrumb-item>
-                    <el-breadcrumb-item>项目案例</el-breadcrumb-item>
-                    <el-breadcrumb-item v-if="!showDetail">{{E_details.title||''}}</el-breadcrumb-item>
+                    <el-breadcrumb-item><a href="./productExample.html">项目案例</a></el-breadcrumb-item>
+                    <el-breadcrumb-item v-if="!showDetail"><a href="#">{{E_details.title||''}}</a></el-breadcrumb-item>
                 </el-breadcrumb>
                 <el-tabs v-model="activeName" type="card" @tab-click="handleClick" class="el_tabs">
                     <el-tab-pane label="所有项目" name=""  >
@@ -84,7 +84,7 @@
                             </ul>
                         </div>
                     </el-tab-pane>
-                    <el-tab-pane v-for="item in types" :label="item.name" :name="item.id+''"  >
+                    <el-tab-pane v-for="(item, key) in types" :key = "key" :label="item.name" :name="item.id+''"  >
                         <ul class="all" v-if="showDetail && lists.length">
                             <li v-for="item in lists">
                                 <img :src="item.main_image_url" alt="">
@@ -157,7 +157,7 @@
         </div>
         <Backtop />
         <Footer/>
-    </div>  
+    </div>
 </template>
 
 <script>

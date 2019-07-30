@@ -20,7 +20,7 @@
                 <el-breadcrumb-item><a href="./index.html">HOME</a></el-breadcrumb-item>
                 <el-breadcrumb-item><a href="./products.html">产品信息</a></el-breadcrumb-item>
                 <el-breadcrumb-item><a href="javascript:;">{{info.category}}</a></el-breadcrumb-item>
-                <el-breadcrumb-item>{{info.name}}</el-breadcrumb-item>
+                <el-breadcrumb-item><a href="#">{{info.name}}</a></el-breadcrumb-item>
             </el-breadcrumb>
 
             <div class="l_content">
@@ -32,7 +32,7 @@
                         <i class="el-icon-back"></i>
                     </li>
                     <el-collapse v-model="activeNames">
-                        <div v-for="item in all" @mouseover="openCollapse(item.id)">
+                        <div v-for="item in all" @mouseenter="openCollapse(item.id)">
                             <el-collapse-item
                                     :title="item.name"
                                     :key="item.id"
@@ -64,7 +64,7 @@
 
         </div>
         <Footer />
-    </div>  
+    </div>
 </template>
 
 <script>
@@ -76,7 +76,8 @@
                 activeNames:[],
                 info:{},
 				bannerList:[],
-                activeId:''
+                activeId:'',
+                opening: false
             }
         },
         mounted() {
@@ -110,9 +111,13 @@
                 this.getDetails(id);
             },
 			openCollapse(id){
-				window.setTimeout(()=>{
-					this.activeNames = id;
-				},300)
+                // if(!this.opening) {
+                //     this.opening = true;
+                //     setTimeout(()=>{
+                //         this.activeNames = id;
+                //         this.opening = false;
+                //     },300);
+                // }
             }
         },
         components:{

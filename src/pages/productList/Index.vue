@@ -19,7 +19,7 @@
             <el-breadcrumb separator-class="el-icon-arrow-right">
                 <el-breadcrumb-item><a href="./index.html">HOME</a></el-breadcrumb-item>
                 <el-breadcrumb-item><a href="./products.html">产品信息</a></el-breadcrumb-item>
-                <el-breadcrumb-item>{{list[0].category}}</el-breadcrumb-item>
+                <el-breadcrumb-item><a href="#">{{list[0].category}}</a></el-breadcrumb-item>
             </el-breadcrumb>
 
             <div class="l_content">
@@ -84,7 +84,7 @@
 
         </div>
         <Footer />
-    </div>  
+    </div>
 </template>
 
 <script>

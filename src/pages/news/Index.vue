@@ -23,8 +23,8 @@
             <div class="item">
                 <el-breadcrumb separator-class="el-icon-arrow-right">
                     <el-breadcrumb-item><a href="./index.html">HOME</a></el-breadcrumb-item>
-                    <el-breadcrumb-item>新闻资讯</el-breadcrumb-item>
-                    <el-breadcrumb-item v-if="!showDetail">{{postDetails.title || ''}}</el-breadcrumb-item>
+                    <el-breadcrumb-item><a href="./news.html">新闻资讯</a></el-breadcrumb-item>
+                    <el-breadcrumb-item v-if="!showDetail"><a href="#">{{postDetails.title || ''}}</a></el-breadcrumb-item>
                 </el-breadcrumb>
                 <div class="news">
                     <ul class="left">
@@ -82,7 +82,7 @@
         </div>
         <Backtop />
         <Footer/>
-    </div>  
+    </div>
 </template>
 
 <script>

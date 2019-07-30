@@ -70,15 +70,17 @@
     width: 100%;
     position: relative;
     .nav{
-        position: absolute;
+        //position: absolute;
         list-style: none;
+        position: relative;
         padding: 0;
         display: flex;
         justify-content: center;
         align-items: center;
-        bottom: 5px;
-        left: 510px;
+        //bottom: 5px;
+        //left: 510px;
         z-index: 9999;
+       bottom: 80px;
         li{
             width: 298px;
             height: 60px;
@@ -201,7 +203,7 @@
         }
     }
     .middleBanner{
-        width: 100%;
+        width: auto;
         height: 360px;
         margin-bottom: 60px;
         cursor: pointer;

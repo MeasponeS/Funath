@@ -36,7 +36,7 @@
             <div class="item">
                 <el-breadcrumb separator-class="el-icon-arrow-right">
                     <el-breadcrumb-item><a href="./index.html">HOME</a></el-breadcrumb-item>
-                    <el-breadcrumb-item>公司介绍</el-breadcrumb-item>
+                    <el-breadcrumb-item><a href="#">公司介绍</a></el-breadcrumb-item>
                 </el-breadcrumb>
                 <div class="zhexue">
                     <div class="header">
