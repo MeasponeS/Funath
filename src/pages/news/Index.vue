@@ -115,6 +115,10 @@
             }).catch(_=>{})
         },
         mounted() {
+        	let id = window.URlPARAMS.id || '';
+        	if(id){
+				this.showPostDetail(id)
+            }
 			banners({position:'3'}).then(r=>{
 				this.bannerList = r.data
 			}).catch(_=>{});

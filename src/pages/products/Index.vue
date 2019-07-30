@@ -68,7 +68,7 @@
                         :key="k"
                         @click="goProductDetails(i.id)"
                     >
-                        <img :src="i.main_image_url" alt="">
+                        <div class="p_imgs"><img :src="i.main_image_url" alt=""></div>
                         <span>{{i.name}}</span>
                     </li>
                 </ul>
@@ -126,11 +126,14 @@
 			banners({position:'2'}).then(r=>{
 				this.bannerList = r.data
 			}).catch(_=>{});
-			if(window.URlPARAMS.name){
-				this.changeNav(window.URlPARAMS.index,decodeURI(window.URlPARAMS.name))
-            }
         },
 		mounted() {
+			if(window.URlPARAMS.name){
+				window.setTimeout(()=>{
+					this.changeNav(window.URlPARAMS.index,decodeURI(window.URlPARAMS.name))
+                },300)
+
+			}
 			// 426 1912 2549
 		},
 		computed: {
@@ -147,7 +150,6 @@
 				return scrollTop;
 			},
 			changeNav(index,name){
-				console.log(name);
 				this.showSearch = name?false:true;
                 let products = document.getElementsByClassName('products');
 				let newArr = [];

@@ -59,13 +59,16 @@
                     <h3>COMPANY PROFILE</h3>
                     <span>公司介绍</span>
                 </div>
-                <ul>
-                    <li @click="goIntroduction('one')">孚纳森哲学</li>
-                    <li @click="goIntroduction('two')">合作伙伴</li>
-                    <li @click="goIntroduction('three')">社会责任</li>
-                </ul>
+                <div class="body">
+                    <ul>
+                        <li @click="goIntroduction('one')">孚纳森哲学</li>
+                        <li @click="goIntroduction('two')">合作伙伴</li>
+                        <li @click="goIntroduction('three')">社会责任</li>
+                    </ul>
+                </div>
+
             </div>
-            <div class="news" @click="goNews">
+            <div class="news">
                 <img :src="middleBanner" alt="">
                 <div class="header">
                     <h3>NEWS</h3>
@@ -73,32 +76,27 @@
                 </div>
                 <div class="body">
                     <ul>
-                        <li>
-                            <span>2019-06-15</span>
-                            <p>成功签约上海院子车库地坪施工项目</p>
+                        <li v-for="item in newList" @click="goNews(item.id)">
+                            <span>{{item.created_at.trim().split(/\s+/)[0]}}</span>
+                            <p>{{item.title}}</p>
                         </li>
-                        <li>
-                            <span>2019-06-15</span>
-                            <p>成功签约上海院子车库地坪施工项目</p>
-                        </li>
-                        <li>
-                            <span>2019-06-15</span>
-                            <p>成功签约上海院子车库地坪施工项目成功地坪施工项目成功签约上海院子车库地坪施工项目成功签约上海院子车库地坪施工项目成功签约上海院子车库地坪施工项目</p>
-                        </li>
+
                     </ul>
                     <el-button @click="goNews">查看更多</el-button>
-                    <div>
-                        <img src="./img/9.png" alt="">
-                        <div class="imgIntro">- 成功签约上海院子车库地坪施工项目</div>
+                    <div @click="goNews(newList[0].id)">
+                        <div class="imgs">
+                            <img :src="newList[0].image" alt="">
+                        </div>
+                        <div class="imgIntro">- {{newList[0].title}}</div>
                     </div>
 
                 </div>
             </div>
             <div class="big">
-                <div class="left" @click="slideLeft">
+                <div class="left" @click="slideLeft" v-if="list.length > 4">
                     <i class="el-icon-arrow-left"></i>
                 </div>
-                <div class="right" @click="slideRight">
+                <div class="right" @click="slideRight" v-if="list.length > 4">
                     <i class="el-icon-arrow-right"></i>
                 </div>
                 <ul class="bottom">
@@ -120,7 +118,7 @@
 
 <script>
     import Backtop from '../../components/BackTop/Backtop'
-    import {banners,exampleList,products} from '../../api/common'
+    import {banners,exampleList,products,yearPosts} from '../../api/common'
     export default {
         data() {
             return {
@@ -130,35 +128,30 @@
 				activeName:'',
 				p_list:[],
                 activePic:10,
-				extraList:[]
+				extraList:[],
+                newList:[]
             }
         },
         created(){
-            banners({}).then(r=>{
+			let myDate = new Date();
+			let tYear = myDate.getFullYear();
+			banners({}).then(r=>{
                 this.bannerList = r.data
             }).catch(_=>{});
 			exampleList({category_id:''}).then(res=>{
 				res.data.forEach((item,index)=>{
 					if(index < 14){
-						this.list.push(item)
-						this.list.push(item)
-						this.list.push(item)
-						this.list.push(item)
-						this.list.push(item)
-						this.list.push(item)
-						this.list.push(item)
-						this.list.push(item)
-						this.list.push(item)
-						this.list.push(item)
-						this.list.push(item)
-						this.list.push(item)
+						this.list.push(item);
                     }
                 });
-			}).catch(_=>{})
+			}).catch(_=>{});
 			products({limit:4,page:1}).then(r=>{
 				this.p_list = r.data;
 				this.p_list = this.p_list.slice(0,4);
 			}).catch(_=>{});
+			yearPosts({year:tYear}).then(r=>{
+				this.newList = r.data
+			})
         },
         mounted() {
 			document.getElementsByClassName("bottom")[0].style.overflowY="hidden";
@@ -183,8 +176,8 @@
             goExample(){
                 window.location.href = './productExample.html'
             },
-            goNews(){
-                window.location.href = './news.html'
+            goNews(id){
+                window.location.href = './news.html?id=' + id
             },
             goIntroduction(type){
                 window.location.href = './introduction.html?type=' + type
