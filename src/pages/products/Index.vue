@@ -56,7 +56,7 @@
             >
                 <div class="p_head" @click="list(item.id)">
                     <div class="left">
-                        <img :src="item.icon" alt="">
+                        <img :src="item.main_icon" alt="">
                     </div>
                     <div class="right">
                         <h3>{{item.en_name}}</h3>
