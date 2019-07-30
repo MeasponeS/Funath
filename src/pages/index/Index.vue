@@ -84,11 +84,11 @@
 
                     </ul>
                     <el-button @click="goNews('')">查看更多</el-button>
-                    <div @click="goNews(newList[0].id)">
+                    <div @click="goNews(newList[0].id)" v-if="newList[0]">
                         <div class="imgs">
                             <img :src="newList[0].image" alt="">
                         </div>
-                        <div class="imgIntro">- {{newList[0].title}}</div>
+                        <div class="imgIntro" >- {{newList[0].title}}</div>
                     </div>
 
                 </div>
@@ -138,7 +138,7 @@
 			let tYear = myDate.getFullYear();
 			banners({position:'0,1'}).then(r=>{
 				r.data.forEach(item=>{
-					if(item.position == 6){
+					if(item.position == 0){
 						this.bannerList.push(item)
 					} else {
 						this.middleBanner = item;
@@ -161,8 +161,8 @@
 			})
         },
         mounted() {
-			document.getElementsByClassName("bottom")[0].style.overflowY="hidden";
-			document.getElementsByClassName("bottom")[0].style.overflowX="hidden";
+			// document.getElementsByClassName("bottom")[0].style.overflowY="hidden";
+			// document.getElementsByClassName("bottom")[0].style.overflowX="hidden";
 
         },
         computed: {
