@@ -1,0 +1,93 @@
+.el-carousel__container{
+    height: auto!important;
+}
+@media screen and (max-width: 800px) {
+    .el-carousel__container {
+        height: 166.66px!important;
+        .el-carousel__item{
+            height: 100% ;
+            a{
+                height: 100%;
+                display: block;
+                img{
+                    height: 100%;
+                }
+            }
+        }
+    }
+}
+@media screen and (min-width:800px) and (max-width:1024px) {
+    .el-carousel__container {
+        height: 190px!important;
+        .el-carousel__item{
+            height: 100% ;
+            a{
+                height: 100%;
+                display: block;
+                img{
+                    height: 100%;
+                }
+            }
+        }
+    }
+}
+@media screen and (min-width:1024px) and (max-width:1440px) {
+    .el-carousel__container {
+        height: 256.66px!important;
+        .el-carousel__item{
+            height: 100% ;
+            a{
+                height: 100%;
+                display: block;
+                img{
+                    height: 100%;
+                }
+            }
+        }
+    }
+}
+@media screen and (min-width:1440px) and (max-width:1680px) {
+    .el-carousel__container {
+        height: 325px!important;
+        .el-carousel__item{
+            height: 100% ;
+            a{
+                height: 100%;
+                display: block;
+                img{
+                    height: 100%;
+                }
+            }
+        }
+    }
+}
+@media screen and (min-width:1680px) and (max-width:1920px) {
+    .el-carousel__container {
+        height: 375px!important;
+        .el-carousel__item{
+            height: 100% ;
+            a{
+                height: 100%;
+                display: block;
+                img{
+                    height: 100%;
+                }
+            }
+        }
+    }
+}
+@media screen and (min-width:1920px)  {
+    .el-carousel__container {
+        height: 400px!important;
+        .el-carousel__item{
+            height: 100% ;
+            a{
+                height: 100%;
+                display: block;
+                img{
+                    height: 100%;
+                }
+            }
+        }
+    }
+}

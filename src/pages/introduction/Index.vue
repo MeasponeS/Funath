@@ -63,7 +63,7 @@
                     </ul>
                 </div>
             </div>
-            <img :src="middleBanner" alt="" class="middleBanner" @click="goOne">
+            <img :src="middleBanner.image_url" alt="" class="middleBanner" @click="goOne">
             <ul class="icons">
                 <li>
                     <div class="imgs">
@@ -93,7 +93,7 @@
                 </div>
                 <div class="body">
                     <div class="imgs">
-                        <img src="./img/person.png" alt="" class="corporation">
+                        <img src="./img/person.jpg" alt="" class="corporation">
                     </div>
                 </div>
             </div>

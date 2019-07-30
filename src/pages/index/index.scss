@@ -17,27 +17,16 @@ html {
 }
 html::-webkit-scrollbar{width:0}
 
-
 .bannerList{
     width: 100%;
     margin-top: 8px;
-    height: 400px;
     background: #EEEFF0;
-    .el-carousel{
-        height: 400px;
-    }
     .el-carousel__item{
         width: 100%;
-        height: 400px;
         display: flex;
         justify-content: center;
         align-items: center;
-        a{
-            img {
-                width: auto;
-                height: 100%;
-            }
-        }
+
     }
     .el-carousel__button{
         width: 16px;
@@ -242,7 +231,9 @@ html::-webkit-scrollbar{width:0}
         display: flex;
         justify-content: center;
         align-items: center;
-        position: relative;
+        position: absolute;
+        left: 0;
+        top: 0;
     }
     ul{
         position: absolute;
@@ -332,17 +323,17 @@ html::-webkit-scrollbar{width:0}
         .el-button{
             width: 110px;
             height: 45px;
-            background: transparent;
+            background: #0daa67;
             display: flex;
             justify-content: center;
             align-items: center;
             margin-top: 25px;
             border-color: #0daa67;
-            color: #0daa67;
+            color: #fff;
             &:hover{
-                background: #0daa67;
+                background: transparent;
                 border: 1px solid #0DAA67;
-                color: #fff;
+                color: #0daa67;
             }
         }
         .imgs{
@@ -415,35 +406,52 @@ html::-webkit-scrollbar{width:0}
         cursor: pointer;
     }
 }
+.ul{
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+    position: absolute;
+    bottom: -100px;
+}
 .bottom{
     width: 1200px;
-    overflow-x: auto;
-    overflow-y: hidden;
+    //overflow-x: auto;
+    //overflow-y: hidden;
     height: 400px;
     list-style: none;
     padding: 0;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    position: absolute;
-    bottom: -100px;
+    transition: all 0.7s;
     z-index: 900;
-
     li{
         width: 300px;
         height: 400px;
         position: relative;
-        img{
+
+        .imgs{
             width: 300px;
             height: 400px;
             cursor: pointer;
             z-index: 100;
             overflow: hidden;
-            transition: all 0.6s;
-            &:hover{
-                z-index: 10000;
-                transform: scale(1.05);
+            img{
+                transition: all 0.6s;
+                &:hover{
+                    z-index: 10000;
+                    transform: scale(1.05);
+                }
             }
+        }
+        .wrap{
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0));
+            pointer-events: none;
         }
         span{
             font-family: SourceHan;

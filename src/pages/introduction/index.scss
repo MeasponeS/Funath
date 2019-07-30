@@ -14,6 +14,7 @@
     background: #EEEFF0;
     position: relative;
     .el-carousel{
+        width: 100%;
         height: 300px;
     }
     .el-carousel__item{
@@ -314,7 +315,7 @@
                 position: relative;
                 .corporation{
                     margin: 0;
-                    width: 420px;
+                    width: auto;
                     height: 508px;
                     position: absolute;
                     bottom: 0;
