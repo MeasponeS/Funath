@@ -102,7 +102,7 @@
                 </div>
                 <ul class="bottom">
 
-                    <li v-for="(item,index) in list" :key="index" @click="goDetails(item.id)">
+                    <li v-for="(item,index) in list" :key="index" @click="goDetails(item.id)" v-if="item.thumb1">
                         <span>{{item.title}}</span>
                         <img :src="item.thumb1" alt="">
                     </li>
@@ -136,9 +136,15 @@
         created(){
 			let myDate = new Date();
 			let tYear = myDate.getFullYear();
-			banners({}).then(r=>{
-                this.bannerList = r.data
-            }).catch(_=>{});
+			banners({position:'0,1'}).then(r=>{
+				r.data.forEach(item=>{
+					if(item.position == 6){
+						this.bannerList.push(item)
+					} else {
+						this.middleBanner = item;
+					}
+				})
+			}).catch(_=>{});
 			exampleList({category_id:''}).then(res=>{
 				res.data.forEach((item,index)=>{
 					if(index < 14){
@@ -157,15 +163,7 @@
         mounted() {
 			document.getElementsByClassName("bottom")[0].style.overflowY="hidden";
 			document.getElementsByClassName("bottom")[0].style.overflowX="hidden";
-			banners({position:'0,1'}).then(r=>{
-				r.data.forEach(item=>{
-					if(item.position == 6){
-						this.bannerList.push(item)
-					} else {
-						this.middleBanner = item;
-					}
-				})
-			}).catch(_=>{});
+
         },
         computed: {
 

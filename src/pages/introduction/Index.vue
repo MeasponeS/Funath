@@ -84,7 +84,7 @@
                         <img src="./img/amiba.png" alt="">
                     </div>
                     <h3>经营理念</h3>
-                    <span>追求全体员工物质与精神两方面幸福的同时，为人类和社会的进步与发展做出贡献。</span>
+                    <span>追求全体员工物质与精神两方面幸福的同时,为人类和社会的进步与发展做出贡献。</span>
                 </li>
             </ul>
             <div class="corporation">

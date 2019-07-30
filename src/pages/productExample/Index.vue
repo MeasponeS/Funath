@@ -143,10 +143,9 @@
                         <div v-else class="empty">该分组下暂无项目案例</div>
                     </el-tab-pane>
                 </el-tabs>
-                <div class="p">
+                <div class="p" v-if="lists.length">
                     <el-pagination
                             v-if="showDetail"
-                            v-show="lists.length"
                             background
                             layout="prev, pager, next"
                             @current-change="pChange"
