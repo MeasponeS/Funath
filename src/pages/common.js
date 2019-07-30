@@ -2,7 +2,7 @@
 
 import {initUrlParams} from '../utils/app.js'
 
-import 'normalize.css'
+import '../../node_modules/normalize.css/normalize.css'
 import '@/assets/font/font.css'
 import '@/assets/css/style.scss'
 
