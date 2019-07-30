@@ -63,7 +63,7 @@
                                         </div>
                                     </div>
                                     <div class="right" @click="showPostDetail(item.id)">
-                                        >>
+                                        <img src="./img/527505623.jpg" alt="">
                                     </div>
                                 </li>
                             </ul>

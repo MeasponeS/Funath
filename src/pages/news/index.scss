@@ -144,7 +144,7 @@
                 display: flex;
                 justify-content: flex-start;
                 align-items: center;
-                border-bottom: 3px solid #2b2b2b;
+                border-bottom: 1px solid #2b2b2b;
                 margin-bottom: 10px;
                 position: relative;
                 h3{
@@ -181,7 +181,7 @@
                         display: flex;
                         justify-content: space-between;
                         align-items: center;
-                        border-bottom: 1px solid #D6D6D6;
+                        border-bottom: 1px solid #d6d6d6;
                         .left{
                             display: flex;
                             justify-content: space-between;
@@ -230,6 +230,9 @@
                             color: #0DAA67;
                             cursor: pointer;
                             z-index: 9999;
+                            img{
+
+                            }
                         }
                     }
                 }

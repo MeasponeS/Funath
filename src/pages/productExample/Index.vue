@@ -76,7 +76,7 @@
                                         :key="item.id"
                                         @click="details(item.id)"
                                 >
-                                    <img :src="item.main_image_url" alt="">
+                                    <img :src="item.thumb2" alt="">
                                     <h4>{{item.title}}</h4>
                                     <p>{{item.introduce}}</p>
                                     <el-button size="small" @click="details(item.id)">查看更多</el-button>
@@ -133,7 +133,7 @@
                                         :key="item.id"
                                         @click="details(item.id)"
                                 >
-                                    <img :src="item.main_image_url" alt="">
+                                    <img :src="item.thumb2" alt="">
                                     <h4>{{item.title}}</h4>
                                     <p>{{item.introduce}}</p>
                                     <el-button size="small" @click="details(item.id)">查看更多</el-button>

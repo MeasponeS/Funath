@@ -20,7 +20,7 @@
                 <ul>
                     <li @click="goProducts('')">产品信息</li>
                     <li @click="goIntroduction('','')">公司介绍</li>
-                    <li @click="goNews">新闻资讯</li>
+                    <li @click="goNews('')">新闻资讯</li>
                     <li @click="goExample">项目案例</li>
                     <li @click="goContact">联系我们</li>
                 </ul>
@@ -38,7 +38,7 @@
                             <img :src="item.products.data[0].main_image_url" alt="">
                         </div>
                         <div class="right" v-if="activePic != index">
-                            <img :src="item.icon" alt="">
+                            <img :style="{width:item.icon.width,height:item.icon.height}" :src="item.icon.url" alt="">
                             <h3>{{item.en_name}}</h3>
                             <span>{{item.name}}</span>
                         </div>
@@ -53,7 +53,7 @@
                         </div>
                     </li>
                 </ul>
-                <el-button @click="goProducts">查看更多</el-button>
+                <el-button @click="goProducts('')">查看更多</el-button>
             </div>
             <div class="middleBanner">
                 <div class="header">
@@ -83,7 +83,7 @@
                         </li>
 
                     </ul>
-                    <el-button @click="goNews">查看更多</el-button>
+                    <el-button @click="goNews('')">查看更多</el-button>
                     <div @click="goNews(newList[0].id)">
                         <div class="imgs">
                             <img :src="newList[0].image" alt="">
@@ -104,7 +104,7 @@
 
                     <li v-for="(item,index) in list" :key="index" @click="goDetails(item.id)">
                         <span>{{item.title}}</span>
-                        <img :src="item.main_image_url" alt="">
+                        <img :src="item.thumb1" alt="">
                     </li>
 
                 </ul>

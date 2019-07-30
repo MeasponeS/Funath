@@ -53,21 +53,23 @@
                         <i class="el-icon-back"></i>
                     </li>
                     <el-collapse v-model="activeNames">
-                        <el-collapse-item
-                                v-for="item in all"
-                                :title="item.name"
-                                :key="item.id"
-                                :name="item.id" >
-                            <ul class="rightList">
-                                <li
-                                    v-for="i in item.products.data"
-                                    :key="i.id"
-                                    @click="goDetail(i.id)"
-                                >
-                                   - {{i.name}}
-                                </li>
-                            </ul>
-                        </el-collapse-item>
+                        <div v-for="item in all" @mouseover="openCollapse(item.id)">
+                            <el-collapse-item
+                                    :title="item.name"
+                                    :key="item.id"
+                                    :name="item.id" >
+                                <ul class="rightList">
+                                    <li
+                                            v-for="i in item.products.data"
+                                            :key="i.id"
+                                            @click="goDetail(i.id)"
+                                    >
+                                        - {{i.name}}
+                                    </li>
+                                </ul>
+                            </el-collapse-item>
+                        </div>
+
 
                     </el-collapse>
                     <li class="header">
@@ -117,7 +119,13 @@
             },
             goDetail(id){
                 window.location.href = './productDetail.html?id='+id
-            }
+            },
+			openCollapse(id){
+            	window.setTimeout(()=>{
+					this.activeNames = id;
+                },300)
+
+			}
         },
         components:{
 

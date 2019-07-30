@@ -56,8 +56,8 @@
                  :key="index"
             >
                 <div class="p_head" @click="list(item.id)">
-                    <div class="left">
-                        <img :src="item.main_icon" alt="">
+                    <div class="left" v-if="item.main_icon">
+                        <img :style="{width:item.main_icon.width,height:item.main_icon.height}" :src="item.main_icon.url" alt="">
                     </div>
                     <div class="right">
                         <h3>{{item.en_name}}</h3>
@@ -89,7 +89,7 @@
                             :key="item.id"
                             @click="goDetails(item.id)"
                         >
-                            <img :src="item.main_image_url" alt="">
+                            <img :src="item.thumb2" alt="">
                             <h4>{{item.title}}</h4>
                             <p>{{item.introduce}}</p>
                             <el-button size="small" @click="goDetails(item.id)">查看更多</el-button>
