@@ -11,6 +11,7 @@
     align-items: center;
     border-bottom: 5px solid #0DAA67;
     margin-top: 8px;
+    background: #EEEFF0;
     position: relative;
     .el-carousel{
         height: 300px;
@@ -128,6 +129,7 @@
                     width: 30%;
                     margin-top: 50px;
                     cursor: pointer;
+                    overflow: hidden;
                     img{
                         width: 380px;
                         height: 220px;
@@ -178,6 +180,7 @@
                     width: 30%;
                     margin-top: 50px;
                     cursor: pointer;
+                    overflow: hidden;
                     img {
                         width: 380px;
                         height: 220px;
