@@ -2,6 +2,17 @@
     <div id="app">
         <Head/>
         <div class="banner">
+            <el-carousel
+                    :interval="3000"
+                    trigger="click"
+                    arrow="never"
+            >
+                <el-carousel-item v-for="(item,index) in bannerList" :key="index">
+                    <a :href="item.link">
+                        <img :src="item.image_url" alt="">
+                    </a>
+                </el-carousel-item>
+            </el-carousel>
             <div class="header">
                 <h3>PROJECT CASES</h3>
                 <span>项目案例</span>
@@ -150,7 +161,7 @@
 
 <script>
 	import Backtop from '../../components/BackTop/Backtop'
-    import {exampleTypes,exampleList,exampleDetails,recommends} from '../../api/common'
+    import {exampleTypes,exampleList,exampleDetails,recommends,banners} from '../../api/common'
     export default {
         data() {
             return {
@@ -160,7 +171,8 @@
                 showDetail:true,
                 E_details:'',
 				recommends:[],
-                total:0
+                total:0,
+				bannerList:[]
             }
         },
         created(){
@@ -172,7 +184,10 @@
 						this.total = res.meta.pagination.total;
 					}).catch(_=>{})
                 }
-            })
+            });
+			banners({position:'4'}).then(r=>{
+				this.bannerList = r.data
+			}).catch(_=>{});
         },
         mounted() {
             let id = window.URlPARAMS.id;

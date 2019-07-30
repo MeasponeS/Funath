@@ -2,6 +2,17 @@
     <div id="app">
         <Head />
         <div class="banner">
+            <el-carousel
+                    :interval="3000"
+                    trigger="click"
+                    arrow="never"
+            >
+                <el-carousel-item v-for="(item,index) in bannerList" :key="index">
+                    <a :href="item.link">
+                        <img :src="item.image_url" alt="">
+                    </a>
+                </el-carousel-item>
+            </el-carousel>
             <div class="header">
                 <h3>NEWS</h3>
                 <span>新闻资讯</span>
@@ -75,7 +86,7 @@
 
 <script>
 	import Backtop from '../../components/BackTop/Backtop'
-    import {newYears,yearPosts,postDetails} from '../../api/common'
+    import {newYears,yearPosts,postDetails,banners} from '../../api/common'
     export default {
         data() {
             return {
@@ -84,6 +95,7 @@
                 postList:[],
                 showDetail:true,
                 postDetails:'',
+				bannerList:[]
             }
         },
         created(){
@@ -103,6 +115,9 @@
             }).catch(_=>{})
         },
         mounted() {
+			banners({position:'3'}).then(r=>{
+				this.bannerList = r.data
+			}).catch(_=>{});
         },
         computed: {
 

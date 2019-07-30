@@ -3,6 +3,17 @@
         <Head />
         <div class="navH">
             <div class="banner">
+                <el-carousel
+                        :interval="3000"
+                        trigger="click"
+                        arrow="never"
+                >
+                    <el-carousel-item v-for="(item,index) in bannerList" :key="index">
+                        <a :href="item.link">
+                            <img :src="item.image_url" alt="">
+                        </a>
+                    </el-carousel-item>
+                </el-carousel>
                 <div class="header">
                     <h3>PRODUCTS</h3>
                     <span>产品信息</span>
@@ -93,14 +104,15 @@
 
 <script>
 	import Backtop from '../../components/BackTop/Backtop'
-    import {products,recommends} from '../../api/common'
+    import {products,recommends,banners} from '../../api/common'
 	export default {
 		data() {
 			return {
 			    p_list:[],
 				type:'',
                 showSearch:false,
-				recommends:[]
+				recommends:[],
+                bannerList:[]
 			}
 		},
         created(){
@@ -110,7 +122,13 @@
             }).catch(_=>{});
 			recommends({}).then(r=>{
 				this.recommends = r.data
-			}).catch(_=>{})
+			}).catch(_=>{});
+			banners({position:'2'}).then(r=>{
+				this.bannerList = r.data
+			}).catch(_=>{});
+			if(window.URlPARAMS.name){
+				this.changeNav(window.URlPARAMS.index,decodeURI(window.URlPARAMS.name))
+            }
         },
 		mounted() {
 			// 426 1912 2549
@@ -129,16 +147,18 @@
 				return scrollTop;
 			},
 			changeNav(index,name){
-			    this.showSearch = name?false:true;
+				console.log(name);
+				this.showSearch = name?false:true;
                 let products = document.getElementsByClassName('products');
-                let newArr = [];
+				let newArr = [];
                 for(let i=0; i<products.length; i++){
-                    newArr.push(products[i]);
+					newArr.push(products[i]);
                 }
-                newArr.forEach(item=>{
+				console.log(newArr);
+				newArr.forEach(item=>{
                     let i_name = item.getAttribute('name');
-                    if(i_name == name){
-                        window.scrollTo({top:item.offsetTop,behavior:'smooth'});
+					if(i_name == name){
+						window.scrollTo({top:item.offsetTop,behavior:'smooth'});
                     }
                 });
                 this.type = index;
