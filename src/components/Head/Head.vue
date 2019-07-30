@@ -1,7 +1,7 @@
 <template>
     <div class="head-warp">
         <div class="head" >
-            <div class="left">
+            <div class="left" @click="goHome">
                 <img src="./img/logo.png" alt="">
             </div>
             <div class="rightNav">
@@ -53,6 +53,9 @@
 			goProducts(){
 				window.location.href = './products.html'
 			},
+			goHome(){
+				window.location.href = './index.html'
+            }
 
 	    },
         mounted(){
@@ -85,6 +88,7 @@
                 display: flex;
                 justify-content: flex-start;
                 align-items: flex-end;
+                cursor: pointer;
                 img{
                     height: 35px;
                     width: 240px;

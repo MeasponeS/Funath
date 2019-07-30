@@ -2,6 +2,17 @@
     <div id="app">
         <Head />
         <div class="banner">
+            <el-carousel
+                    :interval="3000"
+                    trigger="click"
+                    arrow="never"
+            >
+                <el-carousel-item v-for="(item,index) in bannerList" :key="index">
+                    <a :href="item.link">
+                        <img :src="item.image_url" alt="">
+                    </a>
+                </el-carousel-item>
+            </el-carousel>
             <div class="header">
                 <h3>CONTACT US</h3>
                 <span>联系我们</span>
@@ -56,7 +67,7 @@
 <script>
 	import Backtop from '../../components/BackTop/Backtop'
     import Map from "../../components/Map/Map";
-	import {applies} from "../../api/common";
+	import {applies,banners} from "../../api/common";
     import {checkPhone} from '../../utils/dataStorage'
 	export default {
         name:'contact',
@@ -65,11 +76,14 @@
                 name:'',
                 mobile:'',
                 position:'',
-				personal_desc:''
+				personal_desc:'',
+                bannerList:[]
             }
         },
         mounted() {
-
+			banners({position:'5'}).then(r=>{
+				this.bannerList = r.data;
+			}).catch(_=>{});
         },
         computed: {
 

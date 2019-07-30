@@ -3,7 +3,17 @@
         <Head />
         <div class="item">
             <div class="banner">
-                <img src="./img/banner.png" alt="">
+                <el-carousel
+                        :interval="3000"
+                        trigger="click"
+                        arrow="never"
+                >
+                    <el-carousel-item v-for="(item,index) in bannerList" :key="index">
+                        <a :href="item.link">
+                            <img :src="item.image_url" alt="">
+                        </a>
+                    </el-carousel-item>
+                </el-carousel>
             </div>
             <el-breadcrumb separator-class="el-icon-arrow-right">
                 <el-breadcrumb-item><a href="./index.html">HOME</a></el-breadcrumb-item>
@@ -14,12 +24,6 @@
 
             <div class="l_content">
                 <div class="list" v-html="info.content">
-                    1111111111
-                    1111111111
-                    111111111
-                    111111111
-                    11111111111
-                    1111111111
 <!--                    <div class="intro">-->
 <!--                        <div class="header">-->
 <!--                            <h3>{{info.name}}</h3>-->
@@ -71,13 +75,14 @@
 </template>
 
 <script>
-    import {productDetails,products} from '../../api/common'
+    import {productDetails,products,banners} from '../../api/common'
     export default {
         data() {
             return {
                 all:[],
                 activeNames:[],
-                info:{}
+                info:{},
+				bannerList:[]
             }
         },
         mounted() {
@@ -85,8 +90,10 @@
             this.getDetails(id);
             products({}).then(r=>{
                 this.all = r.data;
-            }).catch(_=>{})
-
+            }).catch(_=>{});
+			banners({position:'9'}).then(r=>{
+				this.bannerList = r.data
+			}).catch(_=>{});
         },
         computed: {
 

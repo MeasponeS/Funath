@@ -17,8 +17,8 @@
             </div>
             <div class="nav">
                 <ul>
-                    <li @click="goProducts">产品信息</li>
-                    <li @click="goIntroduction('')">公司介绍</li>
+                    <li @click="goProducts('')">产品信息</li>
+                    <li @click="goIntroduction('','')">公司介绍</li>
                     <li @click="goNews">新闻资讯</li>
                     <li @click="goExample">项目案例</li>
                     <li @click="goContact">联系我们</li>
@@ -26,30 +26,31 @@
             </div>
             <div class="center">
                 <ul class="pics">
-                    <li><img src="./img/1.png" alt=""></li>
-                    <li class="word">
-                        <img src="./img/4.png" alt="">
-                        <h3>CONCRETE CRYSTAL HARDENER  </h3>
-                        <span>混凝土硬化剂</span>
+                    <li
+                            v-for="(item,index) in p_list"
+                            :key="item.id"
+                            @mouseenter="showExtra(index,item)"
+                            @mouseleave="hideExtra"
+                            @click="goProducts(index,item.name)"
+                    >
+                        <div class="left" v-if="!parseInt(index/2)">
+                            <img :src="item.products.data[0].main_image_url" alt="">
+                        </div>
+                        <div class="right" v-if="activePic != index">
+                            <img :src="item.icon" alt="">
+                            <h3>{{item.en_name}}</h3>
+                            <span>{{item.name}}</span>
+                        </div>
+                        <div class="right extra" v-else>
+                            <span v-for="item in extraList" :key="item.id">
+                                {{item}}
+                            </span>
+
+                        </div>
+                        <div class="left" v-if="parseInt(index/2)">
+                            <img :src="item.products.data[0].main_image_url" alt="">
+                        </div>
                     </li>
-                    <li><img src="./img/2.png" alt=""></li>
-                    <li class="word">
-                        <img src="./img/6.png" alt="">
-                        <h3>CONCRETE CRYSTAL HARDENER  </h3>
-                        <span>混凝土硬化剂</span>
-                    </li>
-                    <li class="word">
-                        <img src="./img/7.png" alt="">
-                        <h3>CONCRETE CRYSTAL HARDENER  </h3>
-                        <span>混凝土硬化剂</span>
-                    </li>
-                    <li><img src="./img/3.png" alt=""></li>
-                    <li class="word">
-                        <img src="./img/8.png" alt="">
-                        <h3>CONCRETE CRYSTAL HARDENER  </h3>
-                        <span>混凝土硬化剂</span>
-                    </li>
-                    <li><img src="./img/5.png" alt=""></li>
                 </ul>
                 <el-button @click="goProducts">查看更多</el-button>
             </div>
@@ -65,6 +66,7 @@
                 </ul>
             </div>
             <div class="news" @click="goNews">
+                <img :src="middleBanner" alt="">
                 <div class="header">
                     <h3>NEWS</h3>
                     <span>新闻资讯</span>
@@ -118,13 +120,17 @@
 
 <script>
     import Backtop from '../../components/BackTop/Backtop'
-    import {banners,exampleList} from '../../api/common'
+    import {banners,exampleList,products} from '../../api/common'
     export default {
         data() {
             return {
                 bannerList:[],
+				middleBanner:'',
                 list:[],
-				activeName:''
+				activeName:'',
+				p_list:[],
+                activePic:10,
+				extraList:[]
             }
         },
         created(){
@@ -149,13 +155,23 @@
                     }
                 });
 			}).catch(_=>{})
+			products({limit:4,page:1}).then(r=>{
+				this.p_list = r.data;
+				this.p_list = this.p_list.slice(0,4);
+			}).catch(_=>{});
         },
         mounted() {
 			document.getElementsByClassName("bottom")[0].style.overflowY="hidden";
 			document.getElementsByClassName("bottom")[0].style.overflowX="hidden";
-            banners({}).then(r=>{
-                this.bannerList = r.data
-            }).catch(_=>{})
+			banners({position:'0,1'}).then(r=>{
+				r.data.forEach(item=>{
+					if(item.position == 6){
+						this.bannerList.push(item)
+					} else {
+						this.middleBanner = item;
+					}
+				})
+			}).catch(_=>{});
         },
         computed: {
 
@@ -173,8 +189,8 @@
             goIntroduction(type){
                 window.location.href = './introduction.html?type=' + type
             },
-            goProducts(){
-                window.location.href = './products.html'
+            goProducts(index,name){
+                window.location.href = './products.html?name='+name + '&index=' + index;
             },
 			goDetails(id){
             	// 项目案例详情
@@ -188,6 +204,19 @@
             	let bottom = document.getElementsByClassName('bottom');
 				console.log(bottom[0]);
 				bottom[0].scrollTo({left:300,behavior:'smooth'});
+            },
+			showExtra(index,item){
+            	let ary = [];
+				this.activePic = index;
+				item.products.data.forEach((i,k)=>{
+					if(k < 3){
+						ary.push(i.name)
+                    }
+				});
+				this.extraList = ary;
+            },
+            hideExtra(){
+            	this.activePic = 10
             }
         },
         components:{

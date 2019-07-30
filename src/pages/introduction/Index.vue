@@ -3,6 +3,17 @@
         <Head />
         <div class="navH">
             <div class="banner">
+                <el-carousel
+                        :interval="3000"
+                        trigger="click"
+                        arrow="never"
+                >
+                    <el-carousel-item v-for="(item,index) in bannerList" :key="index">
+                        <a :href="item.link">
+                            <img :src="item.image_url" alt="">
+                        </a>
+                    </el-carousel-item>
+                </el-carousel>
                 <div class="header">
                     <h3>COMPANY PROFILE</h3>
                     <span>公司介绍</span>
@@ -51,7 +62,7 @@
                     </ul>
                 </div>
             </div>
-            <img src="./img/middleBanner.png" alt="" class="middleBanner" @click="goOne">
+            <img :src="middleBanner" alt="" class="middleBanner" @click="goOne">
             <ul class="icons">
                 <li>
                     <div class="imgs">
@@ -108,13 +119,26 @@
 
 <script>
 	import Backtop from '../../components/BackTop/Backtop'
-    export default {
+    import {banners} from "../../api/common";
+
+	export default {
         data() {
             return {
-                type:'one'
+                type:'one',
+                bannerList:[],
+                middleBanner:''
             }
         },
         mounted() {
+			banners({position:'6,7'}).then(r=>{
+				r.data.forEach(item=>{
+					if(item.position == 6){
+						this.bannerList.push(item)
+                    } else {
+						this.middleBanner = item;
+                    }
+                })
+			}).catch(_=>{});
 			// 426 1912 2549
             if(window.URlPARAMS.type){
             	switch (window.URlPARAMS.type) {
