@@ -121,3 +121,11 @@ select:-webkit-autofill {
 span{
   padding-right: 0 !important;
 }
+
+::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+  background-color: #ffffff;
+}
+
+
