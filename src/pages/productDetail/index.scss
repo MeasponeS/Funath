@@ -29,6 +29,7 @@
             justify-content: center;
             align-items: center;
             a{
+                font-size: 0;
                 img {
                     height: 100%;
                 }
@@ -162,6 +163,12 @@
         }
         .el-collapse-item__content{
             padding: 0;
+        }
+        .el-icon-arrow-right{
+            &:before{
+                content: "\E62B";
+            }
+
         }
         .rightList{
             list-style: none;

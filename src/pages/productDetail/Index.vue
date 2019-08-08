@@ -19,7 +19,7 @@
             <el-breadcrumb separator-class="el-icon-arrow-right">
                 <el-breadcrumb-item><a href="./index.html">HOME</a></el-breadcrumb-item>
                 <el-breadcrumb-item><a href="./products.html">产品信息</a></el-breadcrumb-item>
-                <el-breadcrumb-item><a href="javascript:;">{{info.category}}</a></el-breadcrumb-item>
+                <el-breadcrumb-item><a :href="backUrl" >{{info.category}}</a></el-breadcrumb-item>
                 <el-breadcrumb-item>{{info.name}}</el-breadcrumb-item>
             </el-breadcrumb>
 
@@ -32,7 +32,9 @@
                         <i class="el-icon-back"></i>
                     </li>
                     <el-collapse v-model="activeNames">
-                        <div v-for="item in all" @mouseover="openCollapse(item.id)">
+                        <div v-for="item in all"
+                            @mouseleave="closeCollapse"
+                         @mouseenter="openCollapse(item)">
                             <el-collapse-item
                                     :title="item.name"
                                     :key="item.id"
@@ -76,11 +78,13 @@
                 activeNames:[],
                 info:{},
 				bannerList:[],
-                activeId:''
+                activeId:'',
+                backUrl:''
             }
         },
         mounted() {
             let id = window.URlPARAMS.id;
+            this.backUrl = './productList.html?id=' + window.URlPARAMS.backId
             this.getDetails(id);
 			products({}).then(r=>{
                 this.all = r.data;
@@ -104,14 +108,30 @@
 				this.activeId = id;
                 productDetails({},id).then(r=>{
                     this.info = r;
+                
                 }).catch(_=>{})
             },
             goDetail(id){
                 this.getDetails(id);
             },
-			openCollapse(id){
+            setCollapse(){
+                this.all.forEach(item=>{
+                    item.products.data.forEach(i=>{
+                        if(this.activeId == i.id){
+                            this.activeNames.push(item.id)
+                        }
+                    })
+                })
+            },
+            closeCollapse(){
+                this.activeNames = [];
+                this.setCollapse()
+            },
+			openCollapse(item){
 				window.setTimeout(()=>{
-					this.activeNames = id;
+                    this.activeNames = [];
+                    this.setCollapse();
+					this.activeNames.push(item.id);
 				},300)
             }
         },

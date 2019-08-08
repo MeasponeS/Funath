@@ -28,6 +28,7 @@
         justify-content: center;
         align-items: center;
         a{
+            font-size: 0;
             img {
                 height: 100%;
             }
@@ -151,6 +152,38 @@
             .right{
                 flex:1;
                 height: 258px;
+                position: relative;
+                .infor{
+                    width: 300px;
+                    height: 80px;
+                    border-radius: 20px;
+                    background: #fff;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    flex-direction: column;
+                    position: absolute;
+                    top: 5%;
+                    right: 12%;
+                    p{
+                        color: red;
+                        font-family: "SourceHan-regular";
+                        font-size: 16px;
+                        margin: 0;
+                    }
+                    span{
+                        color: #2b2b2b;
+                        font-family: "SourceHan-regular";
+                        font-size: 14px;
+                        margin-top: 5px;
+                    }
+                    i{
+                        position: absolute;
+                        right: 5%;
+                        top: 19%;
+                        cursor: pointer;
+                    }
+                }
             }
         }
         .info_body{

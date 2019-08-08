@@ -40,6 +40,7 @@
                             <el-input
                                     prefix-icon="el-icon-search"
                                     placeholder="Search"
+                                    v-model="searchJson"
                             />
                         </div>
                     </li>
@@ -113,7 +114,8 @@
 				type:'',
                 showSearch:false,
 				recommends:[],
-                bannerList:[]
+                bannerList:[],
+                searchJson:''
 			}
 		},
         created(){
@@ -151,20 +153,24 @@
 				return scrollTop;
 			},
 			changeNav(index,name){
-				this.showSearch = name?false:true;
-                let products = document.getElementsByClassName('products');
-				let newArr = [];
-                for(let i=0; i<products.length; i++){
-					newArr.push(products[i]);
-                }
-				console.log(newArr);
-				newArr.forEach(item=>{
-                    let i_name = item.getAttribute('name');
-					if(i_name == name){
-						window.scrollTo({top:item.offsetTop,behavior:'smooth'});
+                // this.showSearch = name?false:true;
+                if(!name){
+                    this.showSearch = !this.showSearch;
+                } else {
+                    this.showSearch = false;
+                    let products = document.getElementsByClassName('products');
+                    let newArr = [];
+                    for(let i=0; i<products.length; i++){
+                        newArr.push(products[i]);
                     }
-                });
-                this.type = index;
+                    newArr.forEach(item=>{
+                        let i_name = item.getAttribute('name');
+                        if(i_name == name){
+                            window.scrollTo({top:item.offsetTop,behavior:'smooth'});
+                        }
+                    });
+                }
+				 this.type = index;
 			},
             list(id){
                 window.location.href = './productList.html?id=' + id

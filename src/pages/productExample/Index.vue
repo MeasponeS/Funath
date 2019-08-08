@@ -44,7 +44,7 @@
                                 <div class="left">
                                     <el-carousel
                                             :interval="5000"
-                                            arrow="always"
+                                            :arrow="E_details.gallery.length>1?'always':'never'"
                                             indicator-position="none"	>
                                         <el-carousel-item v-for="(item,index) in E_details.gallery" :key="index">
                                             <img :src="item.url" alt="">
