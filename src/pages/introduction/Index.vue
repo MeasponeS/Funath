@@ -63,7 +63,7 @@
                     </ul>
                 </div>
             </div>
-            <img :src="middleBanner" alt="" class="middleBanner" @click="goOne">
+            <img :src="middleBanner.image_url" alt="" class="middleBanner" @click="goOne">
             <ul class="icons">
                 <li>
                     <div class="imgs">
@@ -84,7 +84,7 @@
                         <img src="./img/amiba.png" alt="">
                     </div>
                     <h3>经营理念</h3>
-                    <span>追求全体员工物质与精神两方面幸福的同时，为人类和社会的进步与发展做出贡献。</span>
+                    <span>追求全体员工物质与精神两方面幸福的同时,为人类和社会的进步与发展做出贡献。</span>
                 </li>
             </ul>
             <div class="corporation">
@@ -93,7 +93,7 @@
                 </div>
                 <div class="body">
                     <div class="imgs">
-                        <img src="./img/person.png" alt="" class="corporation">
+                        <img src="./img/person.jpg" alt="" class="corporation">
                     </div>
                 </div>
             </div>

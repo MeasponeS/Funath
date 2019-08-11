@@ -4,7 +4,7 @@
         <div class="item">
             <div class="bannerList">
                 <el-carousel
-                        :interval="3000"
+                        :interval="30000"
                         trigger="click"
                         arrow="never"
                         :indicator-position="bannerList.length > 1? '':'none'"
@@ -56,6 +56,7 @@
                 <el-button @click="goProducts('')">查看更多</el-button>
             </div>
             <div class="middleBanner">
+                <img :src="middleBanner.image_url" alt="">
                 <div class="header">
                     <h3>COMPANY PROFILE</h3>
                     <span>公司介绍</span>
@@ -70,7 +71,7 @@
 
             </div>
             <div class="news">
-                <img :src="middleBanner" alt="">
+
                 <div class="header">
                     <h3>NEWS</h3>
                     <span>新闻资讯</span>
@@ -84,30 +85,38 @@
 
                     </ul>
                     <el-button @click="goNews('')">查看更多</el-button>
-                    <div @click="goNews(newList[0].id)">
+                    <div @click="goNews(newList[0].id)" v-if="newList[0]">
                         <div class="imgs">
                             <img :src="newList[0].image" alt="">
                         </div>
-                        <div class="imgIntro">- {{newList[0].title}}</div>
+                        <div class="imgIntro" >- {{newList[0].title}}</div>
                     </div>
 
                 </div>
             </div>
             <div class="big">
-                <div class="left" @click="slideLeft" v-if="list.length > 4">
+                <div class="left" @click="moveLeft(300,1)" v-if="list.length > 4">
                     <i class="el-icon-arrow-left"></i>
                 </div>
-                <div class="right" @click="slideRight" v-if="list.length > 4">
+                <div class="right" @click="moveRight(300,-1)" v-if="list.length > 4">
                     <i class="el-icon-arrow-right"></i>
                 </div>
-                <ul class="bottom">
+                <div class="ul">
+                    <ul class="bottom" :style="containerStyle">
+                        <li
+                                v-for="(item,index) in list"
+                                :key="index" @click="goDetails(item.id)"
+                                v-if="item.thumb1">
+                            <span>{{item.title}}</span>
+                            <div class="imgs">
+                                <img :src="item.thumb1" alt="">
+                            </div>
+                            <div class="wrap"></div>
+                        </li>
 
-                    <li v-for="(item,index) in list" :key="index" @click="goDetails(item.id)">
-                        <span>{{item.title}}</span>
-                        <img :src="item.thumb1" alt="">
-                    </li>
+                    </ul>
+                </div>
 
-                </ul>
 
             </div>
 
@@ -130,15 +139,23 @@
 				p_list:[],
                 activePic:10,
 				extraList:[],
-                newList:[]
+                newList:[],
+				distance:0,
+				currentIndex:0
             }
         },
         created(){
 			let myDate = new Date();
 			let tYear = myDate.getFullYear();
-			banners({}).then(r=>{
-                this.bannerList = r.data
-            }).catch(_=>{});
+			banners({position:'0,1'}).then(r=>{
+				r.data.forEach(item=>{
+					if(item.position == 0){
+						this.bannerList.push(item)
+					} else {
+						this.middleBanner = item;
+					}
+				})
+			}).catch(_=>{});
 			exampleList({category_id:''}).then(res=>{
 				res.data.forEach((item,index)=>{
 					if(index < 14){
@@ -155,19 +172,8 @@
 			})
         },
         mounted() {
-			document.getElementsByClassName("bottom")[0].style.overflowY="hidden";
-			document.getElementsByClassName("bottom")[0].style.overflowX="hidden";
-			banners({position:'0,1'}).then(r=>{
-				r.data.forEach(item=>{
-					if(item.position == 6){
-						this.bannerList.push(item)
-					} else {
-						this.middleBanner = item;
-					}
-				})
-			}).catch(_=>{});
-        },
-        computed: {
+			// document.getElementsByClassName("bottom")[0].style.overflowY="hidden";
+			// document.getElementsByClassName("bottom")[0].style.overflowX="hidden";
 
         },
         methods: {
@@ -190,15 +196,24 @@
             	// 项目案例详情
 				window.location.href = './productExample.html?id='+id
 			},
-			slideLeft(){
-				let bottom = document.getElementsByClassName('bottom');
-				bottom[0].scrollTo({right:300,behavior:'smooth'});
-            },
-			slideRight(){
-            	let bottom = document.getElementsByClassName('bottom');
-				console.log(bottom[0]);
-				bottom[0].scrollTo({left:300,behavior:'smooth'});
-            },
+
+			moveLeft(offset,direction){
+				console.log(this.distance);
+				if (this.distance < 0 && this.distance > - (this.list.length - 4 + 1) * 300) {
+					this.distance += offset * direction;
+                } else {
+					this.distance += 0
+                }
+
+			},
+			moveRight(offset,direction){
+				if (this.list.length * 300 - Math.abs(this.distance) > 1200) {
+					this.distance += offset * direction;
+				} else {
+					this.distance += 0
+				}
+			},
+
 			showExtra(index,item){
             	let ary = [];
 				this.activePic = index;
@@ -213,6 +228,13 @@
             	this.activePic = 10
             }
         },
+		computed:{
+			containerStyle() {  //这里用了计算属性，用transform来移动整个图片列表
+				return {
+					transform:`translate3d(${this.distance}px, 0, 0)`
+				}
+			}
+		},
         components:{
             Backtop
         }

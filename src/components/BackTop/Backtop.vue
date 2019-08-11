@@ -17,7 +17,7 @@
         },
         watch:{
         	'scrollTop':function (val) {
-				console.log(val);
+
 			}
         },
 		mounted: function () {
@@ -27,7 +27,6 @@
 			handleScroll: function () {
 				let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
 				let offsetTop = document.documentElement.offsetTop;
-				console.log(offsetTop,'=======');
 				let clientHeight = document.documentElement.clientHeight || document.body.clientHeight;
 				if(scrollTop > clientHeight){
 					this.show = true
