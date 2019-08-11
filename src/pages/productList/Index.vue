@@ -54,7 +54,9 @@
                         <i class="el-icon-back"></i>
                     </li>
                     <el-collapse v-model="activeNames">
-                        <div v-for="item in all" @mouseover="openCollapse(item.id)">
+                        <div v-for="item in all" @mouseenter="openCollapse(item.id)"
+                            @mouseleave="closeCollapse"
+                        >
                             <el-collapse-item
                                     :title="item.name"
                                     :key="item.id"
@@ -119,7 +121,10 @@
                 }).catch(_=>{});
             },
             goDetail(id){
-                window.location.href = './productDetail.html?id='+id
+                window.location.href = './productDetail.html?id='+id + '&backId='+window.URlPARAMS.id
+            },
+            closeCollapse(){
+                this.activeNames = '';
             },
 			openCollapse(id){
             	window.setTimeout(()=>{

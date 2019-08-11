@@ -56,6 +56,9 @@
                                             <div class="new" v-if="index < 3">
                                                 NEW
                                             </div>
+                                             <div class="newEmpty" v-else>
+                                                
+                                            </div>
                                             <div class="title">
                                                 <h4 @click="showPostDetail(item.id)">{{item.title}}</h4>
                                                 <span>{{item.created_at}}</span>
@@ -70,8 +73,12 @@
                         </div>
                     </div>
                     <div class="right" v-else>
-                        <div class="header">
-                            <h3> {{postDetails.title}}</h3>
+                        <div class="header ">
+                            <h3> 
+                                <span class="headerLimit">
+                                    {{postDetails.title}}
+                                </span>
+                            </h3>
                             <span class="createAt">{{postDetails.created_at}}</span>
                         </div>
                         <div v-html="postDetails.content" class="v_content"></div>

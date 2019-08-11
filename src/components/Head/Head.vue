@@ -123,7 +123,7 @@
                 align-items: center;
                 .tel{
                     img{
-                        width: 22px;
+                        width: auto;
                         height: 22px;
                     }
                     span{

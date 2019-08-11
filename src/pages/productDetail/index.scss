@@ -116,6 +116,41 @@
         justify-content: center;
         color: #2b2b2b;
         align-items: center;
+<<<<<<< HEAD
+=======
+        margin-top: 8px;
+        position: relative;
+        .el-carousel{
+            width: 100%;
+            height: 300px;
+        }
+        .el-carousel__item{
+            width: 100%;
+            height: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            a{
+                font-size: 0;
+                img {
+                    height: 100%;
+                }
+            }
+        }
+        .el-carousel__button{
+            width: 16px;
+            height: 16px;
+            border: 2px solid #fff;
+            background: transparent;
+            &:hover{
+                background: #0daa67;
+            }
+        }
+        .is-active{
+            .el-carousel__button{
+                background: #0daa67;
+            }
+>>>>>>> 16cde0c8d3a31164d3c907d15941e8fc61339eca
 
         &:before {
           content: "";
@@ -144,6 +179,7 @@
         }
       }
     }
+<<<<<<< HEAD
 
     .advance {
       display: flex;
@@ -221,6 +257,90 @@
 
         &:hover {
           color: #0DAA67;
+=======
+    .box{
+        width: 220px;
+        list-style: none;
+        padding: 0;
+        li{
+            width: 100%;
+            height: 40px;
+            padding: 0 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 5px;
+        }
+        .header{
+            background: #2B2B2B;
+            color: #fff;
+            .el-icon-back{
+                transform: rotateY(180deg);
+            }
+            .el-icon-d-arrow-left{
+                transform: rotateZ(270deg);
+            }
+        }
+        .el-collapse-item{
+            background: #d6d6d6;
+            position: relative;
+            .over-collapse-box{
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                left: 0;
+                top: 0;
+            }
+        }
+        .el-collapse-item__header{
+            background: #d6d6d6;
+            color: #2b2b2b;
+            margin-top: 5px;
+            padding: 0 15px;
+        }
+        .el-collapse-item__content{
+            padding: 0;
+        }
+        .el-icon-arrow-right{
+            &:before{
+                content: "\E62B";
+            }
+
+        }
+        .rightList{
+            list-style: none;
+            padding: 0;
+            width: 100%;
+            li{
+                font-family: SourceHan-regular;
+                font-size: 12px;
+                background: #edf0f0;
+                padding: 0 15px;
+                cursor: pointer;
+                color: #2b2b2b;
+                margin: 0;
+                border-bottom: 1px solid #d6d6d6;
+                &:hover{
+                    color: #0DAA67;
+                }
+            }
+            .active{
+                color: #0daa67;
+            }
+        }
+        .imgs{
+            width: 100%;
+            height: 110px;
+            padding: 0;
+            margin-top: 9px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            img{
+                width: 100%;
+                height: 110px;
+            }
+>>>>>>> 16cde0c8d3a31164d3c907d15941e8fc61339eca
         }
       }
 

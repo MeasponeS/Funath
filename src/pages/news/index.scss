@@ -28,6 +28,7 @@
         justify-content: center;
         align-items: center;
         a{
+            font-size: 0;
             img {
                 height: 100%;
             }
@@ -161,7 +162,7 @@
                     margin: 0;
                     font-weight: normal;
                     display: flex;
-                    justify-content: center;
+                    justify-content: flex-start;
                     align-items: center;
                     color: #2b2b2b;
                     &:before{
@@ -173,6 +174,13 @@
                         margin-right: 10px;
                     }
                 }
+                .headerLimit{
+                    width: 800px;
+                    display: inline-block;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                }
                 .createAt{
                     position: absolute;
                     right: 0;
@@ -180,6 +188,7 @@
                     font-size: 14px;
                 }
             }
+            
             .body{
                 ul{
                     list-style: none;
@@ -213,8 +222,17 @@
                                     border-radius: 2px;
                                     margin-right: 50px;
                                 }
+                                .newEmpty{
+                                    width: 50px;
+                                    height: 18px;
+                                    margin-right: 50px;
+                                }
                                 .title{
                                     h4{
+                                        width: 700px;
+                                        overflow: hidden;
+                                        text-overflow: ellipsis;
+                                        white-space: nowrap;
                                         margin: 0;
                                         margin-bottom: 10px;
                                         font-family: SourceHan-regular;

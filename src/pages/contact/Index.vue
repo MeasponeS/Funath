@@ -41,6 +41,12 @@
                         </div>
                         <div class="right">
                             <Map />
+                            <div class="infor" v-if="showMapInfo">
+                                <p>孚纳森实业(上海)有限公司</p>
+                                <span>中国上海市浦东新区富特路288号</span>
+                                <span> 021-58811558 </span>
+                                <i class="el-icon-close" @click="closeMapInfo" ></i>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -78,7 +84,8 @@
                 mobile:'',
                 position:'',
 				personal_desc:'',
-                bannerList:[]
+                bannerList:[],
+                showMapInfo:true
             }
         },
         mounted() {
@@ -126,6 +133,9 @@
 						type: 'success'
 					});
 				}).catch(_=>{})
+            },
+            closeMapInfo(){
+                this.showMapInfo = false;
             }
         },
         components:{

@@ -4,7 +4,7 @@
         <div class="item">
             <div class="bannerList">
                 <el-carousel
-                        :interval="30000"
+                        :interval="3000"
                         trigger="click"
                         arrow="never"
                         :indicator-position="bannerList.length > 1? '':'none'"
@@ -32,7 +32,7 @@
                             :key="item.id"
                             @mouseenter="showExtra(index,item)"
                             @mouseleave="hideExtra"
-                            @click="goProducts(index,item.name)"
+                            @click="goProductsList(index,item)"
                     >
                         <div class="left" v-if="!parseInt(index/2)">
                             <img :src="item.products.data[0].main_image_url" alt="">
@@ -168,7 +168,11 @@
 				this.p_list = this.p_list.slice(0,4);
 			}).catch(_=>{});
 			yearPosts({year:tYear}).then(r=>{
-				this.newList = r.data
+				r.data.forEach((item,index)=>{
+                    if(index < 3){
+                        this.newList.push(item)
+                    }
+                })
 			})
         },
         mounted() {
@@ -192,17 +196,20 @@
             goProducts(index,name){
                 window.location.href = './products.html?name='+name + '&index=' + index;
             },
+            goProductsList(index,name){
+                 window.location.href = './productList.html?id=' + name.id
+            },
 			goDetails(id){
             	// 项目案例详情
 				window.location.href = './productExample.html?id='+id
 			},
 
 			moveLeft(offset,direction){
-				console.log(this.distance);
 				if (this.distance < 0 && this.distance > - (this.list.length - 4 + 1) * 300) {
 					this.distance += offset * direction;
                 } else {
-					this.distance += 0
+                    this.distance += 0
+                
                 }
 
 			},
@@ -210,7 +217,8 @@
 				if (this.list.length * 300 - Math.abs(this.distance) > 1200) {
 					this.distance += offset * direction;
 				} else {
-					this.distance += 0
+					 this.list = this.list.concat(this.list)
+                    this.distance += offset * direction;
 				}
 			},
 

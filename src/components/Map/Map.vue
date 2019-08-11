@@ -68,7 +68,7 @@
 							},
 						},
                         label:{
-							content:'上海市自由贸易试验区外高桥保税区富特北路288号2号楼4层',
+							content:'',
 							offset:[0,-50],
                         },
 						visible: true,
