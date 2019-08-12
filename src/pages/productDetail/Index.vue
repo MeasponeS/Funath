@@ -84,11 +84,15 @@
         },
         mounted() {
             let id = window.URlPARAMS.id;
-            this.backUrl = './productList.html?id=' + window.URlPARAMS.backId
+            let uId;
             this.getDetails(id);
 			products({}).then(r=>{
                 this.all = r.data;
                 r.data.forEach(item=>{
+                	if(item.name == this.info.category){
+						uId = item.id;
+					}
+					this.backUrl = './productList.html?id=' + (window.URlPARAMS.backId || uId);
                 	item.products.data.forEach(i=>{
                 		if(i.id == id){
 							this.activeNames.push(parseInt(item.id));
@@ -96,6 +100,7 @@
                     })
                 })
             }).catch(_=>{});
+
 			banners({position:'9'}).then(r=>{
 				this.bannerList = r.data
 			}).catch(_=>{});
