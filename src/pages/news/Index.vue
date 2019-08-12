@@ -57,11 +57,11 @@
                                                 NEW
                                             </div>
                                              <div class="newEmpty" v-else>
-                                                
+
                                             </div>
                                             <div class="title">
                                                 <h4 @click="showPostDetail(item.id)">{{item.title}}</h4>
-                                                <span>{{item.created_at}}</span>
+                                                <span>{{item.publish_at}}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -74,12 +74,12 @@
                     </div>
                     <div class="right" v-else>
                         <div class="header ">
-                            <h3> 
+                            <h3>
                                 <span class="headerLimit">
                                     {{postDetails.title}}
                                 </span>
                             </h3>
-                            <span class="createAt">{{postDetails.created_at}}</span>
+                            <span class="createAt">{{postDetails.publish_at}}</span>
                         </div>
                         <div v-html="postDetails.content" class="v_content"></div>
                     </div>
@@ -114,7 +114,7 @@
                     yearPosts({year:r[0]}).then(res=>{
                     	if(res.data.length){
                     		res.data.forEach(i=>{
-                    			i.created_at = i.created_at.trim().split(/\s+/)[0]
+                    			i.publish_at = i.publish_at.trim().split(/\s+/)[0]
                             })
                         }
                         this.postList = res.data;
@@ -146,7 +146,7 @@
                 this.showDetail = false;
                 postDetails({},id).then(r=>{
                     this.postDetails = r.data;
-					this.postDetails.created_at = this.postDetails.created_at.trim().split(/\s+/)[0]
+					this.postDetails.publish_at = this.postDetails.publish_at.trim().split(/\s+/)[0]
                 }).catch(_=>{})
             }
         },
