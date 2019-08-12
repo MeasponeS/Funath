@@ -23,8 +23,8 @@
             <div class="item">
                 <el-breadcrumb separator-class="el-icon-arrow-right">
                     <el-breadcrumb-item><a href="./index.html">HOME</a></el-breadcrumb-item>
-                    <el-breadcrumb-item><a href="./news.html">新闻资讯</a></el-breadcrumb-item>
-                    <el-breadcrumb-item v-if="!showDetail"><a href="#">{{postDetails.title || ''}}</a></el-breadcrumb-item>
+                    <el-breadcrumb-item>新闻资讯</el-breadcrumb-item>
+                    <el-breadcrumb-item v-if="!showDetail">{{postDetails.title || ''}}</el-breadcrumb-item>
                 </el-breadcrumb>
                 <div class="news">
                     <ul class="left">
@@ -57,11 +57,11 @@
                                                 NEW
                                             </div>
                                              <div class="newEmpty" v-else>
-
+                                                
                                             </div>
                                             <div class="title">
                                                 <h4 @click="showPostDetail(item.id)">{{item.title}}</h4>
-                                                <span>{{item.publish_at}}</span>
+                                                <span>{{item.created_at}}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -73,13 +73,13 @@
                         </div>
                     </div>
                     <div class="right" v-else>
-                        <div class="header ">
-                            <h3>
+                        <div class="header  ">
+                            <h3 class="h3Limit"> 
                                 <span class="headerLimit">
                                     {{postDetails.title}}
                                 </span>
                             </h3>
-                            <span class="createAt">{{postDetails.publish_at}}</span>
+                            <span class="createAt">{{postDetails.created_at}}</span>
                         </div>
                         <div v-html="postDetails.content" class="v_content"></div>
                     </div>
@@ -89,7 +89,7 @@
         </div>
         <Backtop />
         <Footer/>
-    </div>
+    </div>  
 </template>
 
 <script>
@@ -114,7 +114,7 @@
                     yearPosts({year:r[0]}).then(res=>{
                     	if(res.data.length){
                     		res.data.forEach(i=>{
-                    			i.publish_at = i.publish_at.trim().split(/\s+/)[0]
+                    			i.created_at = i.created_at.trim().split(/\s+/)[0]
                             })
                         }
                         this.postList = res.data;
@@ -146,7 +146,7 @@
                 this.showDetail = false;
                 postDetails({},id).then(r=>{
                     this.postDetails = r.data;
-					this.postDetails.publish_at = this.postDetails.publish_at.trim().split(/\s+/)[0]
+					this.postDetails.created_at = this.postDetails.created_at.trim().split(/\s+/)[0]
                 }).catch(_=>{})
             }
         },

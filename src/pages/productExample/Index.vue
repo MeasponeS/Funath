@@ -6,7 +6,7 @@
                     :interval="3000"
                     trigger="click"
                     arrow="never"
-                    :indicator-position="bannerList.length > 1? '':'none'"
+                    :indicator-position="bannerList.length&&bannerList.length > 1? '':'none'"
             >
                 <el-carousel-item v-for="(item,index) in bannerList" :key="index">
                     <a :href="item.link">
@@ -23,10 +23,10 @@
             <div class="item">
                 <el-breadcrumb separator-class="el-icon-arrow-right">
                     <el-breadcrumb-item><a href="./index.html">HOME</a></el-breadcrumb-item>
-                    <el-breadcrumb-item><a href="./productExample.html">项目案例</a></el-breadcrumb-item>
-                    <el-breadcrumb-item v-if="!showDetail"><a href="#">{{E_details.title||''}}</a></el-breadcrumb-item>
+                    <el-breadcrumb-item><a href="">项目案例</a></el-breadcrumb-item>
+                    <el-breadcrumb-item v-if="!showDetail">{{E_details.title||''}}</el-breadcrumb-item>
                 </el-breadcrumb>
-                <el-tabs v-model="activeName" type="card" @tab-click="handleClick" class="el_tabs">
+                <el-tabs v-model="activeName" type="card" @tab-click="handleClick"  class="el_tabs">
                     <el-tab-pane label="所有项目" name=""  >
                         <ul class="all" v-if="showDetail">
                             <li v-for="item in lists" @click="details(item.id)">
@@ -43,8 +43,8 @@
                             <div class="body">
                                 <div class="left">
                                     <el-carousel
-                                            :interval="5000"
-                                            :arrow="E_details.gallery.length>1?'always':'never'"
+                                            :interval="3000"
+                                            :arrow="E_details.gallery.length&&E_details.gallery.length>1?'always':'never'"
                                             indicator-position="none"	>
                                         <el-carousel-item v-for="(item,index) in E_details.gallery" :key="index">
                                             <img :src="item.url" alt="">
@@ -53,7 +53,7 @@
                                 </div>
                                 <div class="right">
                                     <h3>项目介绍</h3>
-                                    <span>{{E_details.introduce}}</span>
+                                    <span style="white-space: pre-wrap;">{{E_details.introduce}}</span>
                                     <h3>解决方案</h3>
                                     <span>{{E_details.solution}}</span>
                                     <h3>使用产品</h3>
@@ -84,9 +84,13 @@
                             </ul>
                         </div>
                     </el-tab-pane>
-                    <el-tab-pane v-for="(item, key) in types" :key = "key" :label="item.name" :name="item.id+''"  >
-                        <ul class="all" v-if="showDetail && lists.length">
-                            <li v-for="item in lists">
+                    <el-tab-pane
+                            v-for="item in types"
+                            :label="item.name"
+                            :name="item.id+''"
+                    >
+                        <ul class="all" v-if="showDetail && (lists.length&&lists.length)">
+                            <li v-for="item in lists" @click="details(item.id)">
                                 <img :src="item.main_image_url" alt="">
                                 <h4>{{item.title}}</h4>
                                 <p>{{item.introduce}}</p>
@@ -100,8 +104,8 @@
                             <div class="body">
                                 <div class="left">
                                     <el-carousel
-                                            :interval="5000"
-                                            arrow="always"
+                                            :interval="3000"
+                                            :arrow="E_details.gallery.length&&E_details.gallery.length>1?'always':'never'"
                                             indicator-position="none"	>
                                         <el-carousel-item v-for="(item,index) in E_details.gallery" :key="index">
                                             <img :src="item.url" alt="">
@@ -110,9 +114,9 @@
                                 </div>
                                 <div class="right">
                                     <h3>项目介绍</h3>
-                                    <span>{{E_details.introduce}}</span>
+                                    <span v-html="E_details.introduce" style="white-space: pre-wrap;"></span>
                                     <h3>解决方案</h3>
-                                    <span>{{E_details.solution}}</span>
+                                    <span v-html="E_details.solution"></span>
                                     <h3>使用产品</h3>
                                     <ul>
                                         <li
@@ -143,10 +147,9 @@
                         <div v-else class="empty">该分组下暂无项目案例</div>
                     </el-tab-pane>
                 </el-tabs>
-                <div class="p">
+                <div class="p" v-if="lists.length&&lists.length">
                     <el-pagination
                             v-if="showDetail"
-                            v-show="lists.length"
                             background
                             layout="prev, pager, next"
                             @current-change="pChange"
@@ -157,7 +160,7 @@
         </div>
         <Backtop />
         <Footer/>
-    </div>
+    </div>  
 </template>
 
 <script>
@@ -212,11 +215,12 @@
             },
             pChange(e){
                 exampleList({category_id:this.activeName,limit:10,page:e}).then(r=>{
-                    this.lists = r.data
+                    this.lists = r.data;
                 }).catch(_=>{})
             },
             details(id){
-			    this.showDetail = false;
+				console.log(id);
+				this.showDetail = false;
                 exampleDetails({},id).then(r=>{
                     this.E_details = r;
 					recommends({}).then(r=>{
@@ -226,6 +230,12 @@
             },
 			productDetail(id){
                 window.location.href = './productDetail.html?id=' + id
+            },
+			turn(data) {
+				return data.replace(/(\r\n|\n|\r)/g, "<br />");
+			},
+            closeDetail(){
+                this.showDetail = false
             }
         },
         components:{

@@ -2,11 +2,16 @@
     <div id="app">
         <Head />
         <div class="item">
-            <div class="bannerList">
+            <div 
+                class="bannerList"
+                @mousedown="getScreenOne"
+                @mouseup.native="getScreenTwo"
+                >
                 <el-carousel
                         :interval="3000"
                         trigger="click"
                         arrow="never"
+                        ref="carousel"
                         :indicator-position="bannerList.length > 1? '':'none'"
                         	>
                     <el-carousel-item v-for="(item,index) in bannerList" :key="index">
@@ -129,6 +134,9 @@
 <script>
     import Backtop from '../../components/BackTop/Backtop'
     import {banners,exampleList,products,yearPosts} from '../../api/common'
+
+    let banner = document.getElementsByClassName('bannerList');
+  
     export default {
         data() {
             return {
@@ -141,7 +149,9 @@
 				extraList:[],
                 newList:[],
 				distance:0,
-				currentIndex:0
+                currentIndex:0,
+                screenX1:'',
+                screenX2:''
             }
         },
         created(){
@@ -177,8 +187,7 @@
         },
         mounted() {
 			// document.getElementsByClassName("bottom")[0].style.overflowY="hidden";
-			// document.getElementsByClassName("bottom")[0].style.overflowX="hidden";
-
+			// document.getElementsByClassName("bottom")[0].style.overflowX="hidden";  
         },
         methods: {
             goContact(){
@@ -194,7 +203,7 @@
                 window.location.href = './introduction.html?type=' + type
             },
             goProducts(index,name){
-                window.location.href = './products.html?name='+name + '&index=' + index;
+               window.location.href = './products.html?name='+name + '&index=' + index;
             },
             goProductsList(index,name){
                  window.location.href = './productList.html?id=' + name.id
@@ -234,6 +243,25 @@
             },
             hideExtra(){
             	this.activePic = 10
+            },
+            getScreenOne(e){
+                this.screenX1 = e.screenX
+            },
+            getScreenTwo(e){
+                alert(111)
+                this.screenX2 = e.screenX;
+                this.checkScreen()
+            },
+            checkScreen(){
+                console.log('========');
+                console.log(this.screenX1);
+                console.log(this.screenX2);
+                console.log('========');
+               if(this.screenX1 > this.screenX2){
+                    this.$refs.carousel.prev()
+               } else if(this.screenX1 < this.screenX2){
+                    this.$refs.carousel.next()
+               }
             }
         },
 		computed:{

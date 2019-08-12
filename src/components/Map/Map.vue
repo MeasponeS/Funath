@@ -12,7 +12,6 @@
                 <el-amap-marker
                         v-for="(marker, index) in markers"
                         :vid="index"
-                        :key = "index"
                         :position="marker.position"
                         :events="marker.events"
                         :visible="marker.visible"

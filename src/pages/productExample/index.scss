@@ -139,13 +139,22 @@
                     cursor: pointer;
                     overflow: hidden;
                     margin-right: 59px;
+                    &:hover{
+                        img{
+                            transform: scale(1.05);
+                        }
+                        .el-button{
+                            &:hover{
+                                background: #fff;
+                                border: 1px solid #0DAA67;
+                                color: #0DAA67;
+                            }
+                        }
+                    }
                     img{
                         width: 380px;
                         height: 220px;
                         transition: all 0.6s;
-                        &:hover{
-                            transform: scale(1.05);
-                        }
                     }
                     h4{
                         font-weight: normal;
@@ -176,11 +185,7 @@
                         border: 1px solid #0DAA67;
                         padding: 0;
                         margin-top: 27px;
-                        &:hover{
-                            background: #fff;
-                            border: 1px solid #0DAA67;
-                            color: #0DAA67;
-                        }
+                       
                     }
                     &:nth-child(3n){
                         margin-right: 0;
@@ -504,6 +509,7 @@
             align-items: center;
             margin: 75px 0;
             color: #2b2b2b;
+            position: relative;
             .el-pagination{
                 padding: 0;
                 width: 100%;
@@ -549,7 +555,8 @@
                 background: #EEEFF0;
                 color: #2b2b2b!important;
                 font-family: SourceHan-regular;
-                position: relative;
+                position: absolute;
+                right: 0;
                 &:after{
                     content: "下一页";
                     display: block;
@@ -566,7 +573,8 @@
                 text-align: center;
                 line-height: 50px;
                 font-size: 16px;
-                position: relative;
+                position: absolute;
+                left: 0;
                 font-family: SourceHan-regular;
                 &:after{
                     content: "上一页";

@@ -19,13 +19,8 @@
             <el-breadcrumb separator-class="el-icon-arrow-right">
                 <el-breadcrumb-item><a href="./index.html">HOME</a></el-breadcrumb-item>
                 <el-breadcrumb-item><a href="./products.html">产品信息</a></el-breadcrumb-item>
-<<<<<<< HEAD
-                <el-breadcrumb-item><a href="javascript:;">{{info.category}}</a></el-breadcrumb-item>
-                <el-breadcrumb-item><a href="#">{{info.name}}</a></el-breadcrumb-item>
-=======
                 <el-breadcrumb-item><a :href="backUrl" >{{info.category}}</a></el-breadcrumb-item>
                 <el-breadcrumb-item>{{info.name}}</el-breadcrumb-item>
->>>>>>> 16cde0c8d3a31164d3c907d15941e8fc61339eca
             </el-breadcrumb>
 
             <div class="l_content">
@@ -37,13 +32,9 @@
                         <i class="el-icon-back"></i>
                     </li>
                     <el-collapse v-model="activeNames">
-<<<<<<< HEAD
-                        <div v-for="item in all" @mouseenter="openCollapse(item.id)">
-=======
                         <div v-for="item in all"
                             @mouseleave="closeCollapse"
                          @mouseenter="openCollapse(item)">
->>>>>>> 16cde0c8d3a31164d3c907d15941e8fc61339eca
                             <el-collapse-item
                                     :title="item.name"
                                     :key="item.id"
@@ -75,7 +66,7 @@
 
         </div>
         <Footer />
-    </div>
+    </div>  
 </template>
 
 <script>
@@ -88,11 +79,7 @@
                 info:{},
 				bannerList:[],
                 activeId:'',
-<<<<<<< HEAD
-                opening: false
-=======
                 backUrl:''
->>>>>>> 16cde0c8d3a31164d3c907d15941e8fc61339eca
             }
         },
         mounted() {
@@ -127,16 +114,6 @@
             goDetail(id){
                 this.getDetails(id);
             },
-<<<<<<< HEAD
-			openCollapse(id){
-                // if(!this.opening) {
-                //     this.opening = true;
-                //     setTimeout(()=>{
-                //         this.activeNames = id;
-                //         this.opening = false;
-                //     },300);
-                // }
-=======
             setCollapse(){
                 this.all.forEach(item=>{
                     item.products.data.forEach(i=>{
@@ -156,7 +133,6 @@
                     this.setCollapse();
 					this.activeNames.push(item.id);
 				},300)
->>>>>>> 16cde0c8d3a31164d3c907d15941e8fc61339eca
             }
         },
         components:{

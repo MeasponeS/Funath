@@ -1,6 +1,6 @@
 <template>
     <div class="head-warp">
-        <div class="head" >
+        <div class="head">
             <div class="left" @click="goHome">
                 <img src="./img/logo.png" alt="">
             </div>
@@ -55,7 +55,7 @@
 			},
 			goHome(){
 				window.location.href = './index.html'
-            }
+            },
 
 	    },
         mounted(){

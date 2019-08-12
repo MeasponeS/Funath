@@ -184,7 +184,12 @@
             &:before{
                 content: "\E62B";
             }
-
+        }
+        i.is-active{
+            transform: rotate(0deg);
+            &:before{
+                content: "\E621"
+            }
         }
         .el-collapse-item__header{
             background: #d6d6d6;

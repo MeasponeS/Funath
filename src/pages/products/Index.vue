@@ -47,7 +47,7 @@
                 </ul>
                 <el-breadcrumb separator-class="el-icon-arrow-right">
                     <el-breadcrumb-item><a href="./index.html">HOME</a></el-breadcrumb-item>
-                    <el-breadcrumb-item><a href="#">产品信息</a></el-breadcrumb-item>
+                    <el-breadcrumb-item>产品信息</el-breadcrumb-item>
                 </el-breadcrumb>
             </div>
 
