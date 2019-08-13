@@ -56,9 +56,9 @@
                     </el-collapse>
                     <li class="header">
                         综合样本下载
-                        <i class="el-icon-d-arrow-left"></i>
+                        <i class="el-icon-d-arrow-left" @click="download"></i>
                     </li>
-                    <li class="imgs">
+                    <li class="imgs" @click="download">
                         <img src="./img/1.png" alt="">
                     </li>
                 </ul>
@@ -141,7 +141,10 @@
                     this.setCollapse();
 					this.activeNames.push(item.id);
 				},300)
-            }
+            },
+			download(){
+				window.open('http://funath.klsfood.cn/catalog/8909317e5763a18a92eb3d49ee37ac1f.pdf')
+			}
         },
         components:{
 

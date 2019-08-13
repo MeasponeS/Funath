@@ -51,7 +51,7 @@
                 <ul class="box">
                     <li class="header">
                         产品信息
-                        <i class="el-icon-back"></i>
+                        <i class="el-icon-back" @click="goProducts"></i>
                     </li>
                     <el-collapse v-model="activeNames">
                         <div v-for="item in all" @mouseenter="openCollapse(item.id)"
@@ -75,11 +75,11 @@
 
 
                     </el-collapse>
-                    <li class="header">
+                    <li class="header" >
                         综合样本下载
-                        <i class="el-icon-d-arrow-left"></i>
+                        <i class="el-icon-d-arrow-left" @click="download"></i>
                     </li>
-                    <li class="imgs">
+                    <li class="imgs" @click="download">
                         <img src="./img/1.png" alt="">
                     </li>
                 </ul>
@@ -131,7 +131,13 @@
 					this.activeNames = id;
                 },300)
 
-			}
+			},
+			goProducts(){
+				window.location.href = './products.html?name=&index=';
+			},
+            download(){
+            	window.open('http://funath.klsfood.cn/catalog/8909317e5763a18a92eb3d49ee37ac1f.pdf')
+            }
         },
         components:{
 
