@@ -1,11 +1,11 @@
 <template>
-    <div id="app">
+    <div id="app" >
         <Head />
         <div class="item">
             <div 
                 class="bannerList"
                 @mousedown="getScreenOne"
-                @mouseup.native="getScreenTwo"
+                @mouseup="getScreenTwo"
                 >
                 <el-carousel
                         :interval="3000"
@@ -15,8 +15,9 @@
                         :indicator-position="bannerList.length > 1? '':'none'"
                         	>
                     <el-carousel-item v-for="(item,index) in bannerList" :key="index">
-                        <a :href="item.link">
-                            <img :src="item.image_url" alt="">
+<!--                        //:href="item.link"-->
+                        <a href="#" @click="goLink(item.link)" >
+                            <img :src="item.image_url"  alt="">
                         </a>
                     </el-carousel-item>
                 </el-carousel>
@@ -35,6 +36,7 @@
                     <li
                             v-for="(item,index) in p_list"
                             :key="item.id"
+                            
                             @mouseenter="showExtra(index,item)"
                             @mouseleave="hideExtra"
                             @click="goProductsList(index,item)"
@@ -90,7 +92,7 @@
 
                     </ul>
                     <el-button @click="goNews('')">查看更多</el-button>
-                    <div @click="goNews(newList[0].id)" v-if="newList[0]">
+                    <div @click="goNews(newList[0].id)" v-if="newList[0]" class="mainNew">
                         <div class="imgs">
                             <img :src="newList[0].image" alt="">
                         </div>
@@ -134,8 +136,6 @@
 <script>
     import Backtop from '../../components/BackTop/Backtop'
     import {banners,exampleList,products,yearPosts} from '../../api/common'
-
-    let banner = document.getElementsByClassName('bannerList');
   
     export default {
         data() {
@@ -151,7 +151,8 @@
 				distance:0,
                 currentIndex:0,
                 screenX1:'',
-                screenX2:''
+                screenX2:'',
+                bannerIsDrag:false
             }
         },
         created(){
@@ -178,6 +179,7 @@
 				this.p_list = this.p_list.slice(0,4);
 			}).catch(_=>{});
 			yearPosts({year:tYear}).then(r=>{
+                this.sort(r.data);
 				r.data.forEach((item,index)=>{
                     if(index < 3){
                         this.newList.push(item)
@@ -187,9 +189,49 @@
         },
         mounted() {
 			// document.getElementsByClassName("bottom")[0].style.overflowY="hidden";
-			// document.getElementsByClassName("bottom")[0].style.overflowX="hidden";  
+            // document.getElementsByClassName("bottom")[0].style.overflowX="hidden";  
+            let banner = document.getElementsByClassName('bannerList')[0];
+			let events = {
+				mousedown:(e)=>{
+					this.bannerIsDrag = false
+				},
+				mousemove:(e)=>{
+					this.bannerIsDrag = true;
+				},
+				mouseup:(e)=>{
+				}
+			};
+            for(let key in events){
+				banner.addEventListener(key,events[key])
+            }
+
         },
         methods: {
+			goLink(link){
+				if(this.bannerIsDrag) {
+					this.bannerIsDrag = false;
+                } else {
+					window.location.href = link;
+                }
+
+            },
+            sort(ary){
+                
+                ary.forEach(item=>{
+                    item.created_at = item.created_at.trim().split(/\s+/)[0];
+                    item.created_at = (item.created_at.replace('-','')).replace('-','')
+                });
+               ary.sort(function(a,b) {
+                   return b.created_at - a.created_at
+               });
+               let initStr = (a,b,c) =>{
+                   return a.slice(0,b) + c + a.slice(b)
+               };
+                ary.forEach(item=>{
+                    item.created_at = initStr(item.created_at,4,'-');
+                    item.created_at = initStr(item.created_at,7,'-')
+                })
+            },
             goContact(){
                 window.location.href = './contact.html'
             },
@@ -218,7 +260,6 @@
 					this.distance += offset * direction;
                 } else {
                     this.distance += 0
-                
                 }
 
 			},
@@ -226,9 +267,9 @@
 				if (this.list.length * 300 - Math.abs(this.distance) > 1200) {
 					this.distance += offset * direction;
 				} else {
-					 this.list = this.list.concat(this.list)
+					 this.list = this.list.concat(this.list);
                     this.distance += offset * direction;
-				}
+                }
 			},
 
 			showExtra(index,item){
@@ -245,21 +286,21 @@
             	this.activePic = 10
             },
             getScreenOne(e){
-                this.screenX1 = e.screenX
+                e.stopPropagation();
+                 e.preventDefault();
+                this.screenX1 = e.screenX;
+                
             },
             getScreenTwo(e){
-                alert(111)
+                e.stopPropagation();
+                e.preventDefault();
                 this.screenX2 = e.screenX;
                 this.checkScreen()
             },
             checkScreen(){
-                console.log('========');
-                console.log(this.screenX1);
-                console.log(this.screenX2);
-                console.log('========');
-               if(this.screenX1 > this.screenX2){
+               if(this.screenX1 < this.screenX2){
                     this.$refs.carousel.prev()
-               } else if(this.screenX1 < this.screenX2){
+               } else if(this.screenX1 > this.screenX2){
                     this.$refs.carousel.next()
                }
             }

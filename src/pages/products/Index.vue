@@ -27,6 +27,7 @@
                     <li
                         v-for="(item,index) in p_list"
                         :key="index"
+                        :style="{width:100/(p_list.length+1)+'%'}"
                         :class="{active:type == index }"
                         @click="changeNav(index,item.name)"
                         :name="item.name"
@@ -34,7 +35,11 @@
                         <i class="el-icon-caret-bottom"></i>
                         {{item.name}}
                     </li>
-                    <li :class="{active:type == p_list.length }" @click="changeNav(p_list.length,'')">
+                    <li
+                         :class="{active:type == p_list.length }" 
+                         @click="changeNav(p_list.length,'')"
+                         :style="{width:100/(p_list.length+1)+'%'}"
+                         >
                         <i class="el-icon-search"></i>
                         <div class="search" v-if="showSearch">
                             <el-input
@@ -90,7 +95,8 @@
                             :key="item.id"
                             @click="goDetails(item.id)"
                         >
-                            <img :src="item.thumb2" alt="">
+                            <div class="paImgs"><img :src="item.thumb2" alt=""></div>
+                            
                             <h4>{{item.title}}</h4>
                             <p>{{item.introduce}}</p>
                             <el-button size="small" @click="goDetails(item.id)">查看更多</el-button>

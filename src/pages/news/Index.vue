@@ -117,6 +117,7 @@
                     			i.created_at = i.created_at.trim().split(/\s+/)[0]
                             })
                         }
+                        this.sort(res.data)
                         this.postList = res.data;
                     }).catch(_=>{})
                 }
@@ -148,6 +149,22 @@
                     this.postDetails = r.data;
 					this.postDetails.created_at = this.postDetails.created_at.trim().split(/\s+/)[0]
                 }).catch(_=>{})
+            },
+            sort(ary){
+                
+                ary.forEach(item=>{
+                    item.created_at = (item.created_at.replace('-','')).replace('-','')
+                })
+               ary.sort(function(a,b) {
+                   return b.created_at - a.created_at
+               })
+               let initStr = (a,b,c) =>{
+                   return a.slice(0,b) + c + a.slice(b)
+               }
+                ary.forEach(item=>{
+                    item.created_at = initStr(item.created_at,4,'-')
+                    item.created_at = initStr(item.created_at,7,'-')
+                })
             }
         },
         components:{

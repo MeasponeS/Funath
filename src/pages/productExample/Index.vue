@@ -30,7 +30,7 @@
                     <el-tab-pane label="所有项目" name=""  >
                         <ul class="all" v-if="showDetail">
                             <li v-for="item in lists" @click="details(item.id)">
-                                <img :src="item.main_image_url" alt="">
+                                <div class="psImgs"> <img :src="item.main_image_url" alt=""></div>
                                 <h4>{{item.title}}</h4>
                                 <p>{{item.introduce}}</p>
                                 <el-button size="small" @click="details(item.id)">查看更多</el-button>
@@ -76,7 +76,7 @@
                                         :key="item.id"
                                         @click="details(item.id)"
                                 >
-                                    <img :src="item.thumb2" alt="">
+                                    <div class="psImgs"> <img :src="item.thumb2" alt=""></div>
                                     <h4>{{item.title}}</h4>
                                     <p>{{item.introduce}}</p>
                                     <el-button size="small" @click="details(item.id)">查看更多</el-button>
@@ -91,7 +91,7 @@
                     >
                         <ul class="all" v-if="showDetail && (lists.length&&lists.length)">
                             <li v-for="item in lists" @click="details(item.id)">
-                                <img :src="item.main_image_url" alt="">
+                                <div class="psImgs"><img :src="item.main_image_url" alt=""></div>
                                 <h4>{{item.title}}</h4>
                                 <p>{{item.introduce}}</p>
                                 <el-button size="small" @click="details(item.id)">查看更多</el-button>
@@ -152,6 +152,7 @@
                             v-if="showDetail"
                             background
                             layout="prev, pager, next"
+                            page-size="6"
                             @current-change="pChange"
                             :total="total">
                     </el-pagination>
@@ -183,7 +184,7 @@
             exampleTypes({}).then(r=>{
                 this.types = r.data;
                 if(r.data.length){
-                    exampleList({category_id:''}).then(res=>{
+                    exampleList({category_id:'',limit:6,page:1}).then(res=>{
                         this.lists = res.data;
 						this.total = res.meta.pagination.total;
 					}).catch(_=>{})
@@ -208,13 +209,13 @@
         methods: {
 			handleClick(){
 			    this.showDetail = true;
-                exampleList({category_id:this.activeName}).then(r=>{
+                exampleList({category_id:this.activeName,limit:6,page:1}).then(r=>{
                     this.lists = r.data;
 					this.total = r.meta.pagination.total;
 				}).catch(_=>{})
             },
             pChange(e){
-                exampleList({category_id:this.activeName,limit:10,page:e}).then(r=>{
+                exampleList({category_id:this.activeName,limit:6,page:e}).then(r=>{
                     this.lists = r.data;
                 }).catch(_=>{})
             },

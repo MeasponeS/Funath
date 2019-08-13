@@ -29,7 +29,7 @@
                 <ul class="box">
                     <li class="header">
                         产品信息
-                        <i class="el-icon-back"></i>
+                        <i class="el-icon-back" @click="goProducts"></i>
                     </li>
                     <el-collapse v-model="activeNames">
                         <div v-for="item in all"
@@ -109,6 +109,9 @@
 
         },
         methods: {
+            goProducts(){
+                 window.location.href = './products.html?name=&index=';
+            },
             getDetails(id){
 				this.activeId = id;
                 productDetails({},id).then(r=>{

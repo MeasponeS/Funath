@@ -10,7 +10,6 @@
     margin-bottom: 110px;
     .banner{
         width: 100%;
-        border-bottom: 5px solid #0DAA67;
         margin-bottom: 15px;
         background: #EEEFF0;
         display: flex;
@@ -52,6 +51,7 @@
         }
     }
     .el-breadcrumb__item{
+        font-size: 12px;
         .el-breadcrumb__inner{
             color: #7c7c7c!important;
             a{
@@ -139,6 +139,7 @@
             color: #fff;
             .el-icon-back{
                 transform: rotateY(180deg);
+                cursor: pointer;
             }
             .el-icon-d-arrow-left{
                 transform: rotateZ(270deg);

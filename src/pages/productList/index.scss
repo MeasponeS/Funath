@@ -51,11 +51,13 @@
         }
     }
     .el-breadcrumb__item{
+        font-size: 12px;
         .el-breadcrumb__inner{
             color: #7c7c7c!important;
             a{
                 color: #7c7c7c;
                 font-weight: normal;
+                font-size: 12px;
                 &:hover{
                     color: #7c7c7c;
                 }
