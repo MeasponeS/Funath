@@ -38,17 +38,18 @@
                     <li
                          :class="{active:type == p_list.length }" 
                          @click="changeNav(p_list.length,'')"
+                         class="searchFather"
                          :style="{width:100/(p_list.length+1)+'%'}"
                          >
                         <i class="el-icon-search"></i>
-                        <div class="search" v-if="showSearch">
-                            <el-input
-                                    prefix-icon="el-icon-search"
-                                    placeholder="Search"
-                                    v-model="searchJson"
-                            />
-                        </div>
                     </li>
+                    <div class="search" v-if="showSearch" @click="stay">
+                        <el-input
+                                prefix-icon="el-icon-search"
+                                placeholder="Search"
+                                v-model="searchJson"
+                        />
+                    </div>
                 </ul>
                 <el-breadcrumb separator-class="el-icon-arrow-right">
                     <el-breadcrumb-item><a href="./index.html">HOME</a></el-breadcrumb-item>
@@ -141,7 +142,6 @@
 				window.setTimeout(()=>{
 					this.changeNav(window.URlPARAMS.index,decodeURI(window.URlPARAMS.name))
                 },300)
-
 			}
 			// 426 1912 2549
 		},
@@ -158,12 +158,15 @@
 				}
 				return scrollTop;
 			},
+			stay(){
+				this.showSearch = true
+            },
 			changeNav(index,name){
                 // this.showSearch = name?false:true;
                 if(!name){
                     this.showSearch = !this.showSearch;
                 } else {
-                    this.showSearch = false;
+					this.showSearch = false;
                     let products = document.getElementsByClassName('products');
                     let newArr = [];
                     for(let i=0; i<products.length; i++){

@@ -38,9 +38,9 @@
                         </li>
                         <li class="download">
                             综合样本下载
-                            <i class="el-icon-arrow-down"></i>
+                            <i class="el-icon-arrow-down" @click="download"></i>
                         </li>
-                        <li class="img">
+                        <li class="img"  @click="download">
                             <img src="./img/1.jpg" alt="">
                         </li>
                     </ul>
@@ -112,12 +112,7 @@
                 if(r.length>0){
                     this.activeClass = r[0];
                     yearPosts({year:r[0]}).then(res=>{
-                    	if(res.data.length){
-                    		res.data.forEach(i=>{
-                    			i.created_at = i.created_at.trim().split(/\s+/)[0]
-                            })
-                        }
-                        this.sort(res.data)
+                        this.sort(res.data);
                         this.postList = res.data;
                     }).catch(_=>{})
                 }
@@ -140,6 +135,7 @@
                 this.activeClass = item;
                 this.showDetail = true;
                 yearPosts({year:item}).then(r=>{
+					this.sort(r.data);
                     this.postList = r.data
                 }).catch(_=>{})
             },
@@ -150,20 +146,24 @@
 					this.postDetails.created_at = this.postDetails.created_at.trim().split(/\s+/)[0]
                 }).catch(_=>{})
             },
+			download(){
+				window.open('http://funath.klsfood.cn/catalog/8909317e5763a18a92eb3d49ee37ac1f.pdf')
+            },
             sort(ary){
                 
                 ary.forEach(item=>{
+					item.created_at = item.created_at.trim().split(/\s+/)[0];
                     item.created_at = (item.created_at.replace('-','')).replace('-','')
-                })
+                });
                ary.sort(function(a,b) {
                    return b.created_at - a.created_at
-               })
+               });
                let initStr = (a,b,c) =>{
                    return a.slice(0,b) + c + a.slice(b)
-               }
+               };
                 ary.forEach(item=>{
-                    item.created_at = initStr(item.created_at,4,'-')
-                    item.created_at = initStr(item.created_at,7,'-')
+                    item.created_at = initStr(item.created_at,4,'-');
+                    item.created_at = initStr(item.created_at,7,'-');
                 })
             }
         },

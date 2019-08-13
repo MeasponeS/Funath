@@ -15,7 +15,7 @@
                 <div class="right">
                     <div class="tel">
                         <img src="./img/tel.png" alt="">
-                        <span>400-0012-977</span>
+                        <span>400-001-2977</span>
                     </div>
                     <div class="language">
                         <span class="cn">中文</span>
@@ -129,6 +129,7 @@
                     span{
                         font-size: 26px;
                         font-family: 'DINC';
+                        line-height: 0;
                         color: #fff;
                         margin-left: 8px;
                         padding-right: 28px!important;

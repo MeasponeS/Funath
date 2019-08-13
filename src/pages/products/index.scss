@@ -122,27 +122,31 @@
                 i{
                     margin-right: 5px;
                 }
-                .search{
-                    width: 400px;
-                    height: 48px;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    background: #2B2B2B;
-                    position: absolute;
-                    top: -48px;
-                    right: 0;
-                    .el-input{
+            }
+            .searchFather{
+                position: relative;
+                border-right: 0;
+            }
+            .search{
+                width: 400px;
+                height: 48px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background: #2B2B2B;
+                position: absolute;
+                top: -48px;
+                right: 0;
+                .el-input{
+                    width: 250px;
+                    height: 26px;
+                    .el-input__inner{
                         width: 250px;
                         height: 26px;
-                        .el-input__inner{
-                            width: 250px;
-                            height: 26px;
-                        }
                     }
-                    .el-input__icon{
-                        line-height: 26px;
-                    }
+                }
+                .el-input__icon{
+                    line-height: 26px;
                 }
             }
             .active{

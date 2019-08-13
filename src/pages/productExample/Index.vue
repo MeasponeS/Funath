@@ -27,7 +27,7 @@
                     <el-breadcrumb-item v-if="!showDetail">{{E_details.title||''}}</el-breadcrumb-item>
                 </el-breadcrumb>
                 <el-tabs v-model="activeName" type="card" @tab-click="handleClick"  class="el_tabs">
-                    <el-tab-pane label="所有项目" name=""  >
+                    <el-tab-pane label="所有项目" name="" >
                         <ul class="all" v-if="showDetail">
                             <li v-for="item in lists" @click="details(item.id)">
                                 <div class="psImgs"> <img :src="item.main_image_url" alt=""></div>
@@ -89,7 +89,7 @@
                             :label="item.name"
                             :name="item.id+''"
                     >
-                        <ul class="all" v-if="showDetail && (lists.length&&lists.length)">
+                        <ul class="all" v-if="showDetail && (lists.length&&lists.length)" >
                             <li v-for="item in lists" @click="details(item.id)">
                                 <div class="psImgs"><img :src="item.main_image_url" alt=""></div>
                                 <h4>{{item.title}}</h4>
@@ -201,8 +201,8 @@
             }
 			recommends({}).then(r=>{
 				this.recommends = r.data
-			}).catch(_=>{})
-        },
+			}).catch(_=>{});
+		},
         computed: {
 
         },
@@ -220,7 +220,6 @@
                 }).catch(_=>{})
             },
             details(id){
-				console.log(id);
 				this.showDetail = false;
                 exampleDetails({},id).then(r=>{
                     this.E_details = r;
