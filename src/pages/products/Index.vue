@@ -177,6 +177,7 @@
         },
 		methods: {
 			stayClose(){
+				this.showSearch = false;
 				this.showSearchInput = false
             },
 			getScrollTop(){
@@ -194,7 +195,9 @@
 				this.showSearchInput = true
             },
 			changeNav(index,name){
-                // this.showSearch = name?false:true;
+				let event = window.event || arguments.callee.caller.arguments[0];
+				event.stopPropagation();
+				// this.showSearch = name?false:true;
                 if(!name){
                     this.showSearch = !this.showSearch;
                 } else {
