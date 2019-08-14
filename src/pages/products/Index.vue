@@ -49,17 +49,18 @@
                             placeholder="请输入产品名称"
                             v-model="searchJson"
                         />
-                        <div
-                            class="dropDown"
-                            v-if="searchResult.length"
-                            v-for="(item,index) in searchResult"
-                            :style="{'bottom':(-30*index-30)+'px'}"
-                            @click="goProductDetails(item.id)"
-                        >{{item.name}}</div>
-                        <div
-                            class="dropDown"
-                            v-else
-                        >没有找到符合条件的结果</div>
+                        <div class="dropDownBox">
+                            <div
+                                class="dropDown canHover"
+                                v-if="searchResult.length"
+                                v-for="(item,index) in searchResult"
+                                @click="goProductDetails(item.id)"
+                            >{{item.name}}</div>
+                            <div
+                                class="dropDown noResult"
+                                v-if="showNoResult"
+                            >没有找到符合条件的结果</div>
+                        </div>
                     </div>
                 </ul>
                 <el-breadcrumb separator-class="el-icon-arrow-right">
@@ -134,7 +135,8 @@
 				recommends:[],
                 bannerList:[],
                 searchJson:'',
-                searchResult:[]
+                searchResult:[],
+                showNoResult:false
 			}
 		},
         created(){
@@ -163,7 +165,12 @@
         watch:{
 		    searchJson(val){
 				productList({search:val}).then(r=>{
-					this.searchResult = r.data
+					this.searchResult = r.data;
+                    if(!r.data.length){
+                    	this.showNoResult = true
+                    } else {
+                    	this.showNoResult = false
+                    }
 				}).catch(_=>{});
 			}
         },
