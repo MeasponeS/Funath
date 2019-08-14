@@ -45,10 +45,21 @@
                     </li>
                     <div class="search" v-if="showSearch" @click="stay">
                         <el-input
-                                prefix-icon="el-icon-search"
-                                placeholder="Search"
-                                v-model="searchJson"
+                            prefix-icon="el-icon-search"
+                            placeholder="请输入产品名称"
+                            v-model="searchJson"
                         />
+                        <div
+                            class="dropDown"
+                            v-if="searchResult.length"
+                            v-for="(item,index) in searchResult"
+                            :style="{'bottom':(-30*index-30)+'px'}"
+                            @click="goProductDetails(item.id)"
+                        >{{item.name}}</div>
+                        <div
+                            class="dropDown"
+                            v-else
+                        >没有找到符合条件的结果</div>
                     </div>
                 </ul>
                 <el-breadcrumb separator-class="el-icon-arrow-right">
@@ -113,7 +124,7 @@
 
 <script>
 	import Backtop from '../../components/BackTop/Backtop'
-    import {products,recommends,banners} from '../../api/common'
+    import {products,recommends,banners,productList} from '../../api/common'
 	export default {
 		data() {
 			return {
@@ -122,7 +133,8 @@
                 showSearch:false,
 				recommends:[],
                 bannerList:[],
-                searchJson:''
+                searchJson:'',
+                searchResult:[]
 			}
 		},
         created(){
@@ -148,6 +160,13 @@
 		computed: {
 
 		},
+        watch:{
+		    searchJson(val){
+				productList({search:val}).then(r=>{
+					this.searchResult = r.data
+				}).catch(_=>{});
+			}
+        },
 		methods: {
 			getScrollTop(){
 				let scrollTop=0;
