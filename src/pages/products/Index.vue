@@ -1,5 +1,5 @@
 <template>
-    <div id="app">
+    <div id="app" @click="stayClose">
         <Head />
         <div class="navH">
             <div class="banner">
@@ -49,7 +49,7 @@
                             placeholder="请输入产品名称"
                             v-model="searchJson"
                         />
-                        <div class="dropDownBox">
+                        <div class="dropDownBox" v-if="showSearchInput">
                             <div
                                 class="dropDown canHover"
                                 v-if="searchResult.length"
@@ -136,8 +136,9 @@
                 bannerList:[],
                 searchJson:'',
                 searchResult:[],
-                showNoResult:false
-			}
+                showNoResult:false,  // 是否显示无结果
+                showSearchInput:false   // 是否显示无搜索框
+ 			}
 		},
         created(){
 		    products({}).then(r=>{
@@ -175,6 +176,9 @@
 			}
         },
 		methods: {
+			stayClose(){
+				this.showSearchInput = false
+            },
 			getScrollTop(){
 				let scrollTop=0;
 				if(document.documentElement&&document.documentElement.scrollTop){
@@ -184,8 +188,10 @@
 				}
 				return scrollTop;
 			},
-			stay(){
-				this.showSearch = true
+			stay(e){
+				this.showSearch = true;
+				e.stopPropagation();
+				this.showSearchInput = true
             },
 			changeNav(index,name){
                 // this.showSearch = name?false:true;
