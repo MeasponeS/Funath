@@ -1,0 +1,249 @@
+#app{
+    #div1{display:block;width:110px;height:50px;line-height:50px;white-space:nowrap;overflow:hidden;background-color:#a2a2a2;margin:15px;padding:5px 15px;}
+    span{display:inline-block;}
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    overflow: hidden;
+}
+.icon{
+    width: 20px;
+    height: 20px;
+}
+
+.bannerListNav{
+    width: 100%;
+    height: 111px;
+    margin-top: 3px;
+    background: #EEEFF0;
+    position: relative;
+    border-bottom: 3px solid #0DAA67;
+    .el-carousel{
+        width: 100%;
+        height: 100%;
+    }
+    .el-carousel__container{
+        width: 100%;
+        height: 111px;
+    }
+    .el-carousel__item{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        a{
+            img{
+                width: auto;
+                height: 111px;
+            }
+        }
+
+    }
+    .el-carousel__button{
+        width: 10px;
+        height: 10px;
+        border: 2px solid #fff;
+        background: transparent;
+        &:hover{
+            background: #0daa67;
+        }
+    }
+    .is-active{
+        .el-carousel__button{
+            background: #0daa67;
+        }
+
+    }
+    .header{
+        z-index: 9999;
+        position: absolute;
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        padding: 0 13px;
+        flex-direction: column;
+        border-left: 4px solid #0daa67;
+        top: 30px;
+        left: 23px;
+        h3{
+            margin: 0;
+            font-weight: normal;
+            font-family: DINC;
+            font-size: 20px;
+            color: #2b2b2b;
+        }
+        span{
+            font-family: SourceHan;
+            font-size: 14px;
+            color: #2b2b2b;
+        }
+}
+
+}
+.b_box{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 13px;
+    .item{
+        width: 100%;
+    }
+    .info_box{
+        width: 100%;
+        margin-top: 23px;
+        .header{
+            width: 100%;
+            height: 22px;
+            display: flex;
+            padding: 3px 0;
+            justify-content: flex-start;
+            align-items: center;
+            border-bottom: 1px solid #2b2b2b;
+            margin-bottom: 20px;
+            color: #2b2b2b;
+            h3{
+                font-family: "SourceHan";
+                font-size: 14px;
+                margin: 0;
+                font-weight: normal;
+                display: flex;
+                color: #2b2b2b;
+                justify-content: center;
+                align-items: center;
+                &:before{
+                    content: "";
+                    display: inline-block;
+                    width: 2px;
+                    height: 15px;
+                    background: #0DAA67;
+                    margin-right: 3px;
+                }
+            }
+        }
+        .body{
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            .left{
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: flex-start;
+                flex-direction: column;
+                h4{
+                    font-family: "SourceHan";
+                    font-size: 14px;
+                    color: #2b2b2b;
+                    margin-top: 0;
+                    margin-bottom: 10px;
+                }
+                span{
+                    font-family:'SourceHan-regular';
+                    font-size: 14px;
+                    color: #2b2b2b;
+                    margin-top: 5px;
+                    line-height: 20px;
+                }
+                .high_h4{
+                    margin-top: 10px;
+                    color: #2b2b2b;
+                }
+            }
+
+        }
+        .right{
+            width: 100%;
+            overflow: hidden;
+            height: 194px;
+            position: relative;
+            padding: 0 13px;
+            margin-top: 20px;
+            .infor{
+                width: 250px;
+                height: 60px;
+                border-radius: 20px;
+                background: #fff;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                position: absolute;
+                top: -5%;
+                right: 12%;
+                margin-top: 20px;
+                p{
+                    color: red;
+                    font-family: "SourceHan-regular";
+                    font-size: 14px;
+                    margin: 0;
+                }
+                span{
+                    color: #2b2b2b;
+                    font-family: "SourceHan-regular";
+                    font-size: 12px;
+                    margin-top: 5px;
+                }
+                i{
+                    position: absolute;
+                    right: 5%;
+                    top: 19%;
+                    cursor: pointer;
+                }
+            }
+        }
+        .info_body{
+            width: 100%;
+            height: 300px;
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+            .inputs{
+                width: 100%;
+                display: flex;
+                justify-content: flex-start;
+                flex-direction: column;
+                .el-input{
+                    margin-bottom: 5px;
+                    height: 41px;
+                    .el-input__inner{
+                        height: 41px;
+                        border: none!important;
+                        background: #EEEFF0;
+                        color: #2b2b2b;
+                    }
+                }
+                .el-textarea{
+                    .el-textarea__inner{
+                        border: none!important;
+                        background: #EEEFF0;
+                        color: #2b2b2b;
+                    }
+                }
+                .el-button{
+                    display: block;
+                    width: 100%;
+                    height: 30px;
+                    font-family: "SourceHan-regular";
+                    font-size: 12px;
+                    color: #fff;
+                    background: #0daa67;
+                    border: 1px solid #0DAA67;
+                    padding: 0;
+                    margin-top: 10px;
+                }
+                .background{
+                    width: 100%;
+                    height: 121px;
+                    img{
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+            }
+        }
+
+    }
+}
+

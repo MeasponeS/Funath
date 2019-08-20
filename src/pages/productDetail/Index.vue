@@ -10,7 +10,7 @@
                         :indicator-position="bannerList.length > 1? '':'none'"
                 >
                     <el-carousel-item v-for="(item,index) in bannerList" :key="index">
-                        <a :href="item.link">
+                        <a :href="item.link" >
                             <img :src="item.image_url" alt="">
                         </a>
                     </el-carousel-item>
@@ -102,7 +102,11 @@
             }).catch(_=>{});
 
 			banners({position:'9'}).then(r=>{
-				this.bannerList = r.data
+				r.data.forEach(item=>{
+					if(!item.is_mobile){
+						this.bannerList.push(item)
+					}
+				});
 			}).catch(_=>{});
 		},
         computed: {

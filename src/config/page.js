@@ -24,5 +24,27 @@ module.exports = {
     },
     productDetail:{
         title:'产品详情'
-    }
+    },
+
+    contact_mobile:{
+        title:'联系我们',
+    },
+    productExample_mobile:{
+        title:'项目案例'
+    },
+    news_mobile:{
+        title:'新闻资讯'
+    },
+    introduction_mobile:{
+        title:'公司介绍'
+    },
+    products_mobile:{
+        title:'产品展示'
+    },
+    productList_mobile:{
+        title:'产品列表'
+    },
+    productDetail_mobile:{
+        title:'产品详情'
+    },
 };

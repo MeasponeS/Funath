@@ -16,7 +16,7 @@ let commonConfig = {
 }
 
 entries.forEach(page=>{
-    let name = page.split('/')[2]
+    let name = page.split('/')[2];
     pages[name] = {
         entry: 'src/pages/'+name+'/index.js',
         filename: name + '.html',

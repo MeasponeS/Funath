@@ -126,7 +126,9 @@
 <script>
 	import Backtop from '../../components/BackTop/Backtop'
     import {products,recommends,banners,productList} from '../../api/common'
-	export default {
+    import {isMobile} from "../../utils/isTerminal";
+
+    export default {
 		data() {
 			return {
 			    p_list:[],
@@ -149,7 +151,11 @@
 				this.recommends = r.data
 			}).catch(_=>{});
 			banners({position:'2'}).then(r=>{
-				this.bannerList = r.data
+				r.data.forEach(item=>{
+					if(!item.is_mobile){
+						this.bannerList.push(item)
+					}
+				});
 			}).catch(_=>{});
         },
 		mounted() {
@@ -217,13 +223,28 @@
 				 this.type = index;
 			},
             list(id){
-                window.location.href = './productList.html?id=' + id
+                if(isMobile){
+                    window.location.href = './productList_mobile.html?id='+id
+                } else {
+                    window.location.href = './productList.html?id=' + id
+                }
+
             },
             goDetails(id){
-                window.location.href = './productExample.html?id='+id
+                if(isMobile){
+                    window.location.href = './productExample_mobile.html?id='+id
+                } else {
+                    window.location.href = './productExample.html?id='+id
+                }
+
             },
 			goProductDetails(id){
-				window.location.href = './productDetail.html?id='+id
+                if(isMobile){
+                    window.location.href = './productDetail_mobile.html?id='+id
+                } else {
+                    window.location.href = './productDetail.html?id='+id
+                }
+
             }
 		},
 		components:{

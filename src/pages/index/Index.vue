@@ -16,7 +16,7 @@
                         	>
                     <el-carousel-item v-for="(item,index) in bannerList" :key="index">
 <!--                        //:href="item.link"-->
-                        <a href="#" @click="goLink(item.link)" >
+                        <a href="#" @click="goLink(item.link)"  >
                             <img :src="item.image_url"  alt="">
                         </a>
                     </el-carousel-item>
@@ -136,7 +136,8 @@
 <script>
     import Backtop from '../../components/BackTop/Backtop'
     import {banners,exampleList,products,yearPosts} from '../../api/common'
-  
+    import {isMobile} from "../../utils/isTerminal";
+
     export default {
         data() {
             return {
@@ -156,16 +157,23 @@
             }
         },
         created(){
+
+            if(isMobile){
+                window.location.href = './index_mobile.html'
+            }
 			let myDate = new Date();
 			let tYear = myDate.getFullYear();
 			banners({position:'0,1'}).then(r=>{
 				r.data.forEach(item=>{
 					if(item.position == 0){
-						this.bannerList.push(item)
+						if(!item.is_mobile){
+							this.bannerList.push(item)
+						}
 					} else {
 						this.middleBanner = item;
 					}
-				})
+				});
+
 			}).catch(_=>{});
 			exampleList({category_id:''}).then(res=>{
 				res.data.forEach((item,index)=>{
@@ -233,26 +241,40 @@
                 })
             },
             goContact(){
-                window.location.href = './contact.html'
+                    window.location.href = './contact.html'
+
+
             },
             goExample(){
-                window.location.href = './productExample.html'
+                    window.location.href = './productExample.html'
+
+
             },
             goNews(id){
-                window.location.href = './news.html?id=' + id
+                    window.location.href = './news.html?id=' + id
+
+
             },
             goIntroduction(type){
-                window.location.href = './introduction.html?type=' + type
+                    window.location.href = './introduction.html?type=' + type
+
+
             },
             goProducts(index,name){
-               window.location.href = './products.html?name='+name + '&index=' + index;
+                    window.location.href = './products.html?name='+name + '&index=' + index;
+
+
             },
             goProductsList(index,name){
-                 window.location.href = './productList.html?id=' + name.id
+                    window.location.href = './productList.html?id=' + name.id
+
+
             },
 			goDetails(id){
             	// 项目案例详情
-				window.location.href = './productExample.html?id='+id
+                    window.location.href = './productExample.html?id='+id
+
+
 			},
 
 			moveLeft(offset,direction){
