@@ -44,6 +44,5 @@
         border-top: 1px solid #d7d7d7;
         font-family: SourceHan-regular;
         font-size: 10px;
-        margin-top: 30px;
     }
 </style>

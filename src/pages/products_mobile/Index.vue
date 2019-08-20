@@ -1,120 +1,92 @@
 <template>
     <div id="app" @click="stayClose">
-<!--        <div class="head-warp" @click="closeSearch">-->
-<!--            <div class="head">-->
-<!--                <div class="left" @click="goHome">-->
-<!--                    <img src="../../assets/img/logo.png" alt="">-->
-<!--                </div>-->
-<!--                <div class="rightNav">-->
-<!--                    <i class="el-icon-search" @click="showSearch"></i>-->
-<!--                    <i class="el-icon-close" v-if="showList" @click="hideNavList"></i>-->
-<!--                    <img src="../../components/Head_Mobile/img/menu.png"  v-else @click="showNavList" alt="" class="icon">-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <div class="search" v-if="search" @click="showSearch">-->
-<!--                <el-input-->
-<!--                        class="input"-->
-<!--                        prefix-icon="el-icon-search"-->
-<!--                        size="small"-->
-<!--                        placeholder="Search"></el-input>-->
-<!--            </div>-->
-<!--            <div class="navList" v-if="showList">-->
-<!--                <ul>-->
-<!--                    <li-->
-<!--                            v-for="(item,index) in p_list"-->
-<!--                            :key="index"-->
-<!--                            @click="changeNav(index,item.name)"-->
-<!--                            :name="item.name"-->
-<!--                    >{{item.name}}</li>-->
-<!--                    <li @click="download">综合样本下载</li>-->
-<!--                </ul>-->
-<!--            </div>-->
-<!--        </div>-->
         <HeadMobile />
-        <div class="b_box">
-            <div class="item">
-                <ul class="nav">
-                    <li
-                        v-for="(item,index) in p_list"
-                        :key="index"
-                        :class="{active:type == index }"
-                        @click="changeNav(index,item.name)"
-                        :name="item.name"
-                    >
-                        <i class="el-icon-caret-bottom"></i>
-                        {{item.name}}
-                    </li>
-                    <div class="search" v-if="showSearch" @click="stay">
-
-                        <div class="dropDownBox" v-if="showSearchInput">
-                            <div
-                                class="dropDown canHover"
-                                v-if="searchResult.length"
-                                v-for="(item,index) in searchResult"
-                                @click="goProductDetails(item.id)"
-                            >{{item.name}}</div>
-                            <div
-                                class="dropDown noResult"
-                                v-if="showNoResult"
-                            >没有找到符合条件的结果</div>
-                        </div>
-                    </div>
-                </ul>
-            </div>
-
-            <div class="products"
-                 v-for="(item,index) in p_list"
-                 :name="item.name"
-                 :key="index"
-            >
-                <div class="p_head" @click="list(item.id)">
-                    <div class="left" v-if="item.main_icon">
-                        <img :style="{width:item.main_icon.width,height:item.main_icon.height}" :src="item.main_icon.url" alt="">
-                    </div>
-                    <div class="right">
-                        <h3>{{item.en_name}}</h3>
-                        <span>{{item.name}}</span>
-                    </div>
-                </div>
-                <ul class="p_body">
-                    <li v-for="(i,k) in item.products.data"
-                        :key="k"
-                        @click="goProductDetails(i.id)"
-                    >
-                        <div class="p_imgs"><img :src="i.main_image_url" alt=""></div>
-                        <span>{{i.name}}</span>
-                    </li>
-                </ul>
-            </div>
-
-
-            <div class="big">
-                <div class="header">
-                    <h3>CASE</h3>
-                    <span>推荐案例</span>
-                </div>
-                <div class="ul">
-                    <ul class="bottom">
+        <div class="mainScreen">
+            <div class="b_box">
+                <div class="item">
+                    <ul class="nav">
                         <li
-                                v-for="(item,index) in recommends"
-                                :key="index" @click="goDetails(item.id)"
-                                v-if="item.thumb2">
-                            <span>{{item.title}}</span>
-                            <div class="imgs">
-                                <img :src="item.thumb2" alt="">
-                            </div>
-                            <div class="wrap"></div>
+                                v-for="(item,index) in p_list"
+                                :key="index"
+                                :class="{active:type == index }"
+                                @click="changeNav(index,item.name)"
+                                :name="item.name"
+                        >
+                            <i class="el-icon-caret-bottom"></i>
+                            {{item.name}}
                         </li>
+                        <div class="search" v-if="showSearch" @click="stay">
 
+                            <div class="dropDownBox" v-if="showSearchInput">
+                                <div
+                                        class="dropDown canHover"
+                                        v-if="searchResult.length"
+                                        v-for="(item,index) in searchResult"
+                                        @click="goProductDetails(item.id)"
+                                >{{item.name}}</div>
+                                <div
+                                        class="dropDown noResult"
+                                        v-if="showNoResult"
+                                >没有找到符合条件的结果</div>
+                            </div>
+                        </div>
                     </ul>
                 </div>
-                <div class="b">
-                    <el-button @click="goNews('')">查看更多</el-button>
+
+                <div class="products"
+                     v-for="(item,index) in p_list"
+                     :name="item.name"
+                     :key="index"
+                >
+                    <div class="p_head" @click="list(item.id)">
+                        <div class="left" v-if="item.main_icon">
+                            <img :style="{width:item.main_icon.width,height:item.main_icon.height}" :src="item.main_icon.url" alt="">
+                        </div>
+                        <div class="right">
+                            <h3>{{item.en_name}}</h3>
+                            <span>{{item.name}}</span>
+                        </div>
+                    </div>
+                    <ul class="p_body">
+                        <li v-for="(i,k) in item.products.data"
+                            :key="k"
+                            @click="goProductDetails(i.id)"
+                        >
+                            <div class="p_imgs"><img :src="i.main_image_url" alt=""></div>
+                            <span>{{i.name}}</span>
+                        </li>
+                    </ul>
                 </div>
 
 
-            </div>
+                <div class="big">
+                    <div class="header">
+                        <h3>CASE</h3>
+                        <span>推荐案例</span>
+                    </div>
+                    <div class="ul">
+                        <ul class="bottom">
+                            <li
+                                    v-for="(item,index) in recommends"
+                                    :key="index" @click="goDetails(item.id)"
+                                    v-if="item.thumb2">
+                                <span>{{item.title}}</span>
+                                <div class="imgs">
+                                    <img :src="item.thumb2" alt="">
+                                </div>
+                                <div class="wrap"></div>
+                            </li>
 
+                        </ul>
+                    </div>
+                    <div class="b">
+                        <el-button @click="goNews('')">查看更多</el-button>
+                    </div>
+
+
+                </div>
+
+            </div>
         </div>
         <FooterMobile/>
         <BacktopMobile />

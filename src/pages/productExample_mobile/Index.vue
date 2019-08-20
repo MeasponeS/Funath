@@ -1,165 +1,136 @@
 <template>
     <div id="app">
-<!--        <div class="head-warp" @click="closeSearch">-->
-<!--            <div class="head">-->
-<!--                <div class="left" @click="goHome">-->
-<!--                    <img src="../../assets/img/logo.png" alt="">-->
-<!--                </div>-->
-<!--                <div class="rightNav">-->
-<!--                    <i class="el-icon-search" @click="showSearch"></i>-->
-<!--                    <i class="el-icon-close" v-if="showList" @click="hideNavList"></i>-->
-<!--                    <img src="../../components/Head_Mobile/img/menu.png"  v-else @click="showNavList" alt="" class="icon">-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <div class="search" v-if="search" @click="showSearch">-->
-<!--                <el-input-->
-<!--                        class="input"-->
-<!--                        prefix-icon="el-icon-search"-->
-<!--                        size="small"-->
-<!--                        placeholder="Search"></el-input>-->
-<!--            </div>-->
-<!--            <div class="navList" v-if="showList">-->
-<!--                <ul>-->
-<!--                    <li-->
-<!--                            v-for="(item,index) in types"-->
-<!--                            :key="index"-->
-<!--                            @click="changeList(item.id)"-->
-<!--                            :name="item.name"-->
-<!--                    >{{item.name}}</li>-->
-<!--                    <li @click="download">综合样本下载</li>-->
-<!--                </ul>-->
-<!--            </div>-->
-<!--        </div>-->
         <HeadMobile />
-        <ul class="example" v-if="showExampleList">
-            <li
-                v-for="item in types"
-                @click="changeList(item.id)"
-            >
-                <div class="wrap"></div>
-                <img  :src="item.case.main_image_url" alt="">
-                <span class="names">{{item.name}}</span>
-            </li>
-        </ul>
-        <div v-else>
-            <div class="bannerListNav">
-                <el-carousel
-                        :interval="3000"
-                        trigger="click"
-                        arrow="never"
-                        :indicator-position="bannerList.length&&bannerList.length > 1? '':'none'"
+        <div class="mainScreen">
+            <ul class="example" v-if="showExampleList">
+                <li
+                        v-for="item in types"
+                        @click="changeList(item.id)"
                 >
-                    <el-carousel-item v-for="(item,index) in bannerList" :key="index">
-                        <a :href="item.link">
-                            <img :src="item.image_url" alt="">
-                        </a>
-                    </el-carousel-item>
-                </el-carousel>
-                <div class="header">
-                    <h3>PROJECT CASES</h3>
-                    <span>项目案例</span>
+                    <div class="wrap"></div>
+                    <img :src="item.case?item.case.main_image_url:''" alt="">
+                    <span class="names">{{item.name}}</span>
+                </li>
+            </ul>
+            <div v-else>
+                <div class="bannerListNav">
+                    <el-carousel
+                            :interval="3000"
+                            trigger="click"
+                            arrow="never"
+                            :indicator-position="bannerList.length&&bannerList.length > 1? '':'none'"
+                    >
+                        <el-carousel-item v-for="(item,index) in bannerList" :key="index">
+                            <a :href="item.link">
+                                <img :src="item.image_url" alt="">
+                            </a>
+                        </el-carousel-item>
+                    </el-carousel>
+                    <div class="header">
+                        <h3>PROJECT CASES</h3>
+                        <span>项目案例</span>
+                    </div>
                 </div>
-            </div>
-            <div class="b_box">
-                <div class="item">
-                    <el-tabs v-model="activeName" type="card" @tab-click="handleClick"  class="el_tabs">
-                        <el-tab-pane  name="" >
-                            <span slot="label" ><i class="el-icon-caret-bottom" ></i> 所有项目</span>
-                            <div class="tabHeader">
-                                <h3>所有项目</h3>
-                            </div>
-                            <ul class="all" v-if="showDetail">
-                                <li v-for="item in lists" @click="details(item.id)">
-                                    <div class="psImgs"> <img :src="item.main_image_url" alt=""></div>
-                                    <h4>{{item.title}}</h4>
-                                </li>
-                            </ul>
-                            <div class="details" v-else>
-                                <div class="header">
-                                    <h3> {{E_details.title}}</h3>
+                <div class="b_box">
+                    <div class="item">
+                        <el-tabs v-model="activeName" type="card" @tab-click="handleClick"  class="el_tabs">
+                            <el-tab-pane  name="" >
+                                <span slot="label" ><i class="el-icon-caret-bottom" ></i> 所有项目</span>
+                                <div class="tabHeader" v-if="showDetail">
+                                    <h3>所有项目</h3>
                                 </div>
-                                <div class="body">
-                                    <div class="left">
-                                        <el-carousel
-                                                :interval="3000"
-                                                :arrow="E_details.gallery.length&&E_details.gallery.length>1?'always':'never'"
-                                                indicator-position="none"	>
-                                            <el-carousel-item v-for="(item,index) in E_details.gallery" :key="index">
-                                                <img :src="item.url" alt="">
-                                            </el-carousel-item>
-                                        </el-carousel>
+                                <ul class="all" v-if="showDetail">
+                                    <li v-for="item in lists" @click="details(item.id)">
+                                        <div class="psImgs"> <img :src="item.main_image_url" alt=""></div>
+                                        <h4>{{item.title}}</h4>
+                                    </li>
+                                </ul>
+                                <div class="details" v-else>
+                                    <div class="header">
+                                        <h3> {{E_details.title}}</h3>
                                     </div>
-                                    <div class="right">
-                                        <h3>项目介绍</h3>
-                                        <span style="white-space: pre-wrap;">{{E_details.introduce}}</span>
-                                        <h3>解决方案</h3>
-                                        <span>{{E_details.solution}}</span>
-                                        <h3>使用产品</h3>
-                                        <ul>
-                                            <li
-                                                    v-for="item in E_details.products"
-                                                    @click="productDetail(item.id)"
-                                            >
-                                                {{item.code}}
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </el-tab-pane>
-                        <el-tab-pane
-                                v-for="item in types"
-                                :name="item.id+''"
-                        >
-                            <span slot="label"><i class="el-icon-caret-bottom"></i> {{item.name}}</span>
-                            <div class="tabHeader">
-                                <h3>{{item.name}}</h3>
-                            </div>
-                            <ul class="all" v-if="showDetail && (lists.length&&lists.length)" >
-                                <li v-for="item in lists" @click="details(item.id)">
-                                    <div class="psImgs"><img :src="item.main_image_url" alt=""></div>
-                                    <h4>{{item.title}}</h4>
-                                </li>
-                            </ul>
-                            <div class="details" v-else-if="!showDetail">
-                                <div class="header">
-                                    <h3> {{E_details.title}}</h3>
-                                </div>
-                                <div class="body">
-                                    <div class="left">
-                                        <el-carousel
-                                                :interval="3000"
-                                                :arrow="E_details.gallery.length&&E_details.gallery.length>1?'always':'never'"
-                                                indicator-position="none"	>
-                                            <el-carousel-item v-for="(item,index) in E_details.gallery" :key="index">
-                                                <img :src="item.url" alt="">
-                                            </el-carousel-item>
-                                        </el-carousel>
-                                    </div>
-                                    <div class="right">
-                                        <h3>项目介绍</h3>
-                                        <span v-html="E_details.introduce" style="white-space: pre-wrap;"></span>
-                                        <h3>解决方案</h3>
-                                        <span v-html="E_details.solution"></span>
-                                        <h3>使用产品</h3>
-                                        <ul>
-                                            <li
-                                                    v-for="item in E_details.products"
-                                                    @click="productDetail(item.id)"
-                                            >
-                                                {{item.code}}
-                                            </li>
-                                        </ul>
+                                    <div class="body">
+                                        <div class="left">
+                                            <el-carousel
+                                                    :interval="3000"
+                                                    :arrow="E_details.gallery.length&&E_details.gallery.length>1?'always':'never'"
+                                                    indicator-position="none"	>
+                                                <el-carousel-item v-for="(item,index) in E_details.gallery" :key="index">
+                                                    <img :src="item.url" alt="">
+                                                </el-carousel-item>
+                                            </el-carousel>
+                                        </div>
+                                        <div class="right">
+                                            <h3>项目介绍</h3>
+                                            <span style="white-space: pre-wrap;">{{E_details.introduce}}</span>
+                                            <h3>解决方案</h3>
+                                            <span>{{E_details.solution}}</span>
+                                            <h3>使用产品</h3>
+                                            <ul>
+                                                <li
+                                                        v-for="item in E_details.products"
+                                                        @click="productDetail(item.id)"
+                                                >
+                                                    {{item.code}}
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div v-else class="empty">该分组下暂无项目案例</div>
-                        </el-tab-pane>
-                    </el-tabs>
+                            </el-tab-pane>
+                            <el-tab-pane
+                                    v-for="item in types"
+                                    :name="item.id+''"
+                            >
+                                <span slot="label"><i class="el-icon-caret-bottom"></i> {{item.name}}</span>
+                                <div class="tabHeader" v-if="showDetail">
+                                    <h3>{{item.name}}</h3>
+                                </div>
+                                <ul class="all" v-if="showDetail && (lists.length&&lists.length)" >
+                                    <li v-for="item in lists" @click="details(item.id)">
+                                        <div class="psImgs"><img :src="item.main_image_url" alt=""></div>
+                                        <h4>{{item.title}}</h4>
+                                    </li>
+                                </ul>
+                                <div class="details" v-else-if="!showDetail">
+                                    <div class="header">
+                                        <h3> {{E_details.title}}</h3>
+                                    </div>
+                                    <div class="body">
+                                        <div class="left">
+                                            <el-carousel
+                                                    :interval="3000"
+                                                    arrow="never"
+                                                    indicator-position="none"	>
+                                                <el-carousel-item v-for="(item,index) in E_details.gallery" :key="index">
+                                                    <img :src="item.url" alt="">
+                                                </el-carousel-item>
+                                            </el-carousel>
+                                        </div>
+                                        <div class="right">
+                                            <h3>项目介绍</h3>
+                                            <span v-html="E_details.introduce" style="white-space: pre-wrap;"></span>
+                                            <h3>解决方案</h3>
+                                            <span v-html="E_details.solution"></span>
+                                            <h3>使用产品</h3>
+                                            <ul>
+                                                <li
+                                                        v-for="item in E_details.products"
+                                                        @click="productDetail(item.id)"
+                                                >
+                                                    {{item.code}}
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div v-else class="empty">该分组下暂无项目案例</div>
+                            </el-tab-pane>
+                        </el-tabs>
+                    </div>
                 </div>
             </div>
         </div>
-
         <FooterMobile/>
         <BacktopMobile />
     </div>  
