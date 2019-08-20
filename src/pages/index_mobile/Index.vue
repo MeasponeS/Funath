@@ -4,8 +4,8 @@
         <div class="item">
             <div 
                 class="bannerListNav"
-                @mousedown="getScreenOne"
-                @mouseup="getScreenTwo"
+                @touchstart="getScreenOne"
+                @touchend="getScreenTwo"
                 >
                 <el-carousel
                         :interval="3000"
@@ -199,7 +199,23 @@
 			})
         },
         mounted() {
+			let banner = document.getElementsByClassName('bannerListNav');
+			let events = {
+				touchstart:(e)=>{
+					this.bannerIsDrag = false
+				},
+				touchmove:(e)=>{
+					this.bannerIsDrag = true;
+				},
+				mouseup:(e)=>{
+				}
+			};
+			for(let key in events){
+				for (let i = 0;i < banner.length;i++){
+					banner[i].addEventListener(key,events[key])
+                }
 
+			}
         },
         methods: {
 			goLink(link){
@@ -282,15 +298,15 @@
             	this.activePic = 10
             },
             getScreenOne(e){
-                e.stopPropagation();
+				e.stopPropagation();
                  e.preventDefault();
-                this.screenX1 = e.screenX;
+				this.screenX1 = e.changedTouches[0].screenX;
                 
             },
             getScreenTwo(e){
                 e.stopPropagation();
                 e.preventDefault();
-                this.screenX2 = e.screenX;
+				this.screenX2 = e.changedTouches[0].screenX;
                 this.checkScreen()
             },
             checkScreen(){
