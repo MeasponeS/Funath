@@ -82,7 +82,7 @@
 
 <style>
     .amap-wrapper {
-        width: 80%;
-        height: 200px;
+        width: 100%;
+        height: 240px;
     }
 </style>
