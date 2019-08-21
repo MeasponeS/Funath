@@ -48,6 +48,7 @@
                             prefix-icon="el-icon-search"
                             placeholder="请输入产品名称"
                             v-model="searchJson"
+                            @keyup.native="doSearch"
                         />
                         <div class="dropDownBox" v-if="showSearchInput">
                             <div
@@ -182,6 +183,16 @@
 			}
         },
 		methods: {
+			doSearch(e){
+				if(e.keyCode == 13){
+					if(this.searchResult.length&&this.searchResult.length > 1){
+						window.location.href = './productList.html?id=' + this.p_list[0].id
+					} else if(this.searchResult.length == 1) {
+						let item = this.searchResult[0];
+						window.location.href = './productDetail.html?id='+item.id
+					}
+				}
+			},
 			stayClose(){
 				this.showSearch = false;
 				this.showSearchInput = false

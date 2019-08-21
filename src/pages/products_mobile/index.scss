@@ -308,7 +308,6 @@
             flex-wrap: wrap;
             li{
                 width: 49%;
-                height: 171px;
                 display: flex;
                 justify-content: flex-start;
                 flex-direction: column;
@@ -317,7 +316,7 @@
                 overflow: hidden;
                 .p_imgs{
                     width: auto;
-                    height: 171px;
+                    height: 143px;
                     margin-bottom: 5px;
                     overflow: hidden;
                     border: 1px solid #d6d6d6;

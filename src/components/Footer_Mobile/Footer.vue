@@ -36,9 +36,10 @@
         width: 100%;
         height: 50px;
         display: flex;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
         background: #fff;
+        text-align: center;
         color: #2b2b2b;
         border-bottom: 1px solid #d7d7d7;
         border-top: 1px solid #d7d7d7;
